@@ -8,7 +8,8 @@ An online E-store system built in Java 8=>11 and ___ _replace with other platfor
 - Ryan Current
 - Chris Hamm
 - Michael Ververs
-- MEMBER4
+- Andrew Leon
+
 
 
 ## Prerequisites
