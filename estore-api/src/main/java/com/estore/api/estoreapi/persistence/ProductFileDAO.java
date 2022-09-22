@@ -114,6 +114,30 @@ public class ProductFileDAO implements IProductDAO {
         return productArray;
     }
 
+
+    /**
+     * Generates an array of prodcuts from the tree map for any
+     * products that contains the text specified by containsText
+     * 
+     * If containsText is null, the array contains all of the products
+     * in the tree map
+     * 
+     * @return  The array of oroducts, may be empty
+     */
+    private Product[] getProductsArray(String containsText) { // if containsText == null, no filter
+        ArrayList<Product> heroArrayList = new ArrayList<>();
+
+        for (Product product : products.values()) {
+            if (containsText == null || product.containsSearchTerm(containsText)) {
+                heroArrayList.add(product);
+            }
+        }
+
+        Product[] heroArray = new Product[heroArrayList.size()];
+        heroArrayList.toArray(heroArray);
+        return heroArray;
+    }
+
     /**
      * Retrieves all Products
      * 
@@ -126,4 +150,17 @@ public class ProductFileDAO implements IProductDAO {
             return this.getProductsArray();
         }
     };
+
+
+    /**
+    ** 
+     */
+    @Override
+    public Product[] findProducts(String searchText) {
+        synchronized(products) {
+            return getProductsArray(searchText);
+        }
+    }
+
+
 }

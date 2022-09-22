@@ -84,4 +84,17 @@ public class Product {
         ", name=" + this.name + 
         ", description=" + this.description + "]";
     }
+
+    /**
+     * Determines if this product contains search text
+     * 
+     * @param searchText the text to search this product for
+     * 
+     * @return true when the searchText is found in this product
+     */
+    public boolean containsSearchTerm(String searchText)
+    {
+        return this.name.contains(searchText) ||
+               this.description.contains(searchText); 
+    }
 }
