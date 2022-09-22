@@ -1,9 +1,6 @@
 package com.estore.api.estoreapi.model;
 
-import java.util.logging.Logger;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 
 /**
  * Represents a Product
@@ -12,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * 
  */
 public class Product {
-    private static final Logger LOG = Logger.getLogger(Product.class.getName());
+    // private static final Logger LOG = Logger.getLogger(Product.class.getName());
 
     @JsonProperty("id") public int id; 
     @JsonProperty("price") public double price; 
@@ -36,9 +33,10 @@ public class Product {
 
     /**
      * Retrieves the id of the product
+     * 
      * @return The id of the product
      */
-    public int getid() {return id;}
+    public int getId() {return id;}
 
     /**
      * Sets the price of the product - necessary for JSON object to Java object deserialization
@@ -48,6 +46,7 @@ public class Product {
 
     /**
      * Retrieves the price of the product
+     * 
      * @return The price of the product
      */
     public double getPrice() {return this.price;}
@@ -60,6 +59,7 @@ public class Product {
 
     /**
      * Retrieves the name of the product
+     * 
      * @return The name of the product
      */
     public String getName() {return name;}
@@ -72,6 +72,7 @@ public class Product {
 
     /**
      * Retrieves the description of the product
+     * 
      * @return The description of the product
      */
     public String getDescription() {return description;}
