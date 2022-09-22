@@ -102,6 +102,6 @@ public class ProductFileDAO implements IProductDAO {
 
     // TODO: add your functions here
 
-    // TODO: remove this function if you implement this, it is there just so that the code doesnt have an error
+    // TODO: remove this function if you implement this, it is there just so that the code doesn't have an error
     private Product[] getProductsArray() { return new Product[0]; }; 
 }

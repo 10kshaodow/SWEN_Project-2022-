@@ -14,73 +14,73 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Product {
     private static final Logger LOG = Logger.getLogger(Product.class.getName());
 
-    @JsonProperty("Id") public int Id; 
-    @JsonProperty("Price") public double Price; 
-    @JsonProperty("Name") public String Name; 
-    @JsonProperty("Description") public String Description; 
+    @JsonProperty("id") public int id; 
+    @JsonProperty("price") public double price; 
+    @JsonProperty("name") public String name; 
+    @JsonProperty("description") public String description; 
     
 
     /**
      * Create a product with the given id and name
-     * @param Id The id of the product
-     * @param Name The name of the product
+     * @param id The id of the product
+     * @param name The name of the product
      * 
      */
-    public Product(@JsonProperty("Id") int Id, @JsonProperty("Price") double Price, 
-                   @JsonProperty("Name") String Name, @JsonProperty("Description") String Description) {
-        this.Id = Id;
-        this.Price = Price; 
-        this.Name = Name;
-        this.Description = Description; 
+    public Product(@JsonProperty("id") int id, @JsonProperty("price") double price, 
+                   @JsonProperty("name") String name, @JsonProperty("description") String description) {
+        this.id = id;
+        this.price = price; 
+        this.name = name;
+        this.description = description; 
     }
 
     /**
      * Retrieves the id of the product
      * @return The id of the product
      */
-    public int getId() {return Id;}
+    public int getid() {return id;}
 
     /**
      * Sets the price of the product - necessary for JSON object to Java object deserialization
-     * @param Price The price of the product
+     * @param price The price of the product
      */
-    public void setPrice(double Price) {this.Price = Price;}
+    public void setPrice(double price) {this.price = price;}
 
     /**
      * Retrieves the price of the product
      * @return The price of the product
      */
-    public double getPrice() {return this.Price;}
+    public double getPrice() {return this.price;}
 
     /**
      * Sets the name of the product - necessary for JSON object to Java object deserialization
-     * @param Name The name of the product
+     * @param name The name of the product
      */
-    public void setName(String Name) {this.Name = Name;}
+    public void setName(String name) {this.name = name;}
 
     /**
      * Retrieves the name of the product
      * @return The name of the product
      */
-    public String getName() {return Name;}
+    public String getName() {return name;}
     
     /**
      * Sets the description of the product - necessary for JSON object to Java object deserialization
-     * @param Description The description of the product
+     * @param description The description of the product
      */
-    public void setDescription(String Description) {this.Description = Description;}
+    public void setDescription(String description) {this.description = description;}
 
     /**
      * Retrieves the description of the product
      * @return The description of the product
      */
-    public String getDescription() {return Description;}
+    public String getDescription() {return description;}
 
     @Override
     public String toString() {
-        return "Product [ID=" + this.Id +
-        ", Price=" + this.Price + 
-        ", Name=" + this.Name + 
-        ", Description=" + this.Description + "]";
+        return "Product [id=" + this.id +
+        ", price=" + this.price + 
+        ", name=" + this.name + 
+        ", description=" + this.description + "]";
     }
 }
