@@ -94,4 +94,57 @@ public class ProductController {
         }
     }
 
+    /**
+     * Creates a {@linkplain Product product} with the provided product object
+     * 
+     * @param product - The {@link Product product} to create
+     * 
+     * @return ResponseEntity with created {@link Product product} object and HTTP status of CREATED<br>
+     * ResponseEntity with HTTP status of CONFLICT if {@link Product product} object already exists<br>
+     * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
+     */
+    @PostMapping("")
+    public ResponseEntity<Product> createProduct(@RequestBody Product product) {
+        LOG.info("POST /products " + product);
+
+        try {
+            Product newProduct = productDao.createProduct(product);
+            if (newProduct != null)
+                return new ResponseEntity<Product>(newProduct,HttpStatus.OK);
+            else
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        catch(IOException e) {
+            LOG.log(Level.SEVERE,e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        
+    }
+
+       /**
+     * Updates the {@linkplain Product product} with the provided {@linkplain Product product} object, if it exists
+     * 
+     * @param product The {@link Product product} to update
+     * 
+     * @return ResponseEntity with updated {@link Product product} object and HTTP status of OK if updated<br>
+     * ResponseEntity with HTTP status of NOT_FOUND if not found<br>
+     * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
+     */
+    @PutMapping("")
+    public ResponseEntity<Product> updateProduct(@RequestBody Product product) {
+        LOG.info("PUT /products " + product);
+
+        try {
+            Product newProduct = productDao.updateProduct(product);
+            if (newProduct != null)
+                return new ResponseEntity<Product>(newProduct,HttpStatus.OK);
+            else
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        catch(IOException e) {
+            LOG.log(Level.SEVERE,e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }
