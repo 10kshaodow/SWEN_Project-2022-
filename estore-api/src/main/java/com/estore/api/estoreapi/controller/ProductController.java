@@ -69,6 +69,7 @@ public class ProductController {
         }
     }
 
+
     /**
      * Responds to the GET request for all products whose name contains
      * the text in name
@@ -92,6 +93,24 @@ public class ProductController {
             LOG.log(Level.SEVERE, e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Product> deleteProduct(@PathVariable int id) {
+        LOG.info("DELETE /products/" + id);
+        try {
+            Boolean product_void = productDao.deleteProduct(id);
+            Product product = productDao.getProduct(id);
+            if (product_void != false)
+                return new ResponseEntity<Product>(product,HttpStatus.OK);
+            else
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        catch(IOException e) {
+            LOG.log(Level.SEVERE,e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        // return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
 }

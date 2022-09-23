@@ -115,6 +115,20 @@ public class ProductFileDAO implements IProductDAO {
     }
 
 
+     /**
+    ** {@inheritDoc}
+     */
+    @Override
+    public Product getProduct(int id) {
+        synchronized(products) {
+            if (products.containsKey(id))
+                return products.get(id);
+            else
+                return null;
+        }
+    }
+
+
     /**
      * Generates an array of prodcuts from the tree map for any
      * products that contains the text specified by containsText
@@ -161,6 +175,22 @@ public class ProductFileDAO implements IProductDAO {
             return getProductsArray(searchText);
         }
     }
+
+    /**
+    ** {@inheritDoc}
+     */
+    @Override
+    public boolean deleteProduct(int id) throws IOException {
+        synchronized(products) {
+            if (products.containsKey(id)) {
+                products.remove(id);
+                return save();
+            }
+            else
+                return false;
+        }
+    }
+
 
 
 }
