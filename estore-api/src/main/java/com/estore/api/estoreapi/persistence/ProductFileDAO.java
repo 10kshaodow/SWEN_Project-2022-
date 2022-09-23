@@ -52,6 +52,17 @@ public class ProductFileDAO implements IProductDAO {
     }
 
     /**
+     * Generates the next id for a new {@linkplain Product product}
+     * 
+     * @return The next id
+     */
+    private synchronized static int nextId() {
+        int id = nextId;
+        ++nextId;
+        return id;
+    }
+
+    /**
      * Saves the products from the map into the file as an array of JSON objects
      * 
      * @return true if the products were written successfully
@@ -173,6 +184,36 @@ public class ProductFileDAO implements IProductDAO {
     public Product[] findProducts(String searchText) {
         synchronized(products) {
             return getProductsArray(searchText);
+        }
+    }
+
+        /**
+    ** {@inheritDoc}
+     */
+    @Override
+    public Product createProduct(Product product) throws IOException {
+        synchronized(products) {
+            // We create a new product object because the id field is immutable
+            // and we need to assign the next unique id
+            Product newProduct = new Product(nextId(), product.getPrice(), product.getName(), product.getDescription());
+            products.put(newProduct.getId(),newProduct);
+            save(); // may throw an IOException
+            return newProduct;
+        }
+    }
+
+    /**
+    ** {@inheritDoc}
+     */
+    @Override
+    public Product updateProduct(Product product) throws IOException {
+        synchronized(products) {
+            if (products.containsKey(product.getId()) == false)
+                return null;  // product does not exist
+
+            products.put(product.getId(),product);
+            save(); // may throw an IOException
+            return product;
         }
     }
 

@@ -48,6 +48,31 @@ public interface IProductDAO {
      */
     Product[] findProducts(String searchText) throws IOException;
 
+     /**
+     * Creates and saves a {@linkplain Product product}
+     * 
+     * @param product {@linkplain Product product} object to be created and saved
+     * <br>
+     * The id of the product object is ignored and a new uniqe id is assigned
+     *
+     * @return new {@link Product product} if successful, false otherwise 
+     * 
+     * @throws IOException if an issue with underlying storage
+     */
+    Product createProduct(Product product) throws IOException;
+
+    /**
+     * Updates and saves a {@linkplain Product product}
+     * 
+     * @param {@link Product product} object to be updated and saved
+     * 
+     * @return updated {@link Product product} if successful, null if
+     * {@link Product product} could not be found
+     * 
+     * @throws IOException if underlying storage cannot be accessed
+     */
+    Product updateProduct(Product product) throws IOException;
+
 
      /**
      * Deletes a product with the given id
