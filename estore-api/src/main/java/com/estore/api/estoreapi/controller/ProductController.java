@@ -69,6 +69,33 @@ public class ProductController {
         }
     }
 
+    /**
+     * Retrieves a {@linkplain Product product} with the given id
+     * 
+     * @param id The id of the {@link Product product} to get
+     * 
+     * @return a {@link Product product} object with the matching id
+     * <br>
+     * null if no {@link Product product} with a matching id is found
+     * 
+     * @throws IOException if an issue with underlying storage
+     */
+    @GetMapping("/{id}")
+    public ResponseEntity<Product> getProduct(int id){
+        LOG.info("GET /products/" + id);
+
+        try{
+            Product product = productDao.getProduct(id);
+            if (product != null)
+                return new ResponseEntity<Product>(product,HttpStatus.OK);
+            else
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        catch(IOException e) {
+            LOG.log(Level.SEVERE,e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
     /**
      * Responds to the GET request for all products whose name contains

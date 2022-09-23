@@ -25,13 +25,13 @@ public interface IProductDAO {
 
 
     /**
-     * Retrieves a {@linkplain Hero hero} with the given id
+     * Retrieves a {@linkplain Product product} with the given id
      * 
-     * @param id The id of the {@link Hero hero} to get
+     * @param id The id of the {@link Product product} to get
      * 
-     * @return a {@link Hero hero} object with the matching id
+     * @return a {@link Product product} object with the matching id
      * <br>
-     * null if no {@link Hero hero} with a matching id is found
+     * null if no {@link Product product} with a matching id is found
      * 
      * @throws IOException if an issue with underlying storage
      */
