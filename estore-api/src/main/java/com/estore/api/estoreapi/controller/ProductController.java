@@ -55,6 +55,13 @@ public class ProductController {
 
     // insert your methods here
 
+    /**
+     * Gets the entire products array from the DAO
+     * 
+     * @return ResponseEntity with a okay status and the products array or
+     *         a ResponseEntity with a Internal Server Error if something went wrong
+     *         loading the data
+     */
     @GetMapping("")
     public ResponseEntity<Product[]> getAllProducts() {
         LOG.info("GET /products");
@@ -75,24 +82,23 @@ public class ProductController {
      * @param id The id of the {@link Product product} to get
      * 
      * @return a {@link Product product} object with the matching id
-     * <br>
-     * null if no {@link Product product} with a matching id is found
+     *         <br>
+     *         null if no {@link Product product} with a matching id is found
      * 
      * @throws IOException if an issue with underlying storage
      */
     @GetMapping("/{id}")
-    public ResponseEntity<Product> getProduct(int id){
+    public ResponseEntity<Product> getProduct(int id) {
         LOG.info("GET /products/" + id);
 
-        try{
+        try {
             Product product = productDao.getProduct(id);
             if (product != null)
-                return new ResponseEntity<Product>(product,HttpStatus.OK);
+                return new ResponseEntity<Product>(product, HttpStatus.OK);
             else
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        catch(IOException e) {
-            LOG.log(Level.SEVERE,e.getLocalizedMessage());
+        } catch (IOException e) {
+            LOG.log(Level.SEVERE, e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -104,19 +110,19 @@ public class ProductController {
      * @param name The search term for the product
      * 
      * @return ResponseEntity with array of product objects (may be empty) and
-     * HTTP status of OK<br>
-     * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
+     *         HTTP status of OK<br>
+     *         ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      * 
-     * Example: Find all product that contain the text "fa"
-     * GET http://localhost:8080/heroes/?searchTerm=fa
+     *         Example: Find all product that contain the text "fa"
+     *         GET http://localhost:8080/heroes/?searchTerm=fa
      */
     @GetMapping("/")
     public ResponseEntity<Product[]> searchProducts(@RequestParam String searchTerm) {
-        LOG.info("GET /heroes/?searchTerm="+searchTerm);
+        LOG.info("GET /heroes/?searchTerm=" + searchTerm);
         try {
             Product[] heros = productDao.findProducts(searchTerm);
             return new ResponseEntity<Product[]>(heros, HttpStatus.OK);
-        } catch(IOException e) {
+        } catch (IOException e) {
             LOG.log(Level.SEVERE, e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -129,12 +135,11 @@ public class ProductController {
             Boolean product_void = productDao.deleteProduct(id);
             Product product = productDao.getProduct(id);
             if (product_void != false)
-                return new ResponseEntity<Product>(product,HttpStatus.OK);
+                return new ResponseEntity<Product>(product, HttpStatus.OK);
             else
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        catch(IOException e) {
-            LOG.log(Level.SEVERE,e.getLocalizedMessage());
+        } catch (IOException e) {
+            LOG.log(Level.SEVERE, e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
         // return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
@@ -145,9 +150,11 @@ public class ProductController {
      * 
      * @param product - The {@link Product product} to create
      * 
-     * @return ResponseEntity with created {@link Product product} object and HTTP status of CREATED<br>
-     * ResponseEntity with HTTP status of CONFLICT if {@link Product product} object already exists<br>
-     * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
+     * @return ResponseEntity with created {@link Product product} object and HTTP
+     *         status of CREATED<br>
+     *         ResponseEntity with HTTP status of CONFLICT if {@link Product
+     *         product} object already exists<br>
+     *         ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @PostMapping("")
     public ResponseEntity<Product> createProduct(@RequestBody Product product) {
@@ -156,25 +163,26 @@ public class ProductController {
         try {
             Product newProduct = productDao.createProduct(product);
             if (newProduct != null)
-                return new ResponseEntity<Product>(newProduct,HttpStatus.OK);
+                return new ResponseEntity<Product>(newProduct, HttpStatus.OK);
             else
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        catch(IOException e) {
-            LOG.log(Level.SEVERE,e.getLocalizedMessage());
+        } catch (IOException e) {
+            LOG.log(Level.SEVERE, e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        
+
     }
 
-       /**
-     * Updates the {@linkplain Product product} with the provided {@linkplain Product product} object, if it exists
+    /**
+     * Updates the {@linkplain Product product} with the provided
+     * {@linkplain Product product} object, if it exists
      * 
      * @param product The {@link Product product} to update
      * 
-     * @return ResponseEntity with updated {@link Product product} object and HTTP status of OK if updated<br>
-     * ResponseEntity with HTTP status of NOT_FOUND if not found<br>
-     * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
+     * @return ResponseEntity with updated {@link Product product} object and HTTP
+     *         status of OK if updated<br>
+     *         ResponseEntity with HTTP status of NOT_FOUND if not found<br>
+     *         ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @PutMapping("")
     public ResponseEntity<Product> updateProduct(@RequestBody Product product) {
@@ -183,12 +191,11 @@ public class ProductController {
         try {
             Product newProduct = productDao.updateProduct(product);
             if (newProduct != null)
-                return new ResponseEntity<Product>(newProduct,HttpStatus.OK);
+                return new ResponseEntity<Product>(newProduct, HttpStatus.OK);
             else
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        catch(IOException e) {
-            LOG.log(Level.SEVERE,e.getLocalizedMessage());
+        } catch (IOException e) {
+            LOG.log(Level.SEVERE, e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

@@ -1,1 +1,7 @@
-<div class="flex"></div>
+<div class="flex max-width container">
+  <div *ngFor="let product of allProducts" class="product-card flex bg-blue">
+    <H1>{{ product.name }}</H1>
+    <h3>{{ product.price }}</h3>
+    <p>{{ product.description }}</p>
+  </div>
+</div>
