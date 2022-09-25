@@ -1,0 +1,13 @@
+<p>create-product works!</p>
+<div>
+    <label for="new-product">Product name: </label>
+    <input id="new-product" #productPrice />
+    <input id="new-product" #productName />
+    <input id="new-product" #productDescription />
+
+  
+    <!-- (click) passes input value to add() and then clears the input -->
+    <button type="button" class="add-button" (click)="create(0, productName.value, productDescription.value);">
+      Add product
+    </button>
+  </div>

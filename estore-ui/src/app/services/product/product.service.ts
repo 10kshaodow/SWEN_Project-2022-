@@ -29,6 +29,14 @@ export class ProductService {
     );
   }
 
+  getProduct(id: number): Observable<Product> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.get<Product>(url).pipe(
+      tap(_ => console.log(`fetched hero id=${id}`)),
+      catchError(this.handleError<Product>(`getProduct id=${id}`))
+    );
+  }
+
   /** PUT: update the product on the server */
 updateProduct(product: Product): Observable<any> {
   return this.http.put(this.apiUrl, product, this.httpOptions).pipe(
