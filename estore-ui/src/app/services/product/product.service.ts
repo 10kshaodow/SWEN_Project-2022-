@@ -17,10 +17,11 @@ export class ProductService {
 
 
 
-  deleteProduct(): Observable<Product> {
-    return this.http.delete<Product>(this.apiUrl).pipe(
+  deleteProduct(productID: number): Observable<Product> {
+    let url = `${this.apiUrl}/${productID}`
+    return this.http.delete<Product>(url,this.httpOptions).pipe(
       tap((item) => {
-        console.log(`API deleted ${item.id} product`);
+        console.log(`API deleted ${productID} product`);
       }),
       catchError(this.handleError<Product>(`deleteProduct`, ))
     );

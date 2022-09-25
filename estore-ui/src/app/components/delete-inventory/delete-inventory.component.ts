@@ -13,13 +13,12 @@ export class DeleteInventoryComponent implements OnInit {
   constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
-    this.deleteInventory();
-    
    
   }
 
-  deleteInventory() {
-    this.productService.deleteProduct()
+  deleteInventory( id: string ) {
+    console.log("deleteing...")
+    this.productService.deleteProduct(parseInt(id)).subscribe()
   }
 
 }

@@ -1,0 +1,21 @@
+<div>
+    <div>
+        <label for="productPrice">price: </label>
+        <input id="productPrice" #productPrice placeholder=0>
+    </div>
+
+    <div>
+      <label for="productName">name: </label>
+      <input id="productName" #productName placeholder="name">
+    </div>
+
+    <div>
+        <label for="productDescription">desc: </label>
+        <input id="productDescription" #productDescription placeholder="desc">
+    </div>
+  
+    <button type="button" class="add-button" (click)="create(productPrice.value, productName.value, productDescription.value);">
+      Add product
+    </button>
+
+  </div>
