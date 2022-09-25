@@ -1,5 +1,20 @@
 <p>update-product works!</p>
-<div>
+
+<div class="app-delete-inventory">
+  <input #productId id="productId" />
+  <!-- <input type="text" [(ng-model)]="searchTerm" /> -->
+  <button (click)="getProduct(productId.value)">Find Product By Id</button>
+</div>
+
+<div *ngIf="product">
+  <label for="productPrice">price: </label>
+  <input type="text" [(ngModel)]="product.price" id="price" />
+
+  <label for="productPrice">price: </label>
+  <input type="text" [(ngModel)]="product.name" ids="name" />
+
+  <label for="productPrice">price: </label>
+  <input type="text" [(ngModel)]="product.description" id="desc" />
 </div>
 
 <button type="button" (click)="save()">save</button>

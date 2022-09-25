@@ -1,4 +1,9 @@
 [ {
+  "id" : 12,
+  "price" : 15.0,
+  "name" : "Blue Falcon",
+  "description" : "A blue falcon"
+}, {
   "id" : 13,
   "price" : 27.0,
   "name" : "Perigrine",
@@ -8,4 +13,9 @@
   "price" : 28.0,
   "name" : "Californian",
   "description" : "The sea"
+}, {
+  "id" : 15,
+  "price" : 10.0,
+  "name" : "Rick",
+  "description" : "Rick from rick and morty"
 } ]

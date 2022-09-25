@@ -5,28 +5,27 @@ import { Product } from '../../types/Product';
 @Component({
   selector: 'app-update-product',
   templateUrl: './update-product.component.html',
-  styleUrls: ['./update-product.component.css']
+  styleUrls: ['./update-product.component.css'],
 })
 export class UpdateProductComponent implements OnInit {
+  product?: Product;
 
-  @Input() product?: Product;
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-
-  getProduct(id: number): void {
+  getProduct(id: string): void {
     //const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.productService.getProduct(id)
-      .subscribe(product => this.product = product);
+    this.productService
+      .getProduct(parseInt(id))
+      .subscribe((product) => (this.product = product));
   }
 
   save(): void {
     if (this.product) {
-      this.productService.updateProduct(this.product)
-        .subscribe(() => {});
+      this.productService.updateProduct(this.product).subscribe((pro) => {
+        console.log(`Product Updated ${pro.id}`);
+      });
     }
   }
-
 }

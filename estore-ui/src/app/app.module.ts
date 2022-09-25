@@ -9,10 +9,19 @@ import { SearchProductsComponent } from './components/search-products/search-pro
 import { GetProductComponent } from './components/get-product/get-product.component';
 import { UpdateProductComponent } from './components/update-product/update-product.component';
 import { CreateProductComponent } from './components/create-product/create-product.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent, AllInventoryComponent, SearchProductsComponent, GetProductComponent,DeleteInventoryComponent, CreateProductComponent, UpdateProductComponent],
-  imports: [BrowserModule, HttpClientModule],
+  declarations: [
+    AppComponent,
+    AllInventoryComponent,
+    SearchProductsComponent,
+    GetProductComponent,
+    DeleteInventoryComponent,
+    CreateProductComponent,
+    UpdateProductComponent,
+  ],
+  imports: [BrowserModule, HttpClientModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })
