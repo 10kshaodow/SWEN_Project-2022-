@@ -12,6 +12,18 @@ export class ProductService {
 
   constructor(private http: HttpClient) {}
 
+
+
+  deleteProduct(): Observable<Product> {
+    return this.http.delete<Product>(this.apiUrl).pipe(
+      tap((item) => {
+        console.log(`API deleted ${item.id} product`);
+      }),
+      catchError(this.handleError<Product>(`deleteProduct`, ))
+    );
+  }
+
+
   /*
     Ask the server for all of the products
 
