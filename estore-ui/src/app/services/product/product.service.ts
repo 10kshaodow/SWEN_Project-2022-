@@ -11,6 +11,9 @@ export class ProductService {
   private apiUrl = 'http://localhost:8080/products';
 
   constructor(private http: HttpClient) {}
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
 
   /*
     Ask the server for all of the products
@@ -25,6 +28,22 @@ export class ProductService {
       catchError(this.handleError<Product[]>(`getAllProducts`, []))
     );
   }
+
+  /** PUT: update the product on the server */
+updateProduct(product: Product): Observable<any> {
+  return this.http.put(this.apiUrl, product, this.httpOptions).pipe(
+    tap(_ => console.log(`updated product id=${product.id}`)),
+    catchError(this.handleError<any>('updateProduct'))
+  );
+}
+
+/** POST: add a new product to the server */
+addProduct(product: Product): Observable<Product> {
+  return this.http.post<Product>(this.apiUrl, product, this.httpOptions).pipe(
+    tap((newProduct: Product) => console.log(`added product w/ id=${newProduct.id}`)),
+    catchError(this.handleError<Product>('addProduct'))
+  );
+}
 
   /*
     Simple Error handler will log it to browser console
