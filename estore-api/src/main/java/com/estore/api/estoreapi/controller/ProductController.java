@@ -88,7 +88,7 @@ public class ProductController {
      * @throws IOException if an issue with underlying storage
      */
     @GetMapping("/{id}")
-    public ResponseEntity<Product> getProduct(int id) {
+    public ResponseEntity<Product> getProduct(@PathVariable int id) {
         LOG.info("GET /products/" + id);
 
         try {
