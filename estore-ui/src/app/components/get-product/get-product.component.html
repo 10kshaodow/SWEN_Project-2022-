@@ -1,5 +1,13 @@
 <div class="app-get-product">
-    <input #get-id id="getID"/>
+    <input #getid id="getid"/>
     <!-- <input type="text" [(ng-model)]="searchTerm" /> -->
-    <button (click)="getProduct(getID.value)">Get</button>
+    <button (click)="getProduct(getid.value)">Get</button>
+</div>
+<div *ngIf="product">
+    <h2>{{product.name | uppercase}}</h2>
+    <div>
+        <span>id: </span>{{product.id}}
+        <h3>{{product.price}}</h3>
+        <p>{{product.description}}</p>
+    </div>
 </div>

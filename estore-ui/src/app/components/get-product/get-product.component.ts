@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
 
 import { Product } from '../../types/Product';
 import { ProductService } from '../../services/product/product.service';
@@ -11,25 +9,19 @@ import { ProductService } from '../../services/product/product.service';
   styleUrls: ['./get-product.component.css']
 })
 export class GetProductComponent implements OnInit {
-  product: Product | undefined;
+  product?: Product;
 
   constructor(
-    private productService: ProductService, 
-    private route: ActivatedRoute, 
-    private location: Location
+    private productService: ProductService
   ) { }
 
   ngOnInit(): void {
-    
+
   }
 
   getProduct(id: string): void{
     const productID = parseInt(id, 10);
     this.productService.getProduct(productID).subscribe(product => this.product = product);
-  }
-
-  goBack(): void{
-    this.location.back();
   }
 
 }
