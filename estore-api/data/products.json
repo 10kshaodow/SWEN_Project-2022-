@@ -10,7 +10,12 @@
   "description" : "A red falcon."
 }, {
   "id" : 13,
-  "price" : 0.0,
-  "name" : "test_name",
-  "description" : "test_desc"
+  "price" : 27.0,
+  "name" : "Perigrine",
+  "description" : "The Fastest"
+}, {
+  "id" : 14,
+  "price" : 28.0,
+  "name" : "Californian",
+  "description" : "The sea"
 } ]
