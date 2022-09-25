@@ -5,9 +5,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { AllInventoryComponent } from './components/all-inventory/all-inventory.component';
 import { SearchProductsComponent } from './components/search-products/search-products.component';
+import { GetProductComponent } from './components/get-product/get-product.component';
 
 @NgModule({
-  declarations: [AppComponent, AllInventoryComponent, SearchProductsComponent],
+  declarations: [AppComponent, AllInventoryComponent, SearchProductsComponent, GetProductComponent],
   imports: [BrowserModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],

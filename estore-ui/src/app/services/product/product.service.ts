@@ -29,6 +29,15 @@ export class ProductService {
     );
   }
 
+  /* GET a single product from the server */
+  getProduct(id: number): Observable<Product>{
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.get<Product>(url).pipe(
+      tap(_ => console.log(`fetched product with id of ${id}`)), 
+      catchError(this.handleError<Product>(`getProduct id=${id}`))
+    );
+  }
+
   /* GET heroes whose name contains search term */
   searchProducts(term: string): Observable<Product[]> {
     if (!term.trim()) {
