@@ -16,9 +16,9 @@ export class DeleteInventoryComponent implements OnInit {
    
   }
 
-  deleteInventory( id: number ) {
-    this.productService.deleteProduct(id)
-    
+  deleteInventory( id: string ) {
+    console.log("deleteing...")
+    this.productService.deleteProduct(parseInt(id)).subscribe()
   }
 
 }
