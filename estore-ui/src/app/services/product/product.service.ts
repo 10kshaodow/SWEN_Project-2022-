@@ -15,11 +15,23 @@ export class ProductService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  /**
-   * GET: Ask the server for all of the products
-   * 
-   * returns an observable of product object array 
-   */
+
+
+  deleteProduct(): Observable<Product> {
+    return this.http.delete<Product>(this.apiUrl).pipe(
+      tap((item) => {
+        console.log(`API deleted ${item.id} product`);
+      }),
+      catchError(this.handleError<Product>(`deleteProduct`, ))
+    );
+  }
+
+
+  /*
+    Ask the server for all of the products
+
+    returns an observable of product object array
+  */
   getAllProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(this.apiUrl).pipe(
       tap((array) => {
