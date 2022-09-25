@@ -11,7 +11,7 @@ import { UpdateProductComponent } from './components/update-product/update-produ
 import { CreateProductComponent } from './components/create-product/create-product.component';
 
 @NgModule({
-  declarations: [AppComponent, AllInventoryComponent, SearchProductsComponent, GetProductComponent,DeleteInventoryComponent],
+  declarations: [AppComponent, AllInventoryComponent, SearchProductsComponent, GetProductComponent,DeleteInventoryComponent, CreateProductComponent, UpdateProductComponent],
   imports: [BrowserModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
