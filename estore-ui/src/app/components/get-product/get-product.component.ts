@@ -20,12 +20,12 @@ export class GetProductComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getProduct();
+    
   }
 
-  getProduct(): void{
-    const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
-    this.productService.getProduct(id).subscribe(product => this.product = product);
+  getProduct(id: string): void{
+    const productID = parseInt(id, 10);
+    this.productService.getProduct(productID).subscribe(product => this.product = product);
   }
 
   goBack(): void{
