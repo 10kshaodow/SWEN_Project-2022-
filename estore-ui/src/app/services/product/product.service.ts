@@ -17,8 +17,8 @@ export class ProductService {
 
 
 
-  deleteProduct(): Observable<Product> {
-    return this.http.delete<Product>(this.apiUrl).pipe(
+  deleteProduct(productID: number): Observable<Product> {
+    return this.http.delete<Product>(this.apiUrl+ "/"+ productID).pipe(
       tap((item) => {
         console.log(`API deleted ${item.id} product`);
       }),
