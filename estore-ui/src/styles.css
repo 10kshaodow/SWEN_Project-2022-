@@ -63,6 +63,8 @@ p {
   border-radius: 10px;
   font-size: 16px;
   font-weight: 700;
+  border-width: 2px;
+  border-color: #65655e;
   background-color: #cebacf;
 }
 
@@ -83,10 +85,12 @@ p {
 }
 
 .product-card {
+  border-radius: 0.5em;
+  border: 2px black solid;
+
   padding: 2em 0.5em;
   margin: 0.25em 1em;
   flex-direction: column;
-  border-radius: 0.5em;
   transition: 200ms ease-in;
   transition-property: transform;
   cursor: pointer;
@@ -94,6 +98,7 @@ p {
 
 .product-card:hover {
   transform: translateY(-10px);
+  border: 4px white solid;
 }
 
 .product-card h3 {
