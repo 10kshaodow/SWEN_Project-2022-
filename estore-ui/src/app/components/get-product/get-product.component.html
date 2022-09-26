@@ -1,13 +1,15 @@
 <div class="app-get-product">
-    <input #getid id="getid"/>
-    <!-- <input type="text" [(ng-model)]="searchTerm" /> -->
-    <button (click)="getProduct(getid.value)">Get</button>
+  <input class="input" #getid id="getid" placeholder="Product Id" />
+  <!-- <input type="text" [(ng-model)]="searchTerm" /> -->
+  <button class="button" (click)="getProduct(getid.value)">Get</button>
 </div>
-<div *ngIf="product">
-    <h2>{{product.name | uppercase}}</h2>
+<div *ngIf="product" class="flex container">
+  <div class="product-card flex bg-blue">
+    <h2>{{ product.name | uppercase }}</h2>
     <div>
-        <span>id: </span>{{product.id}}
-        <h3>{{product.price}}</h3>
-        <p>{{product.description}}</p>
+      <span>id: </span>{{ product.id }}
+      <h3>{{ product.price }}</h3>
+      <p>{{ product.description }}</p>
     </div>
+  </div>
 </div>

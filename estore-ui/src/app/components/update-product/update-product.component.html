@@ -1,20 +1,42 @@
-<p>update-product works!</p>
-
-<div class="app-delete-inventory">
-  <input #productId id="productId" />
+<div class="app-delete-inventory mv-15">
+  <input class="input" #productId id="productId" placeholder="Product Id" />
   <!-- <input type="text" [(ng-model)]="searchTerm" /> -->
-  <button (click)="getProduct(productId.value)">Find Product By Id</button>
+  <button class="button" (click)="getProduct(productId.value)">Find</button>
 </div>
 
-<div *ngIf="product">
-  <label for="productPrice">price: </label>
-  <input type="text" [(ngModel)]="product.price" id="price" />
+<div *ngIf="product" class="flex flex-column mv-15">
+  <div class="flex row-center-left input-container">
+    <label for="productPrice">Price: </label>
+    <input
+      placeholder="Price"
+      class="input"
+      type="text"
+      [(ngModel)]="product.price"
+      id="price"
+    />
+  </div>
 
-  <label for="productPrice">price: </label>
-  <input type="text" [(ngModel)]="product.name" ids="name" />
+  <div class="flex row-center-left input-container">
+    <label for="productPrice">Name: </label>
+    <input
+      placeholder="Name"
+      class="input"
+      type="text"
+      [(ngModel)]="product.name"
+      ids="name"
+    />
+  </div>
 
-  <label for="productPrice">price: </label>
-  <input type="text" [(ngModel)]="product.description" id="desc" />
+  <div class="flex row-center-left input-container">
+    <label for="productPrice">Description: </label>
+    <input
+      class="input"
+      placeholder="Description"
+      type="text"
+      [(ngModel)]="product.description"
+      id="desc"
+    />
+  </div>
 </div>
 
-<button type="button" (click)="save()">save</button>
+<button class="button" type="button" (click)="save()">Update Product</button>

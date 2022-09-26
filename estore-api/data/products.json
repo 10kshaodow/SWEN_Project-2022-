@@ -4,11 +4,6 @@
   "name" : "Blue Falcon",
   "description" : "A blue falcon"
 }, {
-  "id" : 13,
-  "price" : 27.0,
-  "name" : "Perigrine",
-  "description" : "The Fastest"
-}, {
   "id" : 14,
   "price" : 28.0,
   "name" : "Californian",
