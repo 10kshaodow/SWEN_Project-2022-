@@ -1,10 +1,4 @@
 [ {
-  "id" : 12,
-  "price" : 15.0,
-  "name" : "Blue Falcon",
-  "description" : "A blue falcon",
-  "quantity" : 12
-}, {
   "id" : 14,
   "price" : 28.0,
   "name" : "Californian",

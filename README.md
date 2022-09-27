@@ -2,7 +2,7 @@
 
 # Modify this document to expand any and all sections that are applicable for a better understanding from your users/testers/collaborators (remove this comment and other instructions areas for your FINAL release)
 
-An online E-store system built in Java 8=>11 and **\_ _replace with other platform requirements_ \_**
+An online E-store system built in Java 17.0 
 
 ## Team
 
@@ -14,7 +14,7 @@ An online E-store system built in Java 8=>11 and **\_ _replace with other platfo
 
 ## Prerequisites
 
-- Java 8=>11 (Make sure to have correct JAVA_HOME setup in your environment)
+- Java 17.0 (Make sure to have correct JAVA_HOME setup in your environment)
 - Maven
 - _add any other tech stack requirements_
 
@@ -28,6 +28,17 @@ An online E-store system built in Java 8=>11 and **\_ _replace with other platfo
 ## Known bugs and disclaimers
 
 v1.1 - No validation has been implemented, negative quantities and prices are allowed. 
+
+## Curl commands for testing 
+These commands are written for bash. replace {} with the correct parameters (such as the id or search term)j.
+- Get all products: `curl http://localhost:8080/products`
+- Get a single product: `curl http://localhost:8080/products/{id}`
+- Get a product by search term: `curl http://localhost:8080/products/?searchTerm={search term}`
+- Create a product: curl -X POST ‘localhost:8080/products’ -H “Content-Type: application/json” -d ‘{example product}’
+    -  replace {example product} with `{“name”: “Rick”, “price”: 10, “description”: “Rick from rick and morty”}` for testing
+- Update a product: curl -X PUT ‘localhost:8080/products’ -H “Content-Type: application/json” -d ‘{example product}’
+    - replace {example product} with `{“name”: “Rick”, “price”: 10, “description”: “Rick from rick and morty”}` for testing
+- Delete a product: `curl.exe -X DELETE localhost:8080/products/{id}`
 
 ## How to test it
 
