@@ -7,30 +7,40 @@
   <div class="flex flex-column mv-15">
     <div class="flex row-center-left input-container">
       <label for="productQuantity">Quantity: </label>
-      <input class="input" id="productQuantity" #productQuantity placeholder="0" />
-  </div>
+      <input
+        class="input"
+        id="productQuantity"
+        #productQuantity
+        placeholder="0"
+      />
+    </div>
 
-  <div class="flex row-center-left input-container">
-    <label for="productName">Name: </label>
-    <input class="input" id="productName" #productName placeholder="name" />
-  </div>
+    <div class="flex row-center-left input-container">
+      <label for="productName">Name: </label>
+      <input class="input" id="productName" #productName placeholder="name" />
+    </div>
 
-  <div class="flex row-center-left input-container">
-    <label for="productDescription">Description: </label>
-    <input
-      class="input"
-      id="productDescription"
-      #productDescription
-      placeholder="desc"
-    />
+    <div class="flex row-center-left input-container">
+      <label for="productDescription">Description: </label>
+      <input
+        class="input"
+        id="productDescription"
+        #productDescription
+        placeholder="desc"
+      />
+    </div>
   </div>
 </div>
-
 <button
   type="button"
   class="button"
   (click)="
-    create(productPrice.value, productQuantity.value, productName.value, productDescription.value)
+    create(
+      productPrice.value,
+      productQuantity.value,
+      productName.value,
+      productDescription.value
+    )
   "
 >
   Add product
