@@ -110,7 +110,7 @@ public class Product {
      */
     public boolean containsSearchTerm(String searchText)
     {
-        return this.name.contains(searchText) ||
-               this.description.contains(searchText); 
+        return this.name.toLowerCase().contains(searchText.toLowerCase()) ||
+               this.description.toLowerCase().contains(searchText.toLowerCase()); 
     }
 }
