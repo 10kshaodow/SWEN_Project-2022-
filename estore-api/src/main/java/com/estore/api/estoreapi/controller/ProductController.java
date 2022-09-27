@@ -114,11 +114,11 @@ public class ProductController {
      *         ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      * 
      *         Example: Find all product that contain the text "fa"
-     *         GET http://localhost:8080/heroes/?searchTerm=fa
+     *         GET http://localhost:8080/products/?searchTerm=fa
      */
     @GetMapping("/")
     public ResponseEntity<Product[]> searchProducts(@RequestParam String searchTerm) {
-        LOG.info("GET /heroes/?searchTerm=" + searchTerm);
+        LOG.info("GET /products/?searchTerm=" + searchTerm);
         try {
             Product[] heros = productDao.findProducts(searchTerm);
             return new ResponseEntity<Product[]>(heros, HttpStatus.OK);
@@ -127,6 +127,7 @@ public class ProductController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
      /**
      * Deletes a {@linkplain Product product} with a given id
      * 
@@ -138,7 +139,6 @@ public class ProductController {
      * 
      * @throws IOException if an issue with underlying storage, such as an invalid id. 
      */
-
     @DeleteMapping("/{id}")
     public ResponseEntity<Product> deleteProduct(@PathVariable int id) {
         LOG.info("DELETE /products/" + id);
