@@ -107,7 +107,7 @@ public class ProductController {
      * Responds to the GET request for all products whose name contains
      * the text in name
      * 
-     * @param name The search term for the product
+     * @param id The id of the {@link Product product} to delete
      * 
      * @return ResponseEntity with array of product objects (may be empty) and
      *         HTTP status of OK<br>
@@ -127,6 +127,17 @@ public class ProductController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+     /**
+     * Deletes a {@linkplain Product product} with a given id
+     * 
+     * @param product - The {@link Product product} to create
+     * 
+     * @return a {@link Product product} object with the matching id
+     *         <br>
+     *         will be removed from the product list
+     * 
+     * @throws IOException if an issue with underlying storage, such as an invalid id. 
+     */
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Product> deleteProduct(@PathVariable int id) {
@@ -142,7 +153,6 @@ public class ProductController {
             LOG.log(Level.SEVERE, e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        // return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
     /**
