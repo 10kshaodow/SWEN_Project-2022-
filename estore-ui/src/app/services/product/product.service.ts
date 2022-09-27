@@ -12,27 +12,30 @@ export class ProductService {
 
   constructor(private http: HttpClient) {}
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
 
-
-
+  /**
+   * Send a DELETE request to the api url
+   * @param productID of type number used apart of calling url
+   *
+   * @return Observable of the deleted Product
+   */
   deleteProduct(productID: number): Observable<Product> {
-    let url = `${this.apiUrl}/${productID}`
-    return this.http.delete<Product>(url,this.httpOptions).pipe(
+    let url = `${this.apiUrl}/${productID}`;
+    return this.http.delete<Product>(url, this.httpOptions).pipe(
       tap((item) => {
         console.log(`API deleted ${productID} product`);
       }),
-      catchError(this.handleError<Product>(`deleteProduct`, ))
+      catchError(this.handleError<Product>(`deleteProduct`))
     );
   }
 
-
-  /*
-    Ask the server for all of the products
-
-    returns an observable of product object array
-  */
+  /**
+   * Get all products from the api
+   *
+   * @returns an Observable of product object array
+   */
   getAllProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(this.apiUrl).pipe(
       tap((array) => {
@@ -42,25 +45,37 @@ export class ProductService {
     );
   }
 
-  /* GET a single product from the server */
-  getProduct(id: number): Observable<Product>{
+  /**
+   * GET a single product from the server
+   *
+   * @param id of type number used in the calling url
+   *
+   * @return Observable of the requested Product
+   *  */
+  getProduct(id: number): Observable<Product> {
     const url = `${this.apiUrl}/${id}`;
     return this.http.get<Product>(url).pipe(
-      tap(_ => console.log(`fetched product with id of ${id}`)), 
+      tap((_) => console.log(`fetched product with id of ${id}`)),
       catchError(this.handleError<Product>(`getProduct id=${id}`))
     );
   }
 
-  /* GET heroes whose name contains search term */
+  /**
+   * GET heroes whose name contains search term
+   *
+   *
+   *  */
   searchProducts(term: string): Observable<Product[]> {
     if (!term.trim()) {
       // if not search term, return empty hero array.
       return of([]);
     }
     return this.http.get<Product[]>(`${this.apiUrl}/?searchTerm=${term}`).pipe(
-      tap(x => x.length ?
-         console.log(`found products matching "${term}"`) :
-         console.log(`no products matching "${term}"`)),
+      tap((x) =>
+        x.length
+          ? console.log(`found products matching "${term}"`)
+          : console.log(`no products matching "${term}"`)
+      ),
       catchError(this.handleError<Product[]>('searchHeroes', []))
     );
   }
@@ -68,7 +83,7 @@ export class ProductService {
   /** PUT: update the product on the server */
   updateProduct(product: Product): Observable<any> {
     return this.http.put(this.apiUrl, product, this.httpOptions).pipe(
-      tap(_ => console.log(`updated product id=${product.id}`)),
+      tap((_) => console.log(`updated product id=${product.id}`)),
       catchError(this.handleError<any>('updateProduct'))
     );
   }
@@ -76,7 +91,9 @@ export class ProductService {
   /** POST: add a new product to the server */
   addProduct(product: Product): Observable<Product> {
     return this.http.post<Product>(this.apiUrl, product, this.httpOptions).pipe(
-      tap((newProduct: Product) => console.log(`added product w/ id=${newProduct.id}`)),
+      tap((newProduct: Product) =>
+        console.log(`added product w/ id=${newProduct.id}`)
+      ),
       catchError(this.handleError<Product>('addProduct'))
     );
   }
