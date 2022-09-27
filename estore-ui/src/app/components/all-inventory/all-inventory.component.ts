@@ -12,13 +12,19 @@ export class AllInventoryComponent implements OnInit {
 
   constructor(private productService: ProductService) {}
 
+  /**
+   * Initializer
+   */
   ngOnInit(): void {
     this.getAllInventory();
   }
 
-  /*
-    Ask the service to call the server to display the products
-  */
+  /**
+   * Ask the service to call the server to display the products
+   * subscribes to the response returned and sets allProducts to the response
+   *
+   * @returns The arithmetic mean of `x` and `y`
+   */
   getAllInventory() {
     this.productService
       .getAllProducts()
