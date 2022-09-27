@@ -87,9 +87,13 @@ p {
 .product-card {
   border-radius: 0.5em;
   border: 2px black solid;
-
+  width: 250px;
+  height: 250px;
   padding: 2em 0.5em;
   margin: 0.25em 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
   transition: 200ms ease-in;
   transition-property: transform;
