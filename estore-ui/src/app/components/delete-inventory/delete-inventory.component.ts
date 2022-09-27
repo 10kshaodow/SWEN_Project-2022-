@@ -18,14 +18,13 @@ export class DeleteInventoryComponent implements OnInit {
 /**
    * uses the id string the user inputs, and converts the string id 
    * into an int such that the deleteProduct can be performed using the id. 
+   * removes  a single product from the product list
    *
    * @remarks
    * This method is part of the {@link DeleteInventoryComponent | Components}.
    *
    * @param id - The first input string
-   * @returns the removal of a single product from the product list
    *
-   * @beta
    */
   deleteInventory( id: string ) {
     console.log("deleteing...")
