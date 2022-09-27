@@ -19,6 +19,11 @@ export class GetProductComponent implements OnInit {
 
   }
 
+  /**
+   * Makes a server request for a single product.
+   * 
+   * @param id - The id number of the product to be retrieved
+   */
   getProduct(id: string): void{
     const productID = parseInt(id, 10);
     this.productService.getProduct(productID).subscribe(product => this.product = product);
