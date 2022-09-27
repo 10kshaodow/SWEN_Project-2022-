@@ -15,6 +15,7 @@ public class Product {
     @JsonProperty("price") public double price; 
     @JsonProperty("name") public String name; 
     @JsonProperty("description") public String description; 
+    @JsonProperty("quantity") public int quantity; 
     
 
     /**
@@ -24,11 +25,13 @@ public class Product {
      * 
      */
     public Product(@JsonProperty("id") int id, @JsonProperty("price") double price, 
-                   @JsonProperty("name") String name, @JsonProperty("description") String description) {
+                   @JsonProperty("name") String name, @JsonProperty("description") String description,
+                   @JsonProperty("quantity") int quantity) {
         this.id = id;
         this.price = price; 
         this.name = name;
         this.description = description; 
+        this.quantity = quantity; 
     }
 
     /**
@@ -76,6 +79,19 @@ public class Product {
      * @return The description of the product
      */
     public String getDescription() {return description;}
+    
+    /**
+     * Sets the quantity of the product - necessary for JSON object to Java object deserialization
+     * @param quantity The quantity of the product
+     */
+    public void setQuantity(int quantity) {this.quantity = quantity;}
+
+    /**
+     * Retrieves the quantity of the product
+     * 
+     * @return The quantity of the product
+     */
+    public int getQuantity() {return this.quantity;}
 
     @Override
     public String toString() {
