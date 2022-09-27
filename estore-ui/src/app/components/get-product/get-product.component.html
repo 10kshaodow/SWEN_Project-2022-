@@ -8,7 +8,8 @@
     <h2>{{ product.name | uppercase }}</h2>
     <div>
       <span>id: </span>{{ product.id }}
-      <h3>{{ product.price }}</h3>
+      <h3>${{ product.price }}</h3>
+      <h3>Quantity: {{ product.quantity }}</h3>
       <p>{{ product.description }}</p>
     </div>
   </div>
