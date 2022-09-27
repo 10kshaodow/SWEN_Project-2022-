@@ -65,7 +65,10 @@ export class ProductService {
     );
   }
 
-  /** PUT: update the product on the server */
+  /** PUT: update the product on the server 
+   * @param product
+   * @return an observable allowing the caller to wait on receiving the updated product until the product update has completed
+  */
   updateProduct(product: Product): Observable<any> {
     return this.http.put(this.apiUrl, product, this.httpOptions).pipe(
       tap(_ => console.log(`updated product id=${product.id}`)),
@@ -73,7 +76,10 @@ export class ProductService {
     );
   }
 
-  /** POST: add a new product to the server */
+  /** POST: add a new product to the server 
+   * @param product - The new product created by the user based on custom data
+  * @return an observable allowing the caller to wait on receiving the newly created product until the product creation has completed
+  */
   addProduct(product: Product): Observable<Product> {
     return this.http.post<Product>(this.apiUrl, product, this.httpOptions).pipe(
       tap((newProduct: Product) => console.log(`added product w/ id=${newProduct.id}`)),

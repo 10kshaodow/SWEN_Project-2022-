@@ -18,15 +18,23 @@ export class CreateProductComponent implements OnInit {
    this.getProducts();
  }
  
+ /**
+  * Obtains an array of all the current products
+  */
  getProducts(): void {
    this.productService.getAllProducts()
        .subscribe(products => this.products = products);
  }
  
    selectedProduct?: Product;
-   onSelect(product: Product): void {
+  /* 
+  * Once a user selects a product, the current stored product that has been selected
+    will be updated
+  * @param Product - a product which has been selected by the user
+  */ 
+  onSelect(product: Product): void {
      this.selectedProduct = product;
-   }
+  }
  
    create(price_val: string, quantity_val: string, name: string, description: string): void {
      name = name.trim();
