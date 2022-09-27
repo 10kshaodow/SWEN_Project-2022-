@@ -17,7 +17,18 @@
   </div>
 
   <div class="flex row-center-left input-container">
-    <label for="productPrice">Name: </label>
+    <label for="productQuantity">Description: </label>
+    <input
+      class="input"
+      placeholder="Quantity"
+      type="text"
+      [(ngModel)]="product.quantity"
+      id="quantity"
+    />
+  </div>
+
+  <div class="flex row-center-left input-container">
+    <label for="productName">Name: </label>
     <input
       placeholder="Name"
       class="input"
@@ -28,7 +39,7 @@
   </div>
 
   <div class="flex row-center-left input-container">
-    <label for="productPrice">Description: </label>
+    <label for="productDescription">Description: </label>
     <input
       class="input"
       placeholder="Description"
