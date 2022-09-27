@@ -28,11 +28,12 @@ export class CreateProductComponent implements OnInit {
      this.selectedProduct = product;
    }
  
-   create(price_val: string, name: string, description: string): void {
+   create(price_val: string, quantity_val: string, name: string, description: string): void {
      name = name.trim();
      var price: number = parseInt(price_val);
+     var quantity: number = parseInt(quantity_val);
      if (!name) { return; }
-     this.productService.addProduct({name, price, description} as Product)
+     this.productService.addProduct({name, price, quantity, description} as Product)
        .subscribe(product => {
          this.getProducts();
        });
