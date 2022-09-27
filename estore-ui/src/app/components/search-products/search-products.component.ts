@@ -17,6 +17,8 @@ export class SearchProductsComponent implements OnInit {
   }
 
   /**
+   * @param searchTerm the term that the user is searching
+   * 
    * Handles the behavior when the search is called
    */
   onSearchRequested(searchTerm: string): void {
@@ -36,6 +38,8 @@ export class SearchProductsComponent implements OnInit {
   }
 
   /**
+   * @param searchTerm the term that the user is searching
+   * 
    * Get products based on a search term.
    */
   searchProduct(searchTerm: string): void {
