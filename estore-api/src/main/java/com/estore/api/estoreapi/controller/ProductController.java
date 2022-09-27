@@ -96,7 +96,7 @@ public class ProductController {
             if (product != null)
                 return new ResponseEntity<Product>(product, HttpStatus.OK);
             else
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+                return new ResponseEntity<>(HttpStatus.OK);
         } catch (IOException e) {
             LOG.log(Level.SEVERE, e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -137,7 +137,7 @@ public class ProductController {
             if (product_void != false)
                 return new ResponseEntity<Product>(product, HttpStatus.OK);
             else
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+                return new ResponseEntity<>(HttpStatus.OK);
         } catch (IOException e) {
             LOG.log(Level.SEVERE, e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -163,9 +163,9 @@ public class ProductController {
         try {
             Product newProduct = productDao.createProduct(product);
             if (newProduct != null)
-                return new ResponseEntity<Product>(newProduct, HttpStatus.OK);
+                return new ResponseEntity<Product>(newProduct, HttpStatus.CREATED);
             else
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+                return new ResponseEntity<>(HttpStatus.CONFLICT);
         } catch (IOException e) {
             LOG.log(Level.SEVERE, e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -193,7 +193,7 @@ public class ProductController {
             if (newProduct != null)
                 return new ResponseEntity<Product>(newProduct, HttpStatus.OK);
             else
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+                return new ResponseEntity<>(HttpStatus.OK);
         } catch (IOException e) {
             LOG.log(Level.SEVERE, e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
