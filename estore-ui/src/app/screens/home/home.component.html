@@ -1,2 +1,12 @@
 <app-nav-bar></app-nav-bar>
-<p>hello</p>
+
+<div class="max-width flex row-center">
+  <input class="search-input" type="text" />
+</div>
+
+<div *ngIf="allProducts.length > 0" class="max-width flex flex-row wrap mv-1em">
+  <app-product
+    *ngFor="let product of allProducts"
+    [product]="product"
+  ></app-product>
+</div>

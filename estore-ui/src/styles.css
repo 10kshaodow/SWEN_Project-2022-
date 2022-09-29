@@ -1,9 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 
-body {
+*,
+*::before,
+*::after {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+}
+
+body {
   font-size: 20px;
   background-color: #ffffff;
 }
@@ -19,6 +24,10 @@ p {
 
 .flex {
   display: flex;
+}
+
+.wrap {
+  flex-wrap: wrap;
 }
 
 .row-center {
@@ -57,6 +66,18 @@ p {
 
 .mh-15 {
   margin: 0px 15px;
+}
+
+.m-1em {
+  margin: 1em;
+}
+
+.mv-1em {
+  margin: 1em 0px;
+}
+
+.mh-1em {
+  margin: 0px 1em;
 }
 
 .bg-lightest {

@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './screens/home/home.component';
 import { AppRouting } from './app-routing.module';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { ProductComponent } from './components/product/product.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
     UpdateProductComponent,
     HomeComponent,
     NavBarComponent,
+    ProductComponent,
   ],
   imports: [BrowserModule, AppRouting, HttpClientModule, FormsModule],
   providers: [],
