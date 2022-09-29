@@ -11,3 +11,13 @@
   align-items: center;
   justify-content: space-evenly;
 }
+
+.nav-links p {
+  cursor: pointer;
+  transition: transform 200 ease-in;
+}
+
+.nav-links p:hover {
+  transform: translateY(-5px);
+  color: #bfdbf7;
+}
