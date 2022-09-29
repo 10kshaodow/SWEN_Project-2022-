@@ -16,6 +16,11 @@ export class HomeComponent implements OnInit {
     this.getAllProducts();
   }
 
+  /**
+   * Communicate with the Service to
+   * get and then set all the products
+   * on the very first load
+   */
   getAllProducts() {
     this.productService.getAllProducts().subscribe((products) => {
       this.allProducts = products;

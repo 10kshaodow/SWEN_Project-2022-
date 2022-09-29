@@ -1,0 +1,39 @@
+.still-div {
+  margin: 0 1em;
+}
+
+.flip-div {
+  cursor: pointer;
+  position: relative;
+  width: 200px;
+  height: 200px;
+  transition: transform 0.65s ease-in-out;
+  transform-style: preserve-3d;
+}
+
+.still-div:hover .flip-div {
+  transform: rotateY(180deg);
+}
+
+.front-div,
+.back-div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  backface-visibility: hidden;
+
+  padding: 1em;
+  border-radius: 30px;
+  color: #ffffff;
+  text-align: center;
+}
+
+.front-div {
+  transform: translateZ(1em);
+}
+
+.back-div {
+  transform: rotateY(0.5turn) translateZ(-1em);
+}
