@@ -10,6 +10,9 @@ import { GetProductComponent } from './components/get-product/get-product.compon
 import { UpdateProductComponent } from './components/update-product/update-product.component';
 import { CreateProductComponent } from './components/create-product/create-product.component';
 import { FormsModule } from '@angular/forms';
+import { HomeComponent } from './screens/home/home.component';
+import { AppRouting } from './app-routing.module';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
@@ -20,8 +23,10 @@ import { FormsModule } from '@angular/forms';
     DeleteInventoryComponent,
     CreateProductComponent,
     UpdateProductComponent,
+    HomeComponent,
+    NavBarComponent,
   ],
-  imports: [BrowserModule, HttpClientModule, FormsModule],
+  imports: [BrowserModule, AppRouting, HttpClientModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

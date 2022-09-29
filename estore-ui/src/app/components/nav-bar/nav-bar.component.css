@@ -1,0 +1,13 @@
+.header {
+  padding: 1em 0em;
+}
+
+.header h1 {
+  align-self: center;
+  margin-bottom: 0.5em;
+}
+
+.nav-links {
+  align-items: center;
+  justify-content: space-evenly;
+}
