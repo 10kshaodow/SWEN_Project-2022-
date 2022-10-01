@@ -76,8 +76,20 @@ p {
   margin: 1em 0px;
 }
 
-.mh-1em {
-  margin: 0px 1em;
+.mh-2em {
+  margin: 0px 2em;
+}
+
+.m-2em {
+  margin: 2em;
+}
+
+.mv-2em {
+  margin: 2em 0px;
+}
+
+.mh-2em {
+  margin: 0px 2em;
 }
 
 .bg-lightest {
@@ -118,4 +130,16 @@ p {
 
 .color-darkest {
   color: #022b3a;
+}
+
+.input {
+  font-size: 18px;
+  padding: 5px;
+  padding-left: 10px;
+  border-color: #022b3a;
+  border-radius: 15px;
+}
+
+.input:focus {
+  border-color: #1f7a8c;
 }

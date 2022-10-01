@@ -125,20 +125,18 @@ public class ProductFileDAO implements IProductDAO {
         return productArray;
     }
 
-
-     /**
-    ** {@inheritDoc}
+    /**
+     ** {@inheritDoc}
      */
     @Override
     public Product getProduct(int id) {
-        synchronized(products) {
+        synchronized (products) {
             if (products.containsKey(id))
                 return products.get(id);
             else
                 return null;
         }
     }
-
 
     /**
      * Generates an array of prodcuts from the tree map for any
@@ -147,7 +145,7 @@ public class ProductFileDAO implements IProductDAO {
      * If containsText is null, the array contains all of the products
      * in the tree map
      * 
-     * @return  The array of oroducts, may be empty
+     * @return The array of oroducts, may be empty
      */
     private Product[] getProductsArray(String containsText) { // if containsText == null, no filter
         ArrayList<Product> heroArrayList = new ArrayList<>();
@@ -176,62 +174,59 @@ public class ProductFileDAO implements IProductDAO {
         }
     };
 
-
     /**
     ** 
      */
     @Override
     public Product[] findProducts(String searchText) {
-        synchronized(products) {
+        synchronized (products) {
             return getProductsArray(searchText);
         }
     }
 
-        /**
-    ** {@inheritDoc}
+    /**
+     ** {@inheritDoc}
      */
     @Override
     public Product createProduct(Product product) throws IOException {
-        synchronized(products) {
+        synchronized (products) {
             // We create a new product object because the id field is immutable
             // and we need to assign the next unique id
-            Product newProduct = new Product(nextId(), product.getPrice(), product.getName(), product.getDescription(), product.getQuantity());
-            products.put(newProduct.getId(),newProduct);
+            Product newProduct = new Product(nextId(), product.getPrice(), product.getName(), product.getDescription(),
+                    product.getQuantity());
+            products.put(newProduct.getId(), newProduct);
             save(); // may throw an IOException
             return newProduct;
         }
     }
 
     /**
-    ** {@inheritDoc}
+     ** {@inheritDoc}
      */
     @Override
     public Product updateProduct(Product product) throws IOException {
-        synchronized(products) {
+        synchronized (products) {
             if (products.containsKey(product.getId()) == false)
-                return null;  // product does not exist
+                return null; // product does not exist
 
-            products.put(product.getId(),product);
+            products.put(product.getId(), product);
             save(); // may throw an IOException
             return product;
         }
     }
 
     /**
-    ** {@inheritDoc}
+     ** {@inheritDoc}
      */
     @Override
     public boolean deleteProduct(int id) throws IOException {
-        synchronized(products) {
+        synchronized (products) {
             if (products.containsKey(id)) {
                 products.remove(id);
                 return save();
-            }
-            else
+            } else
                 return false;
         }
     }
-
-
 
 }

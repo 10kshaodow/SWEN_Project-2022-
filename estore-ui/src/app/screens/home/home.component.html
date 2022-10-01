@@ -1,12 +1,32 @@
 <app-nav-bar></app-nav-bar>
 
-<div class="max-width flex row-center">
-  <input class="search-input" type="text" />
+<div class="max-width flex mv-2em flex-row row-center">
+  <label for="searchInput" class="search-label">Search Items:</label>
+  <input
+    class="input search-input"
+    #searchInput
+    id="searchInput"
+    (input)="searchTerm(searchInput.value)"
+    type="text"
+  />
 </div>
 
-<div *ngIf="allProducts.length > 0" class="max-width flex flex-row wrap mv-1em">
+<div
+  *ngIf="!filtered$ || !(filtered$ | async) || (filtered$ | async)?.length == 0"
+  class="max-width flex flex-row wrap mv-1em"
+>
   <app-product
-    *ngFor="let product of allProducts"
+    *ngFor="let product of allProducts$ | async"
+    [product]="product"
+  ></app-product>
+</div>
+
+<div
+  *ngIf="(filtered$ | async)?.length !== 0"
+  class="max-width flex flex-row wrap mv-1em"
+>
+  <app-product
+    *ngFor="let product of filtered$ | async"
     [product]="product"
   ></app-product>
 </div>

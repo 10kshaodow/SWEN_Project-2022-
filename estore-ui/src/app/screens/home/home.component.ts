@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  Observable,
+  Subject,
+  switchMap,
+} from 'rxjs';
 import { ProductService } from 'src/app/services/product/product.service';
 import { Product } from 'src/app/types/Product';
 
@@ -8,12 +15,27 @@ import { Product } from 'src/app/types/Product';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  allProducts: Product[] = [];
+  allProducts$!: Observable<Product[]>;
+  filtered$!: Observable<Product[]>;
+  private searchTerms = new Subject<string>();
 
   constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
-    this.getAllProducts();
+    this.allProducts$ = this.getAllProducts();
+
+    this.filtered$ = this.searchTerms.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap((term: string) => this.productService.searchProducts(term))
+    );
+  }
+
+  /**
+   *  Add the inputed term to the subject of searchTerms
+   */
+  searchTerm(term: string) {
+    this.searchTerms.next(term);
   }
 
   /**
@@ -22,8 +44,6 @@ export class HomeComponent implements OnInit {
    * on the very first load
    */
   getAllProducts() {
-    this.productService.getAllProducts().subscribe((products) => {
-      this.allProducts = products;
-    });
+    return this.productService.getAllProducts();
   }
 }
