@@ -92,6 +92,42 @@ p {
   margin: 0px 2em;
 }
 
+.p-15 {
+  padding: 15px;
+}
+
+.pv-15 {
+  padding: 15px 0px;
+}
+
+.ph-15 {
+  padding: 0px 15px;
+}
+
+.p-1em {
+  padding: 1em;
+}
+
+.pv-1em {
+  padding: 1em 0px;
+}
+
+.ph-2em {
+  padding: 0px 2em;
+}
+
+.p-2em {
+  padding: 2em;
+}
+
+.pv-2em {
+  padding: 2em 0px;
+}
+
+.ph-2em {
+  padding: 0px 2em;
+}
+
 .bg-lightest {
   background-color: #ffffff;
 }

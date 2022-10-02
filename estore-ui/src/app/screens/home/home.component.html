@@ -12,7 +12,10 @@
 </div>
 
 <div
-  *ngIf="!filtered$ || !(filtered$ | async) || (filtered$ | async)?.length == 0"
+  *ngIf="
+    (!filtered$ || !(filtered$ | async) || (filtered$ | async)?.length == 0) &&
+    searchInput.value.length <= 0
+  "
   class="max-width flex flex-row wrap mv-1em"
 >
   <app-product
@@ -29,4 +32,11 @@
     *ngFor="let product of filtered$ | async"
     [product]="product"
   ></app-product>
+</div>
+
+<div
+  *ngIf="(filtered$ | async)?.length === 0 && searchInput.value.length > 0"
+  class="p-2em"
+>
+  <p class="color-dark">No Results For: {{ searchInput.value }}</p>
 </div>
