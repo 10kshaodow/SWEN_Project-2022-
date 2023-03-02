@@ -1,0 +1,72 @@
+.card {
+  width: 500px;
+}
+
+/* input {
+    width: 100%;
+} */
+
+p {
+  padding-top: 0.5em;
+  text-align: center;
+  font-size: medium;
+}
+
+.userInfo {
+  width: 100%;
+}
+
+.userInfo div {
+  width: 100%;
+}
+
+.userInfo div .inp {
+  width: 100%;
+}
+
+span {
+  cursor: pointer;
+  color: blue;
+  text-decoration: underline;
+}
+
+.errorText {
+  text-align: left;
+  padding-top: 0px;
+}
+
+label {
+  font-size: medium;
+}
+
+.redOnFocus:focus {
+  outline: none;
+  border-color: var(--color-failure);
+  color: var(--color-failure);
+}
+
+.orders {
+  margin: 0 0 2em 0;
+  list-style-type: none;
+  padding: 0;
+  width: 15em;
+}
+
+.orders li {
+  display: flex;
+}
+
+.orders button {
+  padding: 1em 2em;
+  background-color: var(--color-primary);
+  color: var(--background-color-primary);
+  border-width: 2px;
+  border-color: var(--color-secondary);
+  border-style: solid;
+  border-radius: 0.75em;
+  cursor: pointer;
+}
+
+#signOutButton {
+  background-color: var(--color-info);
+}

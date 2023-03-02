@@ -1,0 +1,58 @@
+.main-cont {
+  position: relative;
+  z-index: 1;
+}
+
+.circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  background-color: var(--color-secondary);
+  cursor: pointer;
+}
+
+.image-cont {
+  position: relative;
+  transition: transform 50ms ease-in;
+  margin-bottom: 1em;
+}
+
+.image-cont:hover {
+  transform: translateY(-10px);
+}
+
+.image-cont img {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 30px;
+  border: 2px solid var(--color-secondary);
+  cursor: pointer;
+  box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.5);
+}
+
+.inactive {
+  background-color: var(--background-color-tertiary);
+}
+
+.inactive:hover {
+  background-color: var(--color-primary);
+}
+
+.unseen {
+  opacity: 0;
+}
+
+.unseen img {
+  cursor: default;
+  pointer-events: none;
+}
+
+.triangle {
+  width: 0px;
+  height: 0px;
+
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-top: 25px solid var(--color-secondary);
+}

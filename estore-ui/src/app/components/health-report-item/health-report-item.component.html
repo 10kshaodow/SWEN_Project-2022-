@@ -1,0 +1,23 @@
+<div
+  class="flex pointer flex-row ai-center p-30 hover-shadow jc-space-between health-report-item"
+>
+  <div class="flex flex-row ai-center">
+    <img
+      *ngIf="healthReport.fileName.length > 0 || backupSource"
+      src="{{
+        healthReport.fileName.length > 0
+          ? healthReport.fileName[0]
+          : backupSource
+      }}"
+      alt=""
+    />
+    <div class="flex flex-column mh-30">
+      <h3 class="weight-medium">
+        {{ dateTimeToString(healthReport.reportDate) }}
+      </h3>
+      <h3 class="weight-medium">Health Report</h3>
+    </div>
+  </div>
+  <i class="fa-sharp fa-solid fa-chevron-right"></i>
+</div>
+<div class="hairline max-width"></div>

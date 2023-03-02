@@ -1,0 +1,19 @@
+.health-report-item img {
+  width: 250px;
+  height: 250px;
+  border-radius: 25px;
+  object-fit: cover;
+}
+
+.health-report-item i {
+  font-size: 50px;
+  color: var(--light-gray);
+}
+
+.health-report-item:hover {
+  background-color: var(--light-gray);
+}
+
+.health-report-item:hover i {
+  color: var(--red);
+}

@@ -1,0 +1,13 @@
+#landing-large {
+  height: 80vh;
+}
+
+#landing-logo {
+  width: 500px;
+  height: 500px;
+  object-fit: cover;
+}
+
+#landing-small {
+  padding: 2em 20em;
+}

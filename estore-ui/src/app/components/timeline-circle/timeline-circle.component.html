@@ -1,0 +1,19 @@
+<div class="main-cont flex flex-column flex-center">
+  <div
+    *ngIf="displaySource"
+    [ngClass]="{ unseen: !active }"
+    class="flex flex-column flex-center image-cont"
+  >
+    <img
+      (click)="this.imageClick.emit()"
+      src="{{ displaySource }}"
+      alt="health-report"
+    />
+    <div class="triangle"></div>
+  </div>
+  <div
+    (click)="this.circleClick.emit()"
+    [ngClass]="{ inactive: !active }"
+    class="circle"
+  ></div>
+</div>

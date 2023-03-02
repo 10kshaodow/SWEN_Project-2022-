@@ -1,0 +1,41 @@
+<div class="p-80">
+  <h1 class="weight-regular">All Orders</h1>
+  <div class="hairline mt-30 max-width"></div>
+
+  <app-order-snippet
+    *ngFor="let order of allOrder"
+    [order]="order"
+    routerLink="/order/{{ order.id }}"
+  ></app-order-snippet>
+</div>
+
+<!-- <div class="tableSurround" *ngIf="!OrderIsSelected">
+<h1 class="weight-regular">Manage orders</h1> 
+  <table class="table">
+    <tr class="tableHeaderRow">
+      <th>Username</th>
+      <th>Status</th>
+      <th>OrderDate</th>
+      <th>No. of items</th>
+      <th>total</th>
+    </tr>
+    <tr
+      class="tableRow"
+      *ngFor="let order of allOrder"
+      (click)="orderSelected(order)"
+    >
+ <app-manage-order-item [order]="order"></app-manage-order-item> 
+      <td>{{ order.username }}</td>
+      <td>{{ order.status }}</td>
+      <td>{{ getDateString(order) }}</td>
+      <td>{{ order.orderItemList.length }}</td>
+      <td>{{ order.total }}</td>
+    </tr>
+  </table>
+</div>
+<div class="tableSurround" *ngIf="selectedOrder">
+  <div>
+ <app-button color="blue" title="Back" (onClick)="removeOrder()"></app-button> 
+  </div>
+  <app-order [order]="selectedOrder"> </app-order>
+</div> -->

@@ -1,8 +1,44 @@
-<div class="flex flex-column max-width bg-dark header">
-  <h1 class="color-lightest">Big-D Falcon Shop</h1>
+<!-- 
+  <div class="flex flex-column max-width bg-dark header">
+  <h1 class="color-lightest">Falcon Shop</h1>
   <div class="flex flex-row nav-links">
-    <p class="color-lightest">Home</p>
-    <p class="color-lightest">Login</p>
-    <p class="color-lightest">SignUp</p>
+    <p *ngIf="home" routerLink="/home" class="color-lightest">Home</p>
+    <p routerLink="/sign_in" class="color-lightest">{{ userSignedIn ? "Account" : "Sign In" }}</p>
+    <p *ngIf="falco" routerLink="/my-falcons" class="color-lightest"> My Falcons</p>
+    <p *ngIf="cart" routerLink="/cart" class="color-lightest">Cart</p>
+    <p *ngIf="admin" routerLink="/admin" class="color-lightest">Administration</p>
+    <p *ngIf="orno" routerLink="/ornithology-dashboard" class="color-lightest">Ornithologist</p>
+  </div>
+</div> 
+-->
+<div *ngIf="!isLandingPage" class="header flex flex-row">
+  <div class="flex flex-row ai-center">
+    <img routerLink="/" src="../../../assets/Logo.png" alt="Logo" id="logo" />
+    <h1 routerLink="/home" class="pointer weight-regular">Falkoner</h1>
+  </div>
+  <div class="flex-grow"></div>
+  <div id="icon-container" class="flex flex-row ai-center">
+    <i
+      *ngIf="orno"
+      routerLink="/home"
+      class="pointer fa-solid fa-heart-pulse"
+    ></i>
+    <i
+      routerLink="/notifications"
+      *ngIf="userSignedIn"
+      class="pointer fa-sharp fa-solid fa-bell"
+    ></i>
+    <i
+      routerLink="/cart"
+      *ngIf="userSignedIn && !orno && !admin"
+      class="pointer fa-solid fa-cart-shopping"
+    ></i>
+    <i
+      routerLink="/sponsorings"
+      *ngIf="userSignedIn && !orno && !admin"
+      class="pointer fa-solid fa-dove"
+    ></i>
+    <i routerLink="/login" class="pointer fa-solid fa-circle-user"></i>
+    <i routerLink="/admin" *ngIf="admin" class="pointer fa-solid fa-gear"></i>
   </div>
 </div>

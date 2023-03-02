@@ -1,0 +1,92 @@
+<div *ngIf="user" class="max-width flex mv-2em flex-row row-center">
+  <div class="card">
+    <p>Update your account information below.</p>
+    <div class="userInfo">
+      <app-text-input
+        title="Username"
+        inputType="large"
+        [value]="user.username"
+        [disabled]="true"
+      ></app-text-input>
+
+      <app-text-input
+        title="Name"
+        inputType="large"
+        [value]="user.name"
+        (valueChange)="setUsersName($event)"
+      ></app-text-input>
+
+      <app-text-input
+        title="Credit Card Number"
+        inputType="large"
+        [value]="user.creditCard.number"
+        (valueChange)="setUserCardNumber($event)"
+      ></app-text-input>
+
+      <app-text-input
+        title="Expiration Month"
+        inputType="large"
+        [value]="user.creditCard.expirationMonth"
+        (valueChange)="setUserCardMonth($event)"
+      ></app-text-input>
+
+      <app-text-input
+        title="Expiration Year"
+        inputType="large"
+        [value]="user.creditCard.expirationYear"
+        (valueChange)="setUserCardYear($event)"
+      ></app-text-input>
+
+      <app-text-input
+        title="CVV Code"
+        inputType="large"
+        [value]="user.creditCard.cvv"
+        (valueChange)="setUserCardCvv($event)"
+      ></app-text-input>
+
+      <app-text-input
+        title="Street"
+        inputType="large"
+        [value]="user.address.street"
+        (valueChange)="setUserStreet($event)"
+      ></app-text-input>
+
+      <app-text-input
+        title="City"
+        inputType="large"
+        [value]="user.address.city"
+        (valueChange)="setUserCity($event)"
+      ></app-text-input>
+
+      <app-text-input
+        title="State"
+        inputType="large"
+        [value]="user.address.state"
+        (valueChange)="setUserState($event)"
+      ></app-text-input>
+
+      <app-text-input
+        title="Country"
+        inputType="large"
+        [value]="user.address.country"
+        (valueChange)="setUserCountry($event)"
+      ></app-text-input>
+
+      <app-text-input
+        title="Zipcode"
+        inputType="large"
+        [value]="user.address.zipcode"
+        (valueChange)="setUserZip($event)"
+      ></app-text-input>
+
+      <div class="flex flex-center">
+        <!-- <app-button
+          color="green"
+          title="Save"
+          (onClick)="saveUser()"
+        ></app-button> -->
+      </div>
+      <!-- <input type="submit" value="Save" (click)="saveUser()" /> -->
+    </div>
+  </div>
+</div>

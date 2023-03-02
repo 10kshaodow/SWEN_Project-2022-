@@ -1,0 +1,38 @@
+[ {
+  "id" : 1,
+  "productType" : 2,
+  "price" : 15.0,
+  "quantity" : 5,
+  "name" : "Little Braclet",
+  "description" : "Test Description",
+  "fileName" : null,
+  "fileSource" : null
+}, {
+  "id" : 2,
+  "productType" : 1,
+  "price" : 15.0,
+  "quantity" : 5,
+  "name" : "Big Bird",
+  "description" : "Test Description",
+  "fileName" : null,
+  "fileSource" : null,
+  "sponsors" : [ ]
+}, {
+  "id" : 3,
+  "productType" : 2,
+  "price" : 15.0,
+  "quantity" : 5,
+  "name" : "Big Braclet",
+  "description" : "Test Description",
+  "fileName" : null,
+  "fileSource" : null
+}, {
+  "id" : 4,
+  "productType" : 2,
+  "price" : 15.0,
+  "quantity" : 5,
+  "name" : "Updated Product",
+  "description" : "Test Description",
+  "fileName" : null,
+  "fileSource" : null
+} ]

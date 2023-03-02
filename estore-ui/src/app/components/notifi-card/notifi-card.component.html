@@ -1,0 +1,33 @@
+<div
+  [ngClass]="{ large: large, small: !large, pointer: clickable }"
+  class="noti hover-shadow mv-30"
+>
+  <div
+    [ngClass]="{ large: large, small: !large }"
+    class="noti flex inner-shadow flex-column p-50 relative"
+  >
+    <div *ngIf="large">
+      <div class="flex flex-row ai-center jc-space-between">
+        <h2 id="large-title weight-medium">{{ notifi.title }}</h2>
+        <i
+          *ngIf="cancelable"
+          (click)="cancel($event)"
+          class="pointer fa-solid fa-xmark"
+        ></i>
+      </div>
+      <div class="hairline mv-30 max-width"></div>
+      <p class="bold">{{ notifi.message }}</p>
+    </div>
+
+    <div *ngIf="!large" class="flex flex-center">
+      <div class="flex small-x ai-center jc-end">
+        <i
+          *ngIf="cancelable"
+          (click)="cancel($event)"
+          class="pointer fa-solid fa-xmark"
+        ></i>
+      </div>
+      <p id="small-title" class="bold">{{ notifi.title }}</p>
+    </div>
+  </div>
+</div>

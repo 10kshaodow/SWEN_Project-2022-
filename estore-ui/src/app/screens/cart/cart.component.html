@@ -1,0 +1,193 @@
+<!-- <h1 class="m-05em">Cart</h1>
+<div class="flex flex-center mv-1em">
+  <h5 *ngIf="displayErrorMessage" class="error-message color-error">
+    <h2>{{ errorMessage }}</h2>
+  </h5>
+</div>
+
+<div
+  *ngIf="!isUserSignedIn()"
+  class="max-width flex mv-2em flex-row row-center"
+>
+  <div class="card bg-dark">
+    <h2>Please sign in to view your cart</h2>
+    <a routerLink="/sign_in" class="color-lightest">Sign in</a>
+  </div>
+</div>
+
+<div *ngIf="isUserSignedIn()">
+  <div
+    *ngIf="!isUserCustomer()"
+    class="max-width flex mv-2em flex-row row-center"
+  >
+    <div class="card bg-dark">
+      <h2>You can not visit the cart as an Admin or Ornithologist</h2>
+    </div>
+  </div>
+
+  <div *ngIf="isUserCustomer()">
+    <div
+      *ngIf="cart.orderItemList.length == 0"
+      class="max-width flex mv-2em flex-row row-center"
+    >
+      <div class="card bg-dark">
+        <h2>Your cart is empty :(</h2>
+        <a routerLink="/home" class="color-lightest">Come vist our shop</a>
+      </div>
+    </div>
+
+    <div class="cart-container" *ngIf="cart.orderItemList.length > 0">
+      <div class="cart-product-container">
+        <div class="relative flex flex-row wrap mv-2em p-2em scrollable">
+          <app-order-item
+            *ngFor="let orderItem of cart.orderItemList"
+            [orderItem]="orderItem"
+          >
+          </app-order-item>
+        </div>
+      </div>
+
+      <div class="order-info-container">
+        <div class="monetary-info">
+          <h3>Billing</h3>
+          <table class="table">
+            <tr class="tableRow">
+              <td><h5>Subtotal</h5></td>
+              <td>${{ calculateSubtotal().toFixed(2) }}</td>
+            </tr>
+            <tr class="tableRow">
+              <td><h5>Taxes</h5></td>
+              <td>${{ calculateTaxes().toFixed(2) }}</td>
+            </tr>
+            <tr class="tableRow">
+              <td><h5>Total</h5></td>
+              <td>${{ calculateTotal().toFixed(2) }}</td>
+            </tr>
+          </table>
+
+          <app-button title="Checkout" (onClick)="verifyCart()"></app-button>
+          <button routerLink="/checkout" class="floating-button button">
+            <h2>Checkout</h2>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="spacer"></div> -->
+
+<div *ngIf="user" class="flex flex-column p-80">
+  <div class="flex flex-row cart-header">
+    <div class="cart-header-section">
+      <h1 class="weight-regular">Payment & Shipping</h1>
+      <div class="flex-column flex ai-start">
+        <p *ngIf="user.name.length !== 0" class="mt-30 bold">{{ user.name }}</p>
+        <p *ngIf="isAddressFilled()" class="mt-30 bold">
+          {{ user.address.street }}, {{ user.address.city }},
+          {{ user.address.zipcode }}
+        </p>
+        <p *ngIf="isAddressFilled()" class="mt-30 bold">
+          {{ user.address.state }}, {{ user.address.country }}
+        </p>
+        <p *ngIf="isCardFilled()" class="mt-30 bold">
+          {{ user.creditCard.number }}
+        </p>
+        <p *ngIf="isCardFilled()" class="mt-30 bold">
+          {{ user.creditCard.expirationMonth }}/{{
+            user.creditCard.expirationYear
+          }}
+        </p>
+        <p *ngIf="isCardFilled()" class="mt-30 bold">
+          {{ user.creditCard.cvv }}
+        </p>
+        <app-button
+          class="mt-30"
+          routerLink="/login"
+          [color]="isUserValid() ? 'grey' : 'red'"
+          [title]="!isUserValid() ? 'Update Info To Continue' : 'Update Info'"
+        ></app-button>
+      </div>
+    </div>
+    <div class="cart-header-section flex flex-column ai-end">
+      <h1 class="weight-regular">Billing Total</h1>
+      <div class="flex flex-column ai-end mt-30">
+        <div class="mt-30 flex flex-row jc-space-between">
+          <p class="bold">SubTotal</p>
+          <p class="mh-30 bold">
+            ${{
+              calculateSubtotal().toLocaleString(undefined, {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+              })
+            }}
+          </p>
+        </div>
+        <div class="mt-30 flex flex-row jc-space-between">
+          <p class="bold">Taxes</p>
+          <p class="mh-30 bold">
+            ${{
+              calculateTaxes().toLocaleString(undefined, {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+              })
+            }}
+          </p>
+        </div>
+        <div class="mt-30 flex flex-row jc-space-between">
+          <p class="color-red bold">Total</p>
+          <p class="color-red mh-30 bold">
+            ${{
+              calculateTotal().toLocaleString(undefined, {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+              })
+            }}
+          </p>
+        </div>
+      </div>
+      <app-button
+        class="mt-30"
+        [disabled]="!isUserValid()"
+        title="Checkout"
+        (onClick)="verifyCart()"
+      ></app-button>
+    </div>
+  </div>
+
+  <div *ngIf="errorMessage" class="flex flex-center mv-50">
+    <app-error-message [message]="errorMessage"></app-error-message>
+  </div>
+
+  <div class="mv-80">
+    <h1 class="weight-regular">{{ user.username }}'s Cart</h1>
+    <div class="hairline mv-30 max-width"></div>
+    <div *ngIf="cart.orderItemList.length > 0">
+      <app-order-item
+        *ngFor="let orderItem of cart.orderItemList"
+        [orderItem]="orderItem"
+      >
+      </app-order-item>
+    </div>
+    <div class="flex flex-column flex-center">
+      <h3 class="mv-50 weight-medium">Cart is Empty</h3>
+      <app-button
+        *ngIf="cart.orderItemList.length == 0"
+        routerLink="/home"
+        color="grey"
+        title="Shop For Products"
+      ></app-button>
+    </div>
+  </div>
+</div>
+
+<app-modal *ngIf="finalOrder && showModal">
+  <h1 class="weight-regular">Order {{ finalOrder.id }} Placed</h1>
+  <p class="bold">Under Review</p>
+  <h3 class="extra-bold">Thank You For your purchase</h3>
+  <div class="flex flex-row ai-center jc-space-between">
+    <app-button (onClick)="toHome()" color="grey" title="Shop"></app-button>
+    <div class="mh-50"></div>
+    <app-button (onClick)="toLogin()" title="Orders"></app-button>
+  </div>
+</app-modal>

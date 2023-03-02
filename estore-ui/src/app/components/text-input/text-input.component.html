@@ -1,0 +1,36 @@
+<div
+  [ngClass]="{
+    'regular-cont':
+      inputType == 'number' || inputType == 'large' || inputType == 'email',
+    'expanded-cont': inputType === 'expanded'
+  }"
+  class="inp-cont mt-50"
+>
+  <input
+    *ngIf="inputType !== 'expanded'"
+    placeholder=" "
+    class="inp weight-medium"
+    [disabled]="disabled"
+    type="{{
+      inputType === 'number'
+        ? 'number'
+        : inputType === 'email'
+        ? 'email'
+        : 'text'
+    }}"
+    name="{{ title }}"
+    id="{{ title }}"
+    [value]="value ?? numberValue"
+    (input)="onInput($event)"
+  />
+
+  <textarea
+    class="text weight-medium"
+    *ngIf="inputType === 'expanded'"
+    (input)="onInput($event)"
+    [value]="value"
+    name="{{ title }}"
+    id="{{ title }}"
+  ></textarea>
+  <p class="inp-text bold">{{ title }}</p>
+</div>

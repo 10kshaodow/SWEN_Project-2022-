@@ -1,0 +1,19 @@
+.user-card {
+  background-color: var(--light-gray);
+  border-radius: 50px;
+  width: 400px;
+  height: 520px;
+  transition: transform 50ms ease-in;
+}
+
+.red-border {
+  border: 2px solid var(--red);
+}
+
+.user-card i {
+  font-size: 150px;
+}
+
+.pointer:hover {
+  transform: translateY(-15px);
+}

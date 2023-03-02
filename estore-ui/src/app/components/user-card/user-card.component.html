@@ -1,0 +1,22 @@
+<div
+  [ngClass]="{
+    'hover-shadow': clickable,
+    pointer: clickable,
+    'drop-shadow': selected
+  }"
+  class="user-card m-30"
+  (click)="clickable ? click() : undefined"
+>
+  <div
+    [ngClass]="{
+      'red-border': selected
+    }"
+    class="user-card inner-shadow flex flex-column ai-center jc-space-between p-50"
+  >
+    <i class="fa-solid fa-circle-user"></i>
+    <div class="flex flex-column flex-center">
+      <h1 class="weight-regular">{{ user.username }}</h1>
+      <p class="mt-30 bold">{{ user.name }}</p>
+    </div>
+  </div>
+</div>

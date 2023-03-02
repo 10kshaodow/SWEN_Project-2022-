@@ -1,0 +1,283 @@
+<!-- <div
+  *ngIf="product"
+  [ngClass]="{ scrollable: !showModal && !showOutOfStock }"
+  class="main-container">
+  <div class="mv-1em">
+    <app-button
+      color="blue"
+      title="Back to home"
+      (onClick)="toHome()"
+    ></app-button>
+  </div>
+  <div
+    *ngIf="product.productType == 2 && outOfStock"
+    class="flex flex-center mv-1em"
+  >
+    <h1 class="out-of-stock">Currently Out of Stock</h1>
+  </div>
+  <div
+    *ngIf="product.productType == 2 && this.howManyInCart() != 0"
+    class="flex flex-center mv-1em"
+  >
+    <h1 class="weight-regular">Checkout from the cart to complete your purchase</h1>
+  </div>
+  <div class="flex flex-center main-img">
+    <img src="{{ product.fileName }}" alt="Product" />
+  </div>
+  <div class="flex flex-center flex-row mv-1em">
+    <h1 class="weight-regular">{{ product.name }}</h1>
+  </div>
+  <div *ngIf="doesUserSponsorFalcon()" class="flex flex-center mv-1em">
+    <h2 routerLink="/my-falcon/{{ product.id }}">
+      You have already sponsored this falcon. Check him out!
+    </h2>
+  </div>
+  <div class="flex flex-center mv-1em">
+    <h1
+      *ngIf="
+        product.productType == 2 && product.quantity - this.howManyInCart() != 0
+      "
+      class="mh-1em"
+    >
+      x {{ product.quantity - this.howManyInCart() }}
+    </h1>
+  </div>
+  <div class="flex flex-center desc-cont mv-2em">
+    <p class="desc ph-10em">{{ product.description }}</p>
+  </div>
+  <div
+    *ngIf="
+      this.product.productType == 1 &&
+      this.healthReports &&
+      this.healthReports.length > 0
+    "
+    class="hr-section mv-2em"
+  >
+    <h2 id="hr-title">Health Reports:</h2>
+    <div class="timeline-cont mv-1em">
+      <div class="timeline-line"></div>
+
+      <app-timeline-circle
+        *ngFor="let report of this.healthReports"
+        [displaySource]="report.fileName[0]"
+        [active]="activeReport?.reportID == report.reportID"
+        (circleClick)="this.setActiveReport(report)"
+        (imageClick)="this.toHealthReport(report.reportID)"
+      ></app-timeline-circle>
+    </div>
+    <div *ngIf="this.activeReport" class="notes-cont mv-2em ph-10em">
+      <h2>
+        Created On: {{ this.dateTimeToString(this.activeReport.reportDate) }}
+      </h2>
+      <h2
+        *ngIf="
+          this.activeReport.keyNotes != null &&
+          this.activeReport.keyNotes.length > 0
+        "
+        class="mv-1em"
+      >
+        Key Notes:
+      </h2>
+      <ul
+        *ngIf="
+          this.activeReport.keyNotes != null &&
+          this.activeReport.keyNotes.length > 0
+        "
+        class="ph-2em key-notes"
+      >
+        <div *ngFor="let note of this.activeReport.keyNotes" class="mv-1em">
+          <li *ngIf="note.length > 0" class="key-note">
+            <p>{{ note }}</p>
+          </li>
+        </div>
+      </ul>
+    </div>
+    <div *ngIf="this.activeReport" class="flex flex-center">
+      <h2 (click)="this.toHealthReport(activeReport.reportID)" class="pointer">
+        {{ "See a more detailed report" | titlecase }}
+      </h2>
+    </div>
+  </div>
+  <div
+    *ngIf="
+      this.product.productType == 1 &&
+      this.product.sponsors != null &&
+      this.product.sponsors.length > 0
+    "
+    class="sponsor-section mv-5em">
+    <h2>{{ product.name }}'s Sponsors:</h2>
+    <div class="sponsor-container mv-2em ph-5em">
+      <div *ngFor="let sponsor of this.product.sponsors" class="sponsor">
+        <p>{{ sponsor }}</p>
+      </div>
+    </div>
+  </div>
+
+
+  <app-button
+    class="floating"
+    *ngIf="
+      !this.isUserAdmin() &&
+      this.isUserSignedIn() &&
+      this.product &&
+      !this.outOfStock &&
+      !this.doesUserSponsorFalcon()"
+    (onClick)="addToCart()"
+    [title]="
+      this.product.productType == 1
+      ? 'Sponsor Me For $' +
+        this.product.price.toLocaleString(undefined, {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        })
+      : 'Puchase For $' +
+        this.product.price.toLocaleString(undefined, {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        })
+    "
+  ></app-button>
+
+  <div *ngIf="!this.isUserAdmin() && !this.isUserSignedIn()" class="floating">
+    <app-button
+      (onClick)="this.toLogin()"
+      title="{{
+      product.productType == 1 ? 'Login To Sponsor' : 'Login To Purchase'
+      }}"
+  ></app-button>
+  </div>
+
+  <div *ngIf="showModal" class="modal-cont flex flex-center">
+    <div class="modal">
+      <div (click)="this.closeModal()" class="cross-container">
+        <div class="cross"></div>
+      </div>
+      <div class="flex flex-center">
+        <h3>Would you like to continue Shopping?</h3>
+      </div>
+      <div class="flex flex-row flex-even modal-btns">
+        <h5 (click)="this.toCart()" class="modal-btn modal-bad">Lets Checkout</h5>
+        <h5 (click)="this.toHome()" class="modal-btn modal-good">
+        Yes, Take Me Home
+        </h5>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="showOutOfStock" class="modal-cont flex flex-center">
+  <div class="modal">
+    <div (click)="this.closeModal()" class="cross-container">
+      <div class="cross"></div>
+    </div>
+    <div class="flex flex-column flex-center">
+      <h3>You have allready added as many {{ product.name }}'s as possible</h3>
+      <h4>Do you want to continue shopping?</h4>
+    </div>
+    <div class="flex flex-row flex-even modal-btns">
+      <h5 (click)="this.toCart()" class="modal-btn modal-bad">Lets Checkout</h5>
+      <h5 (click)="this.toHome()" class="modal-btn modal-good">
+        Yes, Take Me Home
+      </h5>
+    </div>
+  </div>
+  </div>
+</div>
+
+<div
+  *ngIf="!product && isUserSignedIn()"
+  class="max-width flex mv-2em flex-row row-center"
+>
+  <div class="card bg-dark">
+    <h2>This order could not be found</h2>
+  </div>
+</div> -->
+
+<!-- <div class="m-50"> -->
+<div class="back-btn">
+  <app-button id="back-btn" [back]="true" (onClick)="goBack()"></app-button>
+</div>
+<!-- </div> -->
+<div *ngIf="product" class="p-80">
+  <app-detail-header
+    [name]="product.name"
+    [description]="product.description"
+    [price]="
+      product.price.toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      })
+    "
+    [source]="product.fileName ?? undefined"
+    [quantity]="
+      product.productType == 1
+        ? undefined
+        : (product.quantity - this.howManyInCart()).toString()
+    "
+  ></app-detail-header>
+
+  <div *ngIf="this.sponsorshipDate" class="flex flex-center mv-50">
+    <h3 class="color-red weight-medium">
+      You sponsored this falcon on {{ dateTimeToString(sponsorshipDate) }}
+    </h3>
+  </div>
+
+  <div
+    class="mv-80"
+    *ngIf="product.productType == 1 && healthReports.length > 0"
+  >
+    <h1 class="weight-regular">{{ product.name }}'s Health Reports</h1>
+    <div class="hairline mt-30 max-width"></div>
+    <div class="flex flex-column">
+      <app-health-report-item
+        *ngFor="let report of healthReports"
+        [healthReport]="report"
+        [backupSource]="product.fileName ?? undefined"
+        routerLink="/report/{{ report.reportID }}"
+      ></app-health-report-item>
+    </div>
+    <div *ngIf="isOrno" class="flex flex-row jc-end ai-center mv-30">
+      <app-button title="Add Report" (onClick)="toCreateHealthReport()">
+        <i id="heart-icon" class="fa-solid fa-heart-pulse"></i>
+      </app-button>
+    </div>
+  </div>
+
+  <div class="mv-80" *ngIf="product.productType == 1 && sponsors.length > 0">
+    <h1 class="weight-regular">{{ product.name }}'s Current Sponsors</h1>
+    <div class="hairline mt-30 max-width"></div>
+    <div class="flex p-30 scroll-x">
+      <app-user-card
+        *ngFor="let spon of sponsors"
+        [user]="spon"
+      ></app-user-card>
+    </div>
+  </div>
+</div>
+
+<app-button
+  *ngIf="!sponsorshipDate && !isAdmin && !isOrno"
+  class="cart-btn fixed"
+  [title]="
+    outOfStock
+      ? 'Out Of Stock'
+      : !user
+      ? 'Log In To Purchase'
+      : product.productType == 1
+      ? 'Sponsor Me'
+      : 'Purchase'
+  "
+  (onClick)="user ? addToCart() : toLogin()"
+  [disabled]="outOfStock"
+>
+</app-button>
+
+<app-modal *ngIf="showModal">
+  <h1 class="text-center weight-regular">{{ product.name }} Added To Cart</h1>
+  <h3 class="text-center weight-medium">
+    Would you like to continue Shopping?
+  </h3>
+  <div class="max-width flex flex-row ai-center jc-space-even">
+    <p class="modal-btn pointer bold" (click)="toHome()">Keep Shopping</p>
+    <p class="modal-btn pointer bold" (click)="toCart()">Checkout</p>
+  </div>
+</app-modal>

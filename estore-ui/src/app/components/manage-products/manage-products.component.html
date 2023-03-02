@@ -1,0 +1,42 @@
+<div *ngIf="!showForm" class="relative max-width flex flex-row flex-wrap p-80">
+  <h1 class="weight-regular">All Products</h1>
+  <div class="hairline mv-30 max-width"></div>
+  <div class="flex flex-row flex-wrap" *ngIf="allProducts.length > 0">
+    <app-product
+      *ngFor="let product of allProducts"
+      [product]="product"
+      [clickable]="true"
+      [deleteBtn]="true"
+      (onDeleteClick)="deleteProduct(product.id)"
+      (cardClick)="selectProduct(product)"
+    ></app-product>
+  </div>
+  <app-button
+    class="floating-button"
+    title="Create New Product"
+    (onClick)="toCreateProduct()"
+  ></app-button>
+</div>
+
+<div *ngIf="showForm" class="flex flex-column p-80">
+  <app-error-message
+    class="mv-30"
+    *ngIf="errorMessage"
+    [message]="errorMessage"
+  ></app-error-message>
+  <div class="flex ai-center jc-space-between flex-row">
+    <app-button [back]="true" (onClick)="toAllProducts()"></app-button>
+    <h1 class="weight-regular">{{ selected ? "Update" : "Create" }} Product</h1>
+    <div [style]="{ width: '50px' }"></div>
+  </div>
+  <div class="hairline mv-30 max-width"></div>
+  <div class="mv-50 flex flex-center">
+    <app-product-form
+      [productId]="selected?.id"
+      (onLeave)="toAllProducts()"
+      (errorChange)="setError($event)"
+    ></app-product-form>
+  </div>
+</div>
+
+<div class="spacer"></div>

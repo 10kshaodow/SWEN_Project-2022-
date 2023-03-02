@@ -1,0 +1,32 @@
+.img-cont {
+  width: 600px;
+  height: 500px;
+  border-radius: 25px;
+}
+
+.img-cont img {
+  width: 600px;
+  height: 500px;
+  border-radius: 25px;
+  object-fit: cover;
+}
+
+.img-cont input {
+  z-index: 5;
+  background-color: green;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.img-cont i {
+  font-size: 50px;
+  color: var(--white);
+}
+
+.img-cont:hover i {
+  color: var(--red);
+}

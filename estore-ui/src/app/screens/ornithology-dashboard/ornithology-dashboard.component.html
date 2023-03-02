@@ -1,0 +1,11 @@
+<h1>Ornithologist Dashboard</h1>
+
+<div class="flex flex-wrap">
+  <app-product
+    *ngFor="let product of falcons"
+    [product]="product"
+    routerLink="/ornithology-view/{{ product.id }}"
+  ></app-product>
+</div>
+
+<div class="spacer"></div>

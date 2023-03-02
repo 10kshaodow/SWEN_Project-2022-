@@ -1,0 +1,76 @@
+<div class="heading">
+  <h2 class="color-dark">
+    {{ product.id ? "Update Product" : "Create New Product" }}
+  </h2>
+  <p *ngIf="errorMessage" class="color-error mv-1em">{{ errorMessage }}</p>
+</div>
+<div class="max-width max-height flex flex-row">
+  <div class="flex-half flex flex-column row-center">
+    <div class="image-cont bg-blue">
+      <input
+        class="bg-red"
+        type="file"
+        placeholder=" "
+        (change)="onFileChange($event)"
+      />
+      <img
+        *ngIf="this.displaySource"
+        src="{{ this.displaySource }}"
+        alt="{{
+          this.product.fileSource?.orginalName ?? this.product.fileName
+        }}"
+      />
+    </div>
+    <p *ngIf="this.product.fileSource?.orginalName" class="mv-1em">
+      {{ this.product.fileSource?.orginalName }}
+    </p>
+  </div>
+  <div class="flex-half flex flex-column p-2em">
+    <app-text-input
+      [value]="product.name"
+      (valueChange)="setName($event)"
+      title="Name"
+    ></app-text-input>
+    <app-text-input
+      [numberValue]="product.price"
+      (numberValueChange)="setPrice($event)"
+      title="Price"
+      inputType="number"
+    ></app-text-input>
+    <app-text-input
+      [numberValue]="product.quantity"
+      (numberValueChange)="setQuantity($event)"
+      title="Available Amount"
+      inputType="number"
+    ></app-text-input>
+    <app-text-input
+      [value]="product.description"
+      (valueChange)="setDesc($event)"
+      title="Description"
+      inputType="expanded"
+    ></app-text-input>
+
+    <div *ngIf="!product.id" class="flex flex-column mv-1em">
+      <app-checkbox
+        label="This Product is a Bird"
+        [value]="product.productType == 1"
+        (valueChange)="changeProductType(1)"
+      ></app-checkbox>
+      <app-checkbox
+        label="This Product is a Bird Accessory"
+        [value]="product.productType == 2"
+        (valueChange)="changeProductType(2)"
+      ></app-checkbox>
+    </div>
+
+    <div>
+      <button (click)="submit()" class="button">
+        <h2>{{ product.id ? "Update Product" : "Add New Product" }}</h2>
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<div class="spacer"></div>
+<div class="spacer"></div>

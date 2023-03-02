@@ -1,0 +1,15 @@
+<div class="pv-50 flex flex-row ai-center jc-space-between">
+  <h2 class="weight-medium">{{ title }}</h2>
+  <div class="flex-grow"></div>
+  <h2
+    [ngClass]="{
+      green: color == 'green',
+      yellow: color == 'yellow',
+      orange: color == 'orange',
+      red: color == 'red'
+    }"
+    class="extra-bold"
+  >
+    {{ status }}
+  </h2>
+</div>

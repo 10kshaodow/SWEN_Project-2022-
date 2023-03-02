@@ -1,0 +1,50 @@
+<div class="main-container flex flex-row">
+  <ul class="tab-section flex flex-column">
+    <li
+      [ngClass]="{
+        selected: visibleComponent === 3
+      }"
+      (click)="setVisibleComponent(3)"
+      class="tab color-light"
+    >
+      <h2 class="weight-regular">Manage All Orders</h2>
+    </li>
+    <li
+      [ngClass]="{
+        selected: visibleComponent === 1
+      }"
+      (click)="setVisibleComponent(1)"
+      class="tab color-light"
+    >
+      <h2 class="weight-regular">Manage All Users</h2>
+    </li>
+
+    <li
+      [ngClass]="{
+        selected: visibleComponent === 4
+      }"
+      (click)="setVisibleComponent(4)"
+      class="tab color-light"
+    >
+      <h2 class="weight-regular">Manage Notifications</h2>
+    </li>
+    <li
+      [ngClass]="{
+        selected: visibleComponent === 2
+      }"
+      (click)="setVisibleComponent(2)"
+      class="tab color-light"
+    >
+      <h2 class="weight-regular">Manage All Products</h2>
+    </li>
+  </ul>
+
+  <div class="content-section scroll-y relative">
+    <app-manage-users *ngIf="visibleComponent === 1"></app-manage-users>
+    <app-manage-products *ngIf="visibleComponent === 2"></app-manage-products>
+    <app-manage-orders *ngIf="visibleComponent === 3"></app-manage-orders>
+    <app-manage-notifications
+      *ngIf="visibleComponent === 4"
+    ></app-manage-notifications>
+  </div>
+</div>

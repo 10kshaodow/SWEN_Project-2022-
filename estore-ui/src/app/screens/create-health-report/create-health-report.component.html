@@ -1,0 +1,322 @@
+<!-- <div class="heading">
+  <h2 class="color-dark">
+    {{
+      healthReport.reportID
+        ? "Update Health Report"
+        : "Create New Health Report"
+    }}
+  </h2>
+  <p *ngIf="errorMessage" class="color-error mv-1em">{{ errorMessage }}</p>
+</div>
+<div class="max-width max-height flex flex-row">
+  <div class="flex-half flex flex-column row-center-middle">
+    <div class="image-cont bg-blue">
+      <input
+        class="bg-red"
+        type="file"
+        placeholder=" "
+        (change)="onFileChange($event)"
+        multiple
+      />
+      <img *ngIf="this.displaySource" src="{{ this.displaySource }}" />
+    </div>
+    <p>File List:</p>
+    <div
+      *ngIf="
+        this.healthReport.fileSource && this.healthReport.fileSource.length > 0
+      "
+    >
+      <div *ngFor="let file of this.healthReport.fileSource">
+        <div *ngIf="file.orginalName" class="mv-1em flex">
+          <p (click)="setDisplaySource(file.base64)">{{ file.orginalName }}</p>
+          <div
+            class="errorMessage"
+            type="button"
+            (click)="removeFileSource(file.orginalName)"
+          >
+            <p class="color-error">x</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      *ngIf="
+        this.healthReport.fileName && this.healthReport.fileName.length > 0
+      "
+    >
+      <div *ngFor="let filename of this.healthReport.fileName">
+        <div *ngIf="filename" class="mv-1em flex">
+          <p (click)="setDisplaySource(filename)">
+            {{ getFileName(filename) }}
+          </p>
+          <div
+            class="errorMessage"
+            type="button"
+            (click)="removeFileName(filename)"
+          >
+            <p class="color-error">x</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <button class="button">
+        Add Image(s)
+        <input
+          type="file"
+          style="opacity: 0; cursor: pointer"
+          placeholder=" "
+          (change)="onFileChange($event)"
+          multiple
+        />
+      </button>
+    </div>
+  </div>
+  <div class="flex-half flex flex-column p-2em">
+    <div>
+      <app-text-input
+        class="max-width"
+        [value]="healthReport.healthDescription"
+        (valueChange)="setHealthDescription($event)"
+        title="Health Description"
+        inputType="expanded"
+      ></app-text-input>
+      <app-dropdown-input
+        title="Health Status"
+        [value]="healthReport.healthStatus"
+        (valueChange)="setHealthStatus($event)"
+        [options]="healthStatuses"
+      ></app-dropdown-input>
+      <label for="HealthStatus">Health Status</label>
+      <app-dropdown-input
+        title="Diet"
+        [value]="healthReport.diet"
+        (valueChange)="setDiet($event)"
+        [options]="dietStatuses"
+      ></app-dropdown-input>
+      <app-dropdown-input
+        title="Fitness"
+        [value]="healthReport.fitness"
+        (valueChange)="setFitness($event)"
+        [options]="fitnessStatuses"
+      ></app-dropdown-input>
+      <app-dropdown-input
+        title="Social"
+        [value]="healthReport.social"
+        (valueChange)="setSocial($event)"
+        [options]="socialStatuses"
+      ></app-dropdown-input>
+      <div>
+        <p>Key Notes</p>
+        <app-text-input
+          [value]="healthReport.keyNotes[0]"
+          (valueChange)="setKeyNoteOne($event)"
+          title="Note One"
+        ></app-text-input>
+        <app-text-input
+          [value]="healthReport.keyNotes[1]"
+          (valueChange)="setKeyNoteTwo($event)"
+          title="Note Two"
+        ></app-text-input>
+        <app-text-input
+          [value]="healthReport.keyNotes[2]"
+          (valueChange)="setKeyNoteThree($event)"
+          title="Note Three"
+        ></app-text-input>
+        <div class="flex flex-row container">
+          <label class="color-darkest">Reproductive Status</label>
+          <label class="color-darkest" for="Fertile">Fertile</label>
+          <input
+            type="radio"
+            name="Fertile"
+            [(ngModel)]="healthReport.reproductiveStatus"
+            [value]="true"
+          />
+          <label class="color-darkest" for="Sterile">Sterile</label>
+          <input
+            type="radio"
+            name="Sterile"
+            [(ngModel)]="healthReport.reproductiveStatus"
+            [value]="false"
+          />
+        </div>
+      </div>
+
+      <div>
+        <button (click)="submit()" class="button">
+          <h2>
+            {{
+              healthReport.reportID
+                ? "Update Health Report"
+                : "Add New Health Report"
+            }}
+          </h2>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="spacer"></div>
+<div class="spacer"></div> -->
+
+<div *ngIf="product" class="flex flex-column p-80">
+  <app-button [back]="true" (onClick)="navigateBack()"></app-button>
+  <app-detail-header
+    class="mt-50"
+    [name]="product.name"
+    [description]="product.description"
+    [price]="
+      product.price.toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      })
+    "
+    [source]="product.fileName ?? undefined"
+    [quantity]="
+      product.productType == 1 ? undefined : product.quantity.toString()
+    "
+  ></app-detail-header>
+  <div class="flex flex-column flex-center mv-80">
+    <h1 class="weight-regular">
+      {{ healthReport.reportID ? "Update" : "Create" }} Health Report
+    </h1>
+    <div class="hairline mt-30 max-width"></div>
+
+    <div class="mt-80 image-container flex flex-column flex-center">
+      <div class="hover-shadow image-input-cont">
+        <div
+          class="relative pointer image-input-cont inner-shadow flex flex-center"
+        >
+          <i *ngIf="!this.displaySource" class="fa-solid fa-image"></i>
+          <img
+            *ngIf="this.displaySource"
+            src="{{ this.displaySource }}"
+            alt="{{ product.name }}"
+          />
+          <input
+            type="file"
+            multiple
+            class="absolute all-event"
+            (change)="onFileChange($event)"
+          />
+        </div>
+      </div>
+      <div class="small-image-cont flex flex-row scroll-x">
+        <div
+          class="relative hoverable"
+          *ngFor="let source of healthReport.fileName"
+        >
+          <img
+            class="mh-30 pointer hover-shadow"
+            [src]="source"
+            [alt]="getFileName(source)"
+            (click)="setDisplaySource(source)"
+          />
+          <div class="flex no-event delete-img flex-center">
+            <app-button
+              (onClick)="removeFileName(source)"
+              class="all-event pointer flex flex-center"
+            >
+              <i class="fa-solid fa-xmark"></i>
+            </app-button>
+          </div>
+        </div>
+        <div
+          *ngFor="let source of healthReport.fileSource"
+          class="relative hoverable"
+        >
+          <img
+            class="mh-30 pointer hover-shadow"
+            [src]="source.base64"
+            [alt]="source.orginalName"
+            (click)="setDisplaySource(source.base64)"
+          />
+          <div class="flex no-event delete-img flex-center">
+            <app-button
+              (onClick)="removeFileSource(source.orginalName)"
+              class="all-event pointer flex flex-center"
+            >
+              <i class="fa-solid fa-xmark"></i>
+            </app-button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hairline mb-80 max-width"></div>
+
+    <div class="inputs flex flex-column flex-center">
+      <app-text-input
+        class="max-width"
+        [value]="healthReport.healthDescription"
+        (valueChange)="setHealthDescription($event)"
+        title="Health Description"
+        inputType="expanded"
+      ></app-text-input>
+      <app-dropdown-input
+        title="Health Status"
+        [value]="healthReport.healthStatus"
+        (valueChange)="setHealthStatus($event)"
+        [options]="healthStatuses"
+      ></app-dropdown-input>
+      <app-dropdown-input
+        title="Diet Status"
+        [value]="healthReport.diet"
+        (valueChange)="setDiet($event)"
+        [options]="dietStatuses"
+      ></app-dropdown-input>
+      <app-dropdown-input
+        title="Fitness Status"
+        [value]="healthReport.fitness"
+        (valueChange)="setFitness($event)"
+        [options]="fitnessStatuses"
+      ></app-dropdown-input>
+      <app-dropdown-input
+        title="Social Status"
+        [value]="healthReport.social"
+        (valueChange)="setSocial($event)"
+        [options]="socialStatuses"
+      ></app-dropdown-input>
+      <app-dropdown-input
+        title="Fertility Status"
+        [value]="healthReport.reproductiveStatus ? 'Fertile' : 'Sterile'"
+        [options]="['Fertile', 'Sterile']"
+        (valueChange)="setReproductiveStatus($event == 'Fertile')"
+      ></app-dropdown-input>
+    </div>
+  </div>
+  <div class="mv-50 flex flex-column">
+    <h1 class="weight-regular mt-50">Key Notes</h1>
+    <div class="hairline mv-30 max-width"></div>
+  </div>
+
+  <div class="flex flex-column flex-center">
+    <app-text-input
+      inputType="expanded"
+      [value]="healthReport.keyNotes[0]"
+      (valueChange)="setKeyNoteOne($event)"
+      title="Note One"
+    ></app-text-input>
+    <app-text-input
+      inputType="expanded"
+      [value]="healthReport.keyNotes[1]"
+      (valueChange)="setKeyNoteTwo($event)"
+      title="Note Two"
+    ></app-text-input>
+    <app-text-input
+      inputType="expanded"
+      [value]="healthReport.keyNotes[2]"
+      (valueChange)="setKeyNoteThree($event)"
+      title="Note Three"
+    ></app-text-input>
+  </div>
+</div>
+
+<div class="fixed p-80 position-bottom flex flex-row ai-center jc-end no-event">
+  <app-button
+    [title]="healthReport.reportID ? 'Update' : 'Create'"
+    (onClick)="submit()"
+    class="all-event"
+  ></app-button>
+</div>

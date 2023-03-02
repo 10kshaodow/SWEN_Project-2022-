@@ -1,0 +1,38 @@
+.card { 
+    width: 500px;
+}
+
+input {
+    width: 100%;
+}
+
+p {
+    padding-top: 0.5em;
+    text-align: center;
+    font-size: medium;
+}
+
+.userInfo {
+    width: 100%;
+}
+
+span {
+    cursor:pointer;
+    color:blue;
+    text-decoration:underline;
+}
+
+.errorText {
+    text-align: left;
+    padding-top: 0px;
+}
+
+label {
+    font-size: medium;
+}
+
+.redOnFocus:focus {
+    outline: none;
+    border-color: var(--color-failure);
+    color: var(--color-failure); 
+}

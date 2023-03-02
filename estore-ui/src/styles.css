@@ -1,4 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --black: #0d0d0f;
+  --dark-gray: #3a3a3c;
+  --light-gray: #565658;
+  --red: #df1c28;
+  --white: #ffffff;
+
+  --off-red: #b2131d;
+
+  --green: #13f151;
+  --orange: #df9d1c;
+  --yellow: #dfd71c;
+}
 
 *,
 *::before,
@@ -8,174 +20,328 @@
   box-sizing: border-box;
 }
 
+html,
 body {
-  font-size: 20px;
-  background-color: #ffffff;
+  background-color: var(--dark-gray);
+  font-family: "Grandstander", cursive;
 }
 
-h1,
-h2,
-h3,
-h4,
-p {
-  padding: 0px;
-  margin: 0px;
+body {
+  overflow: hidden;
+  color: var(--white);
+}
+
+.fill-view {
+  width: 100vw;
+  height: 100vh;
+}
+
+.hover-shadow:hover {
+  box-shadow: 0px 10px 25px 10px rgba(0, 0, 0, 0.5);
+}
+
+.drop-shadow {
+  box-shadow: 0px 10px 25px 10px rgba(0, 0, 0, 0.5);
+}
+
+.inner-shadow {
+  box-shadow: inset 0px -10px 25px 10px rgba(0, 0, 0, 0.5);
+}
+
+.max-width {
+  width: 100%;
+}
+
+.max-height {
+  height: 100%;
+}
+
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.fixed {
+  position: fixed;
+}
+
+.position-bottom {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 5;
+}
+
+.no-event {
+  pointer-events: none;
+}
+
+.all-event {
+  pointer-events: all;
 }
 
 .flex {
   display: flex;
 }
 
-.wrap {
-  flex-wrap: wrap;
-}
-
-.row-center {
-  justify-content: center;
-  align-items: center;
-}
-
-.row-center-left {
-  justify-content: flex-start;
-  align-items: center;
+.flex-row {
+  flex-direction: row;
 }
 
 .flex-column {
   flex-direction: column;
 }
 
-.flex-row {
-  flex-direction: row;
+.flex-center {
+  align-items: center;
+  justify-content: center;
 }
 
-.max-width {
-  width: "100%";
+.flex-grow {
+  flex-grow: 1;
 }
 
-.max-height {
-  height: "100%";
+.flex-wrap {
+  flex-wrap: wrap;
 }
 
-.m-15 {
-  margin: 15px;
+.ai-start {
+  align-items: flex-start;
 }
 
-.mv-15 {
-  margin: 15px 0px;
+.ai-center {
+  align-items: center;
 }
 
-.mh-15 {
-  margin: 0px 15px;
+.ai-end {
+  align-items: flex-end;
 }
 
-.m-1em {
-  margin: 1em;
+.jc-start {
+  justify-content: flex-start;
 }
 
-.mv-1em {
-  margin: 1em 0px;
+.jc-center {
+  justify-content: center;
 }
 
-.mh-2em {
-  margin: 0px 2em;
+.jc-end {
+  justify-content: flex-end;
 }
 
-.m-2em {
-  margin: 2em;
+.jc-space-between {
+  justify-content: space-between;
 }
 
-.mv-2em {
-  margin: 2em 0px;
+.jc-space-even {
+  justify-content: space-evenly;
 }
 
-.mh-2em {
-  margin: 0px 2em;
+.jc-space-around {
+  justify-content: space-around;
 }
 
-.p-15 {
-  padding: 15px;
+.scroll-x {
+  overflow-x: scroll;
 }
 
-.pv-15 {
-  padding: 15px 0px;
+.scroll-y {
+  overflow-y: scroll;
 }
 
-.ph-15 {
-  padding: 0px 15px;
+.no-scroll-y {
+  overflow-y: hidden;
 }
 
-.p-1em {
-  padding: 1em;
+h1 {
+  font-size: 50px;
+
+  font-family: "Grandstander", cursive;
 }
 
-.pv-1em {
-  padding: 1em 0px;
+h2 {
+  font-size: 45px;
+
+  font-family: "Grandstander", cursive;
 }
 
-.ph-2em {
-  padding: 0px 2em;
+h3 {
+  font-size: 35px;
+
+  font-family: "Grandstander", cursive;
 }
 
-.p-2em {
-  padding: 2em;
+p {
+  font-size: 25px;
+  font-weight: bold;
+  font-family: "Grandstander", cursive;
 }
 
-.pv-2em {
-  padding: 2em 0px;
+.weight-regular {
+  font-weight: 200;
 }
 
-.ph-2em {
-  padding: 0px 2em;
+.weight-medium {
+  font-weight: 400;
 }
 
-.bg-lightest {
-  background-color: #ffffff;
+.extra-bold {
+  font-weight: "bolder";
 }
 
-.bg-light {
-  background-color: #e1e5f2;
+.bold {
+  font-weight: "bold";
 }
 
-.bg-middle {
-  background-color: #bfdbf7;
+.text-center {
+  text-align: center;
 }
 
-.bg-dark {
-  background-color: #1f7a8c;
+.m-50 {
+  margin: 50px;
 }
 
-.bg-darkest {
-  background-color: #022b3a;
+.mt-50 {
+  margin-top: 50px;
 }
 
-.color-lightest {
-  color: #ffffff;
+.mb-50 {
+  margin-bottom: 50px;
 }
 
-.color-light {
-  color: #e1e5f2;
+.mv-50 {
+  margin: 50px 0px;
 }
 
-.color-middle {
-  color: #bfdbf7;
+.mh-50 {
+  margin: 0px 50px;
 }
 
-.color-dark {
-  color: #1f7a8c;
+.m-80 {
+  margin: 80px;
 }
 
-.color-darkest {
-  color: #022b3a;
+.mt-80 {
+  margin-top: 80px;
 }
 
-.input {
-  font-size: 18px;
-  padding: 5px;
-  padding-left: 10px;
-  border-color: #022b3a;
-  border-radius: 15px;
+.mb-80 {
+  margin-bottom: 80px;
 }
 
-.input:focus {
-  border-color: #1f7a8c;
+.mv-80 {
+  margin: 80px 0px;
+}
+
+.mh-80 {
+  margin: 0px 80px;
+}
+
+.m-30 {
+  margin: 30px;
+}
+
+.mt-30 {
+  margin-top: 30px;
+}
+
+.mb-30 {
+  margin-bottom: 30px;
+}
+
+.mv-30 {
+  margin: 30px 0px;
+}
+
+.mh-30 {
+  margin: 0px 30px;
+}
+
+.p-50 {
+  padding: 50px;
+}
+
+.pv-50 {
+  padding: 50px 0px;
+}
+
+.ph-50 {
+  padding: 0px 50px;
+}
+
+.p-80 {
+  padding: 80px;
+}
+
+.pv-80 {
+  padding: 80px 0px;
+}
+
+.ph-80 {
+  padding: 0px 80px;
+}
+
+.p-30 {
+  padding: 30px;
+}
+
+.pv-30 {
+  padding: 30px 0px;
+}
+
+.ph-30 {
+  padding: 0px 30px;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.hairline {
+  width: 100%;
+  height: 5px;
+  background-color: var(--light-gray);
+}
+
+.spacer {
+  height: 75px;
+}
+
+.bg-black {
+  background-color: var(--black);
+}
+
+.bg-dark-gray {
+  background-color: var(--dark-gray);
+}
+
+.bg-gray {
+  background-color: var(--gray);
+}
+
+.color-black {
+  color: var(--black);
+}
+
+.color-dark-gray {
+  color: var(--dark-gray);
+}
+
+.color-gray {
+  color: var(--gray);
+}
+
+.color-red {
+  color: var(--red);
+}
+
+.color-white {
+  color: var(--white);
+}
+
+.hover-red:hover {
+  color: var(--red);
 }

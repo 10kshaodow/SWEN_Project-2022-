@@ -1,0 +1,63 @@
+<div class="flex flex-column flex-center">
+  <div class="hover-shadow img-cont">
+    <div
+      class="img-cont pointer bg-gray inner-shadow relative flex flex-center"
+    >
+      <i *ngIf="!this.displaySource" class="fa-solid fa-image"></i>
+      <img
+        *ngIf="this.displaySource"
+        src="{{ this.displaySource }}"
+        alt="{{ product.name }}"
+      />
+      <input
+        type="file"
+        class="absolute all-event"
+        (change)="onFileChange($event)"
+      />
+    </div>
+  </div>
+
+  <p *ngIf="this.product?.fileSource?.orginalName" class="mv-30 bold">
+    {{ this.product.fileSource?.orginalName }}
+  </p>
+
+  <div class="mv-50">
+    <app-text-input
+      title="Name"
+      [value]="product.name"
+      (valueChange)="setName($event)"
+    ></app-text-input>
+    <app-text-input
+      title="Price"
+      inputType="number"
+      [numberValue]="product.price"
+      (numberValueChange)="setPrice($event)"
+    ></app-text-input>
+    <app-text-input
+      title="Quantity"
+      inputType="number"
+      [numberValue]="product.quantity"
+      (numberValueChange)="setQuantity($event)"
+    ></app-text-input>
+    <app-text-input
+      title="Description"
+      [value]="product.description"
+      (valueChange)="setDesc($event)"
+      inputType="expanded"
+    ></app-text-input>
+    <app-dropdown-input
+      title="Product Type"
+      [value]="product.productType == 1 ? 'Falcon' : 'Accessory'"
+      [options]="['Falcon', 'Accessory']"
+      (valueChange)="setProductType($event)"
+    ></app-dropdown-input>
+  </div>
+</div>
+
+<div class="fixed p-80 no-event position-bottom flex ai-center jc-end">
+  <app-button
+    class="all-event"
+    title="{{ product.id ? 'Update Product' : 'Create New Product' }}"
+    (onClick)="submit()"
+  ></app-button>
+</div>

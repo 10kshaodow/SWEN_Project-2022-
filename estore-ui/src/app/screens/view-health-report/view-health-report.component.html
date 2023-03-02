@@ -1,0 +1,296 @@
+<!-- <div class="main-container">
+  <div *ngIf="this.healthReport">
+    <div
+      *ngIf="product && healthReport"
+      class="image-container flex flex-center mv-1em"
+    >
+      <div *ngIf="this.healthReport.fileName.length > 1" class="image-btns">
+        <div
+          [ngClass]="{
+            'hidden-btn':
+              this.healthReport.fileName.length > 1 &&
+              this.displayIndex != this.healthReport.fileName.length - 1
+          }"
+          (click)="this.lastPic()"
+          class="triangle left"
+        ></div>
+        <div
+          [ngClass]="{
+            'hidden-btn':
+              this.healthReport.fileName.length > 1 && this.displayIndex != 0
+          }"
+          class="triangle right"
+          (click)="this.nextPic()"
+        ></div>
+      </div>
+
+      <img src="{{ displaySource }}" [alt]="product.name" />
+    </div>
+
+    <h2 class="mv-1em">
+      Created On: {{ this.dateTimeToString(this.healthReport.reportDate) }}
+    </h2>
+
+    <div class="mv-1em">
+      <p>{{ healthReport.healthDescription }}</p>
+    </div>
+    <div class="notes-cont mv-2em ph-10em">
+      <h2
+        *ngIf="
+          this.healthReport.keyNotes != null &&
+          this.healthReport.keyNotes.length > 0
+        "
+        class="mv-1em"
+      >
+        Key Notes:
+      </h2>
+      <ul
+        *ngIf="
+          this.healthReport.keyNotes != null &&
+          this.healthReport.keyNotes.length > 0
+        "
+        class="ph-2em key-notes"
+      >
+        <div *ngFor="let note of this.healthReport.keyNotes" class="mv-1em">
+          <li *ngIf="note.length > 0" class="key-note">
+            <p>{{ note }}</p>
+          </li>
+        </div>
+      </ul>
+    </div>
+
+    <div class="flex flex-row status-cont">
+      <h3>Health Status</h3>
+      <h3
+        [ngClass]="{
+          green: healthReport.healthStatus == 'Superb',
+          'yellow-green': healthReport.healthStatus == 'Well',
+          yellow: healthReport.healthStatus == 'Unwell',
+          red: healthReport.healthStatus == 'Dead'
+        }"
+      >
+        {{ healthReport.healthStatus }}
+      </h3>
+    </div>
+    <div class="flex flex-row status-cont">
+      <h3>Fitness Level</h3>
+      <h3
+        [ngClass]="{
+          green: healthReport.fitness == 'Active',
+          'yellow-green': healthReport.fitness == 'Average',
+
+          red: healthReport.fitness == 'Dormant'
+        }"
+      >
+        {{ healthReport.fitness }}
+      </h3>
+    </div>
+    <div class="flex flex-row status-cont">
+      <h3>Social Level</h3>
+      <h3
+        [ngClass]="{
+          green: healthReport.social == 'Lively',
+          red: healthReport.social == 'Rowdy',
+
+          'yellow-green': healthReport.social == 'Reserved'
+        }"
+      >
+        {{ healthReport.social }}
+      </h3>
+    </div>
+    <div class="flex flex-row status-cont">
+      <h3>Diet Status</h3>
+      <h3
+        [ngClass]="{
+          green: healthReport.diet == 'Nutritional',
+          red: healthReport.diet == 'Junk',
+          'yellow-green': healthReport.diet == 'Balanced'
+        }"
+      >
+        {{ healthReport.diet }}
+      </h3>
+    </div>
+    <div class="flex flex-row status-cont">
+      <h3>Fertility</h3>
+      <h3
+        [ngClass]="{
+          green: healthReport.reproductiveStatus,
+          red: !healthReport.reproductiveStatus
+        }"
+      >
+        {{ healthReport.reproductiveStatus ? "Fertile" : "Sterile" }}
+      </h3>
+    </div>
+  </div>
+
+  <div *ngIf="isOrnitholo" class="max-width flex flex-center">
+    <app-button
+      (onClick)="this.toUpdateReport()"
+      title="Update Health Report"
+    ></app-button>
+  </div>
+  <div class="spacer"></div>
+  <div class="spacer"></div>
+</div>
+
+<div class="back-btn">
+  <app-button
+    class="back-btn"
+    (onClick)="this.backToProduct()"
+    title="Back"
+  ></app-button>
+</div>
+
+<div *ngIf="!this.healthReport"
+  class="max-width flex mv-2em flex-row row-center"
+>
+  <div class="card bg-dark">
+    <h2>This Health Report could not be found</h2>
+  </div>
+</div>
+
+ -->
+
+<div class="flex flex-column p-80">
+  <app-button [back]="true" (onClick)="goBack()"></app-button>
+  <app-detail-header
+    class="mt-50"
+    [name]="product.name"
+    [description]="product.description"
+    [price]="
+      product.price.toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      })
+    "
+    [source]="product.fileName ?? undefined"
+    [quantity]="
+      product.productType == 1
+        ? undefined
+        : (product.quantity - this.howManyInCart()).toString()
+    "
+  ></app-detail-header>
+
+  <div class="mv-80">
+    <div class="mv-80 flex flex-column">
+      <h1 class="weight-regular">
+        {{ dateTimeToString(healthReport.reportDate) }} Health Report
+      </h1>
+      <div class="hairline mt-30 max-width"></div>
+
+      <div class="report-images mv-50 flex flex-column flex-center">
+        <img src="{{ displaySource }}" alt="{{ product.name }}" />
+        <div class="small-images flex flex-row scroll-x p-50">
+          <img
+            class="mh-30 pointer"
+            *ngFor="let fileName of healthReport.fileName"
+            (click)="setDisplaySource(fileName)"
+            [ngClass]="{ active: fileName == displaySource }"
+            src="{{ fileName }}"
+            alt="{{ product.name }}"
+          />
+        </div>
+        <div class="hairline mt-50 max-width"></div>
+      </div>
+
+      <app-key-note
+        [hairline]="false"
+        [note]="healthReport.healthDescription"
+      ></app-key-note>
+    </div>
+
+    <h1 class="weight-regular">Key Notes</h1>
+    <div class="hairline mt-30 max-width"></div>
+    <div *ngFor="let note of healthReport.keyNotes">
+      <app-key-note *ngIf="note.length > 0" [note]="note"></app-key-note>
+    </div>
+  </div>
+  <div class="mv-80">
+    <h1 class="weight-regular">{{ product.name }}'s Condition</h1>
+    <div class="hairline mt-30 max-width"></div>
+    <app-report-status
+      title="Health Status"
+      [color]="
+        healthReport.healthStatus == 'Superb'
+          ? 'green'
+          : healthReport.healthStatus == 'Well'
+          ? 'yellow'
+          : healthReport.healthStatus == 'Unwell'
+          ? 'orange'
+          : healthReport.healthStatus == 'Dead'
+          ? 'red'
+          : 'red'
+      "
+      [status]="healthReport.healthStatus"
+    ></app-report-status>
+    <app-report-status
+      title="Fitness Status"
+      [color]="
+        healthReport.fitness == 'Active'
+          ? 'green'
+          : healthReport.fitness == 'Average'
+          ? 'orange'
+          : healthReport.fitness == 'Dormant'
+          ? 'red'
+          : 'red'
+      "
+      [status]="healthReport.fitness"
+    ></app-report-status>
+    <app-report-status
+      title="Social Status"
+      [color]="
+        healthReport.social == 'Lively'
+          ? 'green'
+          : healthReport.social == 'Rowdy'
+          ? 'orange'
+          : healthReport.social == 'Reserved'
+          ? 'red'
+          : 'red'
+      "
+      [status]="healthReport.social"
+    ></app-report-status>
+    <app-report-status
+      title="Diet Status"
+      [color]="
+        healthReport.diet == 'Nutritional'
+          ? 'green'
+          : healthReport.diet == 'Balanced'
+          ? 'orange'
+          : healthReport.diet == 'Junk'
+          ? 'red'
+          : 'red'
+      "
+      [status]="healthReport.diet"
+    ></app-report-status>
+    <app-report-status
+      title="Fertility Status"
+      [color]="healthReport.reproductiveStatus ? 'green' : 'red'"
+      [status]="healthReport.reproductiveStatus ? 'Fertile' : 'Sterile'"
+    ></app-report-status>
+  </div>
+</div>
+
+<div
+  *ngIf="!sponsorshipDate && !isAdmin"
+  class="fixed p-80 position-bottom flex flex-row ai-center jc-end no-event"
+>
+  <app-button
+    [title]="
+      isOrnitholo ? 'Update Report' : outOfStock ? 'Out Of Stock' : 'Sponsor Me'
+    "
+    [disabled]="!isOrnitholo && outOfStock"
+    (onClick)="isOrnitholo ? toUpdateReport() : addToCart()"
+    class="all-event"
+  ></app-button>
+</div>
+
+<app-modal *ngIf="showModal">
+  <h1 class="text-center weight-regular">{{ product.name }} Added To Cart</h1>
+  <h3 class="text-center weight-medium">
+    Would you like to continue Shopping?
+  </h3>
+  <div class="max-width flex flex-row ai-center jc-space-even">
+    <p class="modal-btn pointer bold" (click)="toHome()">Keep Shopping</p>
+    <p class="modal-btn pointer bold" (click)="toCart()">Checkout</p>
+  </div>
+</app-modal>

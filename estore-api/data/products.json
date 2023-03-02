@@ -1,19 +1,108 @@
 [ {
+  "id" : 1,
+  "productType" : 1,
+  "price" : 8000.0,
+  "quantity" : 1,
+  "name" : "Peregrine",
+  "description" : "The Peregrine Falcon (Falco Peregrinus) is renowned for its speed, reaching up to 200 mph during its high-speed dive. This makes the ravenous bird of prey the fastest member of the animal kingdom.",
+  "fileName" : "Peregrine.jpg",
+  "fileSource" : null,
+  "sponsors" : [ "customer1", "CTB" ]
+}, {
+  "id" : 2,
+  "productType" : 1,
+  "price" : 6000.0,
+  "quantity" : 1,
+  "name" : "Barbary",
+  "description" : "The Barbary Falcon (Falco Pelegrinoides) is slender desert-adapted falcon; often difficult to distinguish from the Peregrine. Although it is smaller than the Peregrine it also exhibits dazzling aerial mastery and speed.",
+  "fileName" : "Barbary.jpg",
+  "fileSource" : null,
+  "sponsors" : [ "customer1" ]
+}, {
+  "id" : 3,
+  "productType" : 1,
+  "price" : 4000.0,
+  "quantity" : 1,
+  "name" : "Aplomando",
+  "description" : "The trim, elegant Aplomando falcon (Falco Femoralis) once nested in desert grassland of the southwest, but it has been very rare north of the Mexican border since the 1920s. In support of preserving this endangered species, help us reintroduce the Aplomando throughout North America.",
+  "fileName" : "Aplomando.jpg",
+  "fileSource" : null,
+  "sponsors" : [ "customer1", "CTB" ]
+}, {
+  "id" : 4,
+  "productType" : 1,
+  "price" : 5000.0,
+  "quantity" : 1,
+  "name" : "Merlin",
+  "description" : "The Merlin Falcon (Falco Columbarius) is a small but robust and heavily built predator. They are swift fliers and skilled hunters who specialize in preying on small birds",
+  "fileName" : "Merlin.jpg",
+  "fileSource" : null,
+  "sponsors" : [ "customer2" ]
+}, {
+  "id" : 5,
+  "productType" : 1,
+  "price" : 5000.0,
+  "quantity" : 1,
+  "name" : "Bat",
+  "description" : "Bat falcons (Falco Rufigularis) are solitary birds which are direct and powerful. They perch conspicuously on high, open snags, from which they launch aerial attacks on their prey.",
+  "fileName" : "Bat.jpg",
+  "fileSource" : null,
+  "sponsors" : [ "customer2" ]
+}, {
+  "id" : 6,
+  "productType" : 1,
+  "price" : 10000.0,
+  "quantity" : 1,
+  "name" : "Australian Hobby",
+  "description" : "The Australian Hobby Falcon (Falco Longipennis) dashing small falcon usually seen perched on tall trees but sometimes seen engaged in high-speed chases. It derives its name 'Longipennis' from its long primary wing feathers. ",
+  "fileName" : "AustralianHobby.jpg",
+  "fileSource" : null,
+  "sponsors" : [ "customer2" ]
+}, {
+  "id" : 7,
+  "productType" : 2,
+  "price" : 400.0,
+  "quantity" : 1,
+  "name" : "Drone",
+  "description" : "Capture brilliant aerial photography of your falcon!",
+  "fileName" : "Drone.jpg",
+  "fileSource" : null
+}, {
+  "id" : 8,
+  "productType" : 2,
+  "price" : 250.0,
+  "quantity" : 2,
+  "name" : "Fox",
+  "description" : "Mr. Fox wasn't sneaky enough for our falcons!",
+  "fileName" : "Fox.jpg",
+  "fileSource" : null
+}, {
+  "id" : 12,
+  "productType" : 1,
+  "price" : 55.0,
+  "quantity" : 15,
+  "name" : "Birdie",
+  "description" : "Birdie Test",
+  "fileName" : "Birdie.jpg",
+  "fileSource" : null,
+  "sponsors" : [ ]
+}, {
+  "id" : 13,
+  "productType" : 1,
+  "price" : 15.0,
+  "quantity" : 25,
+  "name" : "GrassLands",
+  "description" : "Grassy",
+  "fileName" : "GrassLands.jpg",
+  "fileSource" : null,
+  "sponsors" : [ ]
+}, {
   "id" : 14,
-  "price" : 28.0,
-  "name" : "Californian",
-  "description" : "The sea",
-  "quantity" : 5
-}, {
-  "id" : 15,
-  "price" : 10.0,
-  "name" : "Rick",
-  "description" : "Rick from rick and morty",
-  "quantity" : 1
-}, {
-  "id" : 16,
-  "price" : 29.0,
-  "name" : "CtrlAltDeli",
-  "description" : "Steal the chips",
-  "quantity" : 2
+  "productType" : 2,
+  "price" : 55.0,
+  "quantity" : 52,
+  "name" : "Testacess",
+  "description" : "Testtttt",
+  "fileName" : "Testacess.jpg",
+  "fileSource" : null
 } ]

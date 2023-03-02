@@ -1,0 +1,281 @@
+[ {
+  "id" : 1,
+  "orderItemList" : [ {
+    "productID" : 1,
+    "price" : 8000.0,
+    "quantity" : 1
+  } ],
+  "orderDate" : "2022-11-06",
+  "status" : "Cancelled",
+  "username" : "customer1",
+  "address" : {
+    "street" : "3 John Street",
+    "city" : "West Henrietta",
+    "state" : "NY",
+    "country" : "United States",
+    "zipcode" : "14623"
+  },
+  "creditCard" : {
+    "number" : "1675 5839 2803 4984",
+    "expirationMonth" : "10",
+    "expirationYear" : "2023",
+    "cvv" : "475"
+  },
+  "subtotal" : 8000.0,
+  "taxes" : 640.0,
+  "total" : 8640.0
+}, {
+  "id" : 2,
+  "orderItemList" : [ {
+    "productID" : 2,
+    "price" : 6000.0,
+    "quantity" : 1
+  } ],
+  "orderDate" : "2022-11-06",
+  "status" : "Fulfilled",
+  "username" : "customer1",
+  "address" : {
+    "street" : "3 John Street",
+    "city" : "West Henrietta",
+    "state" : "NY",
+    "country" : "United States",
+    "zipcode" : "14623"
+  },
+  "creditCard" : {
+    "number" : "1675 5839 2803 4984",
+    "expirationMonth" : "10",
+    "expirationYear" : "2023",
+    "cvv" : "475"
+  },
+  "subtotal" : 6000.0,
+  "taxes" : 480.0,
+  "total" : 6480.0
+}, {
+  "id" : 3,
+  "orderItemList" : [ {
+    "productID" : 3,
+    "price" : 4000.0,
+    "quantity" : 1
+  } ],
+  "orderDate" : "2022-11-06",
+  "status" : "Cancelled",
+  "username" : "customer1",
+  "address" : {
+    "street" : "3 John Street",
+    "city" : "West Henrietta",
+    "state" : "NY",
+    "country" : "United States",
+    "zipcode" : "14623"
+  },
+  "creditCard" : {
+    "number" : "1675 5839 2803 4984",
+    "expirationMonth" : "10",
+    "expirationYear" : "2023",
+    "cvv" : "475"
+  },
+  "subtotal" : 4000.0,
+  "taxes" : 320.0,
+  "total" : 4320.0
+}, {
+  "id" : 4,
+  "orderItemList" : [ {
+    "productID" : 4,
+    "price" : 5000.0,
+    "quantity" : 1
+  } ],
+  "orderDate" : "2022-11-06",
+  "status" : "Ordered",
+  "username" : "customer2",
+  "address" : {
+    "street" : "3 John Street",
+    "city" : "West Henrietta",
+    "state" : "NY",
+    "country" : "United States",
+    "zipcode" : "14623"
+  },
+  "creditCard" : {
+    "number" : "1675 5839 2803 4984",
+    "expirationMonth" : "10",
+    "expirationYear" : "2023",
+    "cvv" : "475"
+  },
+  "subtotal" : 5000.0,
+  "taxes" : 400.0,
+  "total" : 5400.0
+}, {
+  "id" : 5,
+  "orderItemList" : [ {
+    "productID" : 5,
+    "price" : 3500.0,
+    "quantity" : 1
+  }, {
+    "productID" : 6,
+    "price" : 10000.0,
+    "quantity" : 1
+  }, {
+    "productID" : 7,
+    "price" : 400.0,
+    "quantity" : 3
+  }, {
+    "productID" : 8,
+    "price" : 250.0,
+    "quantity" : 1
+  } ],
+  "orderDate" : "2022-11-06",
+  "status" : "Fulfilled",
+  "username" : "Customer",
+  "address" : {
+    "street" : "3 John Street",
+    "city" : "West Henrietta",
+    "state" : "NY",
+    "country" : "United States",
+    "zipcode" : "14623"
+  },
+  "creditCard" : {
+    "number" : "1675 5839 2803 4984",
+    "expirationMonth" : "10",
+    "expirationYear" : "2023",
+    "cvv" : "475"
+  },
+  "subtotal" : 14950.0,
+  "taxes" : 1196.0,
+  "total" : 16146.0
+}, {
+  "id" : 6,
+  "orderItemList" : [ {
+    "productID" : 9,
+    "price" : 1000.0,
+    "quantity" : 1
+  } ],
+  "orderDate" : "2022-11-06",
+  "status" : "Cancelled",
+  "username" : "customer2",
+  "address" : {
+    "street" : "3 John Street",
+    "city" : "West Henrietta",
+    "state" : "NY",
+    "country" : "United States",
+    "zipcode" : "14623"
+  },
+  "creditCard" : {
+    "number" : "1675 5839 2803 4984",
+    "expirationMonth" : "10",
+    "expirationYear" : "2023",
+    "cvv" : "475"
+  },
+  "subtotal" : 1000.0,
+  "taxes" : 80.0,
+  "total" : 1080.0
+}, {
+  "id" : 7,
+  "orderItemList" : [ {
+    "productID" : 7,
+    "price" : 400.0,
+    "quantity" : 2
+  } ],
+  "orderDate" : "2022-11-06",
+  "status" : "Cancelled",
+  "username" : "customer2",
+  "address" : {
+    "street" : "3 John Street",
+    "city" : "West Henrietta",
+    "state" : "NY",
+    "country" : "United States",
+    "zipcode" : "14623"
+  },
+  "creditCard" : {
+    "number" : "1675 5839 2803 4984",
+    "expirationMonth" : "10",
+    "expirationYear" : "2023",
+    "cvv" : "475"
+  },
+  "subtotal" : 800.0,
+  "taxes" : 64.0,
+  "total" : 864.0
+}, {
+  "id" : 8,
+  "orderItemList" : [ {
+    "productID" : 10,
+    "price" : 450.0,
+    "quantity" : 0
+  } ],
+  "orderDate" : "2022-11-10",
+  "status" : "Cancelled",
+  "username" : "customer1",
+  "address" : {
+    "street" : "3 John Street",
+    "city" : "West Henrietta",
+    "state" : "NY",
+    "country" : "United States",
+    "zipcode" : "14645"
+  },
+  "creditCard" : {
+    "number" : "1675 5839 2803 4984",
+    "expirationMonth" : "10",
+    "expirationYear" : "2023",
+    "cvv" : "475"
+  },
+  "subtotal" : 450.0,
+  "taxes" : 36.0,
+  "total" : 486.0
+}, {
+  "id" : 9,
+  "orderItemList" : [ {
+    "productID" : 1,
+    "price" : 8000.0,
+    "quantity" : 1
+  }, {
+    "productID" : 14,
+    "price" : 55.0,
+    "quantity" : 3
+  }, {
+    "productID" : 3,
+    "price" : 4000.0,
+    "quantity" : 1
+  } ],
+  "orderDate" : "2022-11-13",
+  "status" : "Fulfilled",
+  "username" : "CTB",
+  "address" : {
+    "street" : "42 Marine Dr",
+    "city" : "Buffalo",
+    "state" : "NY",
+    "country" : "USA",
+    "zipcode" : "14228"
+  },
+  "creditCard" : {
+    "number" : "42424242424242",
+    "expirationMonth" : "05",
+    "expirationYear" : "23",
+    "cvv" : "333"
+  },
+  "subtotal" : 12165.0,
+  "taxes" : 973.2,
+  "total" : 13138.2
+}, {
+  "id" : 10,
+  "orderItemList" : [ {
+    "productID" : 8,
+    "price" : 250.0,
+    "quantity" : 1
+  } ],
+  "orderDate" : "2022-11-13",
+  "status" : "Cancelled",
+  "username" : "CTB",
+  "address" : {
+    "street" : "42 Marine Dr",
+    "city" : "Buffalo",
+    "state" : "NY",
+    "country" : "USA",
+    "zipcode" : "14228"
+  },
+  "creditCard" : {
+    "number" : "42424242424242",
+    "expirationMonth" : "05",
+    "expirationYear" : "23",
+    "cvv" : "333"
+  },
+  "subtotal" : 250.0,
+  "taxes" : 20.0,
+  "total" : 270.0
+} ]

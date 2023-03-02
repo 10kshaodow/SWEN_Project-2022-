@@ -1,0 +1,104 @@
+<div
+  *ngIf="!isUserSignedIn()"
+  class="max-width flex mv-2em flex-row row-center"
+>
+  <div class="card bg-dark">
+    <h2>Please sign in to view this falcon's ornithologist dashboard</h2>
+    <a routerLink="/sign_in" class="color-lightest">Sign in</a>
+  </div>
+</div>
+
+<div *ngIf="isUserSignedIn()">
+  <div
+    *ngIf="!isUserOrnithologist()"
+    class="max-width flex mv-2em flex-row row-center"
+  >
+    <div class="card bg-dark">
+      <h2>Only an ornithologist can view a falcon's health history</h2>
+    </div>
+  </div>
+
+  <div
+    *ngIf="falcon && isUserOrnithologist()"
+    [ngClass]="{ scrollable: !showModal }"
+    class="main-container"
+  >
+    <div class="flex flex-center main-img">
+      <img src="{{ falcon.fileName }}" alt="Product" />
+    </div>
+    <div class="flex flex-center flex-row mv-1em">
+      <h1>{{ falcon.name }}</h1>
+    </div>
+    <div class="flex flex-center desc-cont mv-2em">
+      <p class="desc ph-10em">{{ falcon.description }}</p>
+    </div>
+    <div
+      *ngIf="
+        this.falcon.productType == 1 &&
+        this.healthReports &&
+        this.healthReports.length > 0
+      "
+      class="hr-section mv-2em"
+    >
+      <h2 id="hr-title">Health Reports:</h2>
+      <div class="timeline-cont mv-1em">
+        <div class="timeline-line"></div>
+
+        <app-timeline-circle
+          *ngFor="let report of this.healthReports"
+          [displaySource]="report.fileName[0]"
+          [active]="activeReport?.reportID == report.reportID"
+          (circleClick)="this.setActiveReport(report)"
+          (imageClick)="this.toHealthReport(report.reportID)"
+        ></app-timeline-circle>
+      </div>
+      <div *ngIf="this.activeReport" class="notes-cont mv-2em ph-10em">
+        <h2>
+          Created On:
+          {{ this.dateTimeToString(this.activeReport.reportDate) }}
+        </h2>
+        <h2
+          *ngIf="
+            this.activeReport.keyNotes != null &&
+            this.activeReport.keyNotes.length > 0
+          "
+          class="mv-1em"
+        >
+          Key Notes:
+        </h2>
+        <ul
+          *ngIf="
+            this.activeReport.keyNotes != null &&
+            this.activeReport.keyNotes.length > 0
+          "
+          class="ph-2em key-notes"
+        >
+          <li *ngFor="let note of this.activeReport.keyNotes" class="key-note">
+            <p>{{ note }}</p>
+          </li>
+        </ul>
+      </div>
+      <div *ngIf="this.activeReport" class="flex flex-center">
+        <h2
+          (click)="this.toHealthReport(this.activeReport.reportID)"
+          class="pointer"
+        >
+          {{ "See a more detailed report" | titlecase }}
+        </h2>
+      </div>
+      <div *ngIf="this.activeReport" class="mv-1em flex flex-center">
+        <app-button
+          (onClick)="this.toUpdateHealthReport()"
+          title="Update Health Report"
+        ></app-button>
+      </div>
+    </div>
+
+    <div class="floating">
+      <app-button
+        (onClick)="this.toCreateHealthReport()"
+        title="Create New Health Report"
+      ></app-button>
+    </div>
+  </div>
+</div>

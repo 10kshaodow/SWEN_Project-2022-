@@ -1,0 +1,13 @@
+.order-snippet i {
+  font-size: 35px;
+  margin-left: 50px;
+  color: var(--light-gray);
+}
+
+.order-snippet:hover {
+  background-color: var(--light-gray);
+}
+
+.order-snippet:hover i {
+  color: var(--red);
+}

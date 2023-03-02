@@ -1,0 +1,245 @@
+<!-- <div
+  *ngIf="!isUserSignedIn()"
+  class="max-width flex mv-2em flex-row row-center"
+>
+  <div class="card bg-dark">
+    <h2>Please sign in to view your order</h2>
+    <a routerLink="/sign_in" class="color-lightest">Sign in</a>
+  </div>
+</div>
+
+<div *ngIf="order && isUserSignedIn()">
+  <div
+    *ngIf="getCurrentUsername() != order.username && !isUserAdmin()"
+    class="max-width flex mv-2em flex-row row-center"
+  >
+    <div class="card bg-dark">
+      <h2>You may not access this order</h2>
+      <h3 class="color-lightest">This order does not belong to your account</h3>
+    </div>
+  </div>
+
+  <div *ngIf="getCurrentUsername() === order.username || isUserAdmin()">
+    <div class="order-container m-05em">
+      <div *ngIf="order.status != UnderReview" class="afterOrderPlaced"></div>
+      <div class="orderee-info m-05em">
+        <h3>Summary</h3>
+        <span class="flex"
+          ><b> Order number: </b>
+          <p class="bold">{{ order.id }}</p></span
+        >
+        <span class="flex"
+          ><b> Status: </b>
+          <p class="bold">{{ order.status.toString() }}</p></span
+        >
+        <span class="flex">
+          <b>Username:</b>
+          <p class="bold">{{ order.username }}</p>
+        </span>
+      </div>
+      <div class="address-info m-05em">
+        <h3>Address</h3>
+        <p class="bold">{{ order.address.street }}</p>
+        <p class="bold">
+          {{ order.address.city }}, {{ order.address.state }}
+          {{ order.address.zipcode }}
+        </p>
+      </div>
+      <div class="payment-info m-05em">
+        <h3>Payment</h3>
+        <span class="flex"
+          ><b>Credit Card Number: </b>
+          <p class="bold">{{ order.creditCard.number }}</p></span
+        >
+        <span class="flex">
+          <b>Expiration: </b>
+          <p class="bold">
+            {{ order.creditCard.expirationMonth }}/{{
+              order.creditCard.expirationYear
+            }}
+            CVV Code: {{ order.creditCard.cvv }}
+          </p></span
+        >
+      </div>
+      <div class="monetary-info m-05em">
+        <h3>Billing</h3>
+
+        <table class="table">
+          <tr class="tableHeaderRow">
+            <th>Product ID</th>
+            <th>Price</th>
+            <th>Quantity</th>
+          </tr>
+          <tr class="tableRow" *ngFor="let orderItem of order.orderItemList">
+            <td>{{ orderItem.productID }}</td>
+            <td>{{ orderItem.price }}</td>
+            <td>{{ orderItem.quantity }}</td>
+          </tr>
+          <tr></tr>
+        </table>
+
+        <table class="table">
+          <tr class="tableHeaderRow">
+            <th>Final</th>
+          </tr>
+          <tr class="tableRow">
+            <td><label>Subtotal</label></td>
+            <td>{{ order.subtotal.toFixed(2) }}</td>
+          </tr>
+          <tr class="tableRow">
+            <td><label>Taxes</label></td>
+            <td>{{ order.taxes.toFixed(2) }}</td>
+          </tr>
+          <tr class="tableRow">
+            <td><label>Total</label></td>
+            <td>{{ order.total.toFixed(2) }}</td>
+          </tr>
+        </table>
+      </div>
+      <div class="order-item-summary m-05em">
+        <h3>See the current inventory</h3>
+        <div class="relative flex flex-row wrap mv-2em p-2em scrollable">
+          <app-order-item
+            *ngFor="let orderItem of order.orderItemList"
+            [orderItem]="orderItem"
+            [viewOnly]="true"
+          >
+          </app-order-item>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="orderSTATUS">
+    <input
+      *ngIf="userSignedIn && isUserAdmin() && order.status == Ordered"
+      type="submit"
+      class="fulfill"
+      value="Fullfill order"
+      (click)="fulfillOrder()"
+    />
+    <input
+      type="submit"
+      class="cancel"
+      value="Cancel order"
+      *ngIf="order.status == Ordered"
+      (click)="cancelOrder()"
+      routerLink="/sign_in"
+    />
+  </div>
+</div>
+
+<div
+  *ngIf="!order && isUserSignedIn()"
+  class="max-width flex mv-2em flex-row row-center"
+>
+  <div class="card bg-dark">
+    <h2>This order could not be found</h2>
+  </div>
+</div>
+
+<div class="spacer"></div>
+<div class="spacer"></div> -->
+
+<div *ngIf="orderee" class="flex flex-column p-80">
+  <div>
+    <app-button [back]="true" (onClick)="goBack()"></app-button>
+  </div>
+  <div class="flex flex-row cart-header mt-80">
+    <div class="cart-header-section">
+      <h1 class="weight-regular">Payment & Shipping</h1>
+      <div class="flex-column flex ai-start">
+        <p class="mt-30 bold">{{ orderee.name }}</p>
+        <p class="mt-30 bold">
+          {{ orderee.address.street }}, {{ orderee.address.city }},
+          {{ orderee.address.zipcode }}
+        </p>
+        <p class="mt-30 bold">
+          {{ orderee.address.state }}, {{ orderee.address.country }}
+        </p>
+        <p class="mt-30 bold">{{ orderee.creditCard.number }}</p>
+        <p class="mt-30 bold">
+          {{ orderee.creditCard.expirationMonth }}/{{
+            orderee.creditCard.expirationYear
+          }}
+        </p>
+        <p class="mt-30 bold">{{ orderee.creditCard.cvv }}</p>
+      </div>
+    </div>
+    <div class="cart-header-section flex flex-column ai-end">
+      <h1 class="weight-regular">Billing Total</h1>
+      <div class="flex flex-column ai-end mt-30">
+        <div class="mt-30 flex flex-row jc-space-between">
+          <p class="bold">SubTotal</p>
+          <p class="mh-30 bold">
+            ${{
+              order.subtotal.toLocaleString(undefined, {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+              })
+            }}
+          </p>
+        </div>
+        <div class="mt-30 flex flex-row jc-space-between">
+          <p class="bold">Taxes</p>
+          <p class="mh-30 bold">
+            ${{
+              order.taxes.toLocaleString(undefined, {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+              })
+            }}
+          </p>
+        </div>
+        <div class="mt-30 flex flex-row jc-space-between">
+          <p class="color-red">Total</p>
+          <p class="color-red mh-30">
+            ${{
+              order.total.toLocaleString(undefined, {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+              })
+            }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex flex-column flex-center mv-50">
+    <h1 class="weight-regular">Summary</h1>
+    <h3 class="extra-bold mv-30 mt-50">{{ order.status }}</h3>
+    <h3 class="extra-bold">Order {{ order.id }}</h3>
+  </div>
+
+  <div class="mv-80">
+    <h1 class="weight-regular">{{ orderee.username }}'s Products</h1>
+    <div class="hairline mv-30 max-width"></div>
+    <div *ngIf="order.orderItemList.length > 0">
+      <app-order-item
+        *ngFor="let orderItem of order.orderItemList"
+        [orderItem]="orderItem"
+        [showButtons]="false"
+      >
+      </app-order-item>
+    </div>
+  </div>
+</div>
+
+<div
+  class="flex flex-row ai-center jc-space-between fixed position-bottom no-event p-80"
+>
+  <app-button
+    *ngIf="order.status !== Fulfilled && order.status !== Cancelled"
+    color="grey"
+    class="all-event"
+    title="Cancel"
+    (onClick)="cancelOrder()"
+  ></app-button>
+  <div class="flex-grow"></div>
+  <app-button
+    *ngIf="isAdmin && order.status !== Fulfilled && order.status !== Cancelled"
+    class="all-event"
+    title="Fullfill"
+    (onClick)="fulfillOrder()"
+  ></app-button>
+</div>

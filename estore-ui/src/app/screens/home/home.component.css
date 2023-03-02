@@ -1,3 +1,35 @@
 .search-label {
   margin-right: 1em;
 }
+
+.search-cont {
+  margin-bottom: 80px;
+}
+
+.search-input {
+  position: relative;
+}
+
+.search-input input {
+  padding: 10px 20px 10px 60px;
+  font-size: 35px;
+  border: 0px none transparent;
+  color: var(--dark-gray);
+  outline: none;
+  border-radius: 25px;
+}
+
+.search-input input:active,
+.search-input input:focus {
+  border: 0px none transparent;
+  outline: none;
+}
+
+.search-input i {
+  position: absolute;
+  color: var(--dark-gray);
+  top: 10px;
+  left: 10px;
+  font-size: 35px;
+  z-index: 5;
+}

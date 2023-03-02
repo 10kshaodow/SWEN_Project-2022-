@@ -1,0 +1,178 @@
+<div *ngIf="!userIsSelected" class="p-80">
+  <h1 class="weight-regular">All Users</h1>
+  <div class="hairline mv-30 max-width"></div>
+  <div class="max-width flex flex-row flex-wrap">
+    <app-user-card
+      *ngFor="let user of allUsers"
+      [user]="user"
+      [clickable]="true"
+      (onClick)="userSelected(user)"
+    ></app-user-card>
+  </div>
+</div>
+
+<div *ngIf="selectedUser" class="flex flex-column p-80">
+  <div class="flex ai-center jc-space-between flex-row">
+    <app-button [back]="true" (onClick)="userUnselected()"></app-button>
+    <h1 class="weight-regular">{{ selectedUser.username }}</h1>
+    <i id="user-circle" class="fa-solid fa-circle-user"></i>
+  </div>
+  <div class="hairline mv-30 max-width"></div>
+
+  <app-user-form
+    [typeChange]="true"
+    [user]="selectedUser"
+    (userChange)="userSelected($event)"
+  ></app-user-form>
+
+  <div class="flex flex-center">
+    <app-button
+      class="mt-30"
+      title="Save"
+      color="grey"
+      (onClick)="saveUser()"
+    ></app-button>
+  </div>
+  <div class="fixed no-event p-80 position-bottom flex ai-center jc-end">
+    <app-button
+      class="all-event"
+      title="Delete User"
+      color="grey"
+      (onClick)="deleteUser()"
+    ></app-button>
+  </div>
+</div>
+
+<!-- <div class="tableSurround" *ngIf="!userIsSelected">
+   <h1 class="weight-regular">Manage users</h1>
+  <table class="table">
+    <tr class="tableHeaderRow">
+      <th>Username</th>
+      <th>Name</th>
+      <th>Orders</th>
+    </tr>
+    <tr
+      class="tableRow"
+      *ngFor="let user of allUsers"
+      (click)="userSelected(user)"
+    >
+      <td>{{ user.username }}</td>
+      <td>{{ user.name }}</td>
+      <td>{{ user.orderHistory.length }}</td>
+    </tr>
+  </table>
+</div> -->
+
+<!-- <div class="max-width flex mv-2em flex-row row-center" *ngIf="userIsSelected">
+  <div class="card">
+    <p>Update {{ selectedUser!.username }}</p>
+    <div class="userInfo">
+      <app-text-input
+        title="Username"
+        inputType="large"
+        [value]="selectedUser?.username"
+        [disabled]="true"
+      ></app-text-input>
+
+      <app-text-input
+        title="Name"
+        inputType="large"
+        [value]="selectedUser?.name"
+        (valueChange)="setUsersName($event)"
+      ></app-text-input>
+
+      <app-text-input
+        title="Credit Card Number"
+        inputType="large"
+        [value]="selectedUser?.creditCard?.number"
+        (valueChange)="setUserCardNumber($event)"
+      ></app-text-input>
+
+      <app-text-input
+        title="Expiration Month"
+        inputType="large"
+        [value]="selectedUser?.creditCard?.expirationMonth"
+        (valueChange)="setUserCardMonth($event)"
+      ></app-text-input>
+
+      <app-text-input
+        title="Expiration Year"
+        inputType="large"
+        [value]="selectedUser?.creditCard?.expirationYear"
+        (valueChange)="setUserCardYear($event)"
+      ></app-text-input>
+
+      <app-text-input
+        title="CVV Code"
+        inputType="large"
+        [value]="selectedUser?.creditCard?.cvv"
+        (valueChange)="setUserCardCvv($event)"
+      ></app-text-input>
+
+      <app-text-input
+        title="Street"
+        inputType="large"
+        [value]="selectedUser?.address?.street"
+        (valueChange)="setUserStreet($event)"
+      ></app-text-input>
+
+      <app-text-input
+        title="City"
+        inputType="large"
+        [value]="selectedUser?.address?.city"
+        (valueChange)="setUserCity($event)"
+      ></app-text-input>
+
+      <app-text-input
+        title="State"
+        inputType="large"
+        [value]="selectedUser?.address?.state"
+        (valueChange)="setUserState($event)"
+      ></app-text-input>
+
+      <app-text-input
+        title="Country"
+        inputType="large"
+        [value]="selectedUser?.address?.country"
+        (valueChange)="setUserCountry($event)"
+      ></app-text-input>
+
+      <app-text-input
+        title="Zipcode"
+        inputType="large"
+        [value]="selectedUser?.address?.zipcode"
+        (valueChange)="setUserZip($event)"
+      ></app-text-input>
+
+      <app-dropdown-input
+        title="User Type"
+        [value]="selectedUser?.type"
+        [options]="userTypes"
+        (valueChange)="setUserType($event)"
+      ></app-dropdown-input>
+
+      <div class="flex flex-column flex-center">
+        <div class="mv-1em">
+          <app-button title="Save User" (onClick)="saveUser()"></app-button>
+        </div>
+        <div class="mv-1em">
+          <app-button
+            title="Cancel Changes"
+            (onClick)="cancelUser()"
+          ></app-button>
+        </div>
+        <div class="mv-1em">
+          <app-button
+            title="Delete User"
+            color="red"
+            (onClick)="deleteUser()"
+          ></app-button>
+        </div>
+      </div>
+
+      <p *ngIf="showImmutableUsernameMessage" class="errorText">
+        The admin user cannot be deleted.
+      </p>
+    </div>
+  </div>
+</div> -->

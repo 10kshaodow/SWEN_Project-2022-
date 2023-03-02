@@ -1,0 +1,37 @@
+.our-btn {
+  padding: 25px 50px;
+  color: var(--white);
+  cursor: pointer;
+  border: 0px none;
+  border-radius: 30px;
+}
+
+.our-btn:disabled {
+  background-color: var(--light-gray);
+  cursor: default;
+}
+
+.our-btn:hover:disabled {
+  background-color: var(--light-gray);
+}
+
+.our-btn i {
+  font-size: 25px;
+  color: var(--white);
+}
+
+.red {
+  background-color: var(--red);
+}
+
+.red:hover {
+  background-color: var(--off-red);
+}
+
+.gray {
+  background-color: var(--light-gray);
+}
+
+.gray:hover {
+  background-color: var(--red);
+}

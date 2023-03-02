@@ -1,0 +1,37 @@
+<!-- choose to sign in or sign up -->
+
+<div class="flex flex-center mt-80">
+  <app-error-message
+    *ngIf="errorMessage.length != 0"
+    [message]="errorMessage"
+  ></app-error-message>
+</div>
+
+<!-- sign in -->
+
+<app-login
+  *ngIf="showSignInScreen"
+  (createUserEvent)="this.showCreateAccount()"
+  (signInEvent)="this.signIn($event)"
+></app-login>
+
+<!-- create account -->
+
+<app-create-account
+  *ngIf="showCreateAccountScreen"
+  (signInEvent)="this.showSignIn()"
+  (createUserEvent)="this.createUser($event)"
+></app-create-account>
+
+<!-- account information -->
+
+<app-account-info
+  *ngIf="signedIn && currentUser"
+  [user]="currentUser"
+  [orders]="orders"
+  (onLogout)="signOut()"
+  (onSave)="saveUser()"
+  (userChange)="setUser($event)"
+></app-account-info>
+
+<div class="spacer"></div>

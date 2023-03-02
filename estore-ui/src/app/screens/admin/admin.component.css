@@ -1,0 +1,36 @@
+.main-container {
+  min-width: "100%";
+  min-height: 85vh;
+}
+
+.tab-section {
+  flex: 0.25;
+  background-color: var(--black);
+  padding: 2em 0em;
+  list-style-type: none;
+  text-align: center;
+}
+
+.tab {
+  margin: 1em 0em;
+  padding: 1em 0.5em;
+}
+
+.selected {
+  background-color: var(--red);
+}
+
+.tab:hover.selected:hover {
+  background-color: var(--red);
+}
+
+.tab:hover {
+  background-color: var(--light-gray);
+  cursor: pointer;
+}
+
+.content-section {
+  /* min-width: "100%"; */
+  flex: 0.75;
+  height: 100%;
+}

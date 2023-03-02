@@ -1,0 +1,114 @@
+/* .table {
+   border-collapse: collapse;
+   width: 100%;
+}
+
+.tableHeaderRow {
+    padding-top: 12px;
+    padding-bottom: 12px; 
+    text-align: left;
+    background-color: var(--color-primary);
+    color: var(--text-color-light);
+}
+
+.tableRow {
+    cursor: pointer;
+}
+
+.tableRow:nth-child(even) {
+    background-color: var(--background-color-primary);
+}
+
+.tableRow:nth-child(even) {
+    background-color: var(--background-color-secondary);
+}
+
+.tableRow:hover {
+    background-color: var(--background-color-tertiary);
+}
+
+td {
+    padding: 4px;
+}
+
+th {
+    padding: 4px;
+}
+
+.tableSurround {
+    padding: 4px;
+}
+
+h1 {
+    font-size: larger;
+}
+
+.card { 
+    width: 500px;
+}
+
+input {
+    width: 100%;
+}
+
+p {
+    padding-top: 0.5em;
+    text-align: center;
+    font-size: medium;
+}
+
+.userInfo {
+    width: 100%;
+}
+
+span {
+    cursor:pointer;
+    color:blue;
+    text-decoration:underline;
+}
+
+.errorText {
+    text-align: left;
+    padding-top: 0px;
+}
+
+label {
+    font-size: medium;
+}
+
+.redOnFocus:focus {
+    outline: none;
+    border-color: var(--color-failure);
+    color: var(--color-failure); 
+}
+
+#admin-input {
+    width: fit-content;
+    margin: 4px;
+}
+
+.checkboxContainer {
+    width: 100%;
+}
+
+#saveButton {
+    background-color: var(--color-success);
+}
+
+#deleteButton {
+    background-color: var(--color-failure);
+}
+
+#cancelButton {
+    background-color: var(--color-info);
+} */
+
+#user-circle {
+  font-size: 125px;
+}
+
+.delete-btn {
+  bottom: 0;
+  left: 0;
+  right: 0;
+}

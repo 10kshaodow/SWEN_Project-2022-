@@ -1,6 +1,6 @@
-.header {
+/* .header {
   padding: 1em 0em;
-  margin-bottom: 2em;
+  margin-bottom: 2em; 
 }
 
 .header h1 {
@@ -11,14 +11,57 @@
 .nav-links {
   align-items: center;
   justify-content: space-evenly;
+  z-index: 10;
 }
 
 .nav-links p {
   cursor: pointer;
+  padding: 15px;
   transition: transform 200 ease-in;
 }
 
 .nav-links p:hover {
   transform: translateY(-5px);
-  color: #bfdbf7;
+  color: var(--background-color-primary);
+} */
+
+.header {
+  background-color: var(--black);
+  padding: 25px;
+}
+
+#logo {
+  width: 125px;
+  height: 100px;
+  object-fit: cover;
+  margin-right: 25px;
+  cursor: pointer;
+  transition: transform 50ms ease-in;
+}
+
+#logo:hover {
+  transform: translateY(-5px);
+}
+
+#logo + h1 {
+  font-size: 75px;
+  transition: color 50ms ease-in;
+  cursor: pointer;
+}
+
+#logo + h1:hover {
+  color: var(--red);
+}
+
+i {
+  font-size: 25px;
+  color: var(--white);
+  margin: 0px 25px;
+  transition: 50ms ease-in;
+  transition-property: transform color;
+}
+
+i:hover {
+  transform: scale(1.75);
+  color: var(--red);
 }

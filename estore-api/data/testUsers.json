@@ -1,0 +1,93 @@
+[ {
+  "username" : "butch2",
+  "name" : "butch2",
+  "creditCard" : {
+    "number" : "testCard0",
+    "expirationMonth" : "testCard0",
+    "expirationYear" : "testCard0",
+    "cvv" : "testCard0"
+  },
+  "type" : "Admin",
+  "address" : {
+    "street" : "testAddy0",
+    "city" : "testAddy0",
+    "state" : "testAddy0",
+    "country" : "testAddy0",
+    "zipcode" : "testAddy0"
+  },
+  "orderHistory" : [ ],
+  "cart" : {
+    "orderItemList" : [ ]
+  },
+  "notifications" : [ ],
+  "notificationHistory" : [ ]
+}, {
+  "username" : "butch3",
+  "name" : "butch3",
+  "creditCard" : {
+    "number" : "testCard0",
+    "expirationMonth" : "testCard0",
+    "expirationYear" : "testCard0",
+    "cvv" : "testCard0"
+  },
+  "type" : "Admin",
+  "address" : {
+    "street" : "testAddy0",
+    "city" : "testAddy0",
+    "state" : "testAddy0",
+    "country" : "testAddy0",
+    "zipcode" : "testAddy0"
+  },
+  "orderHistory" : [ ],
+  "cart" : {
+    "orderItemList" : [ ]
+  },
+  "notifications" : [ 0 ],
+  "notificationHistory" : [ ]
+}, {
+  "username" : "gang",
+  "name" : "gang",
+  "creditCard" : {
+    "number" : "testCard1",
+    "expirationMonth" : "testCard1",
+    "expirationYear" : "testCard1",
+    "cvv" : "testCard1"
+  },
+  "type" : "Admin",
+  "address" : {
+    "street" : "testAddy0",
+    "city" : "testAddy0",
+    "state" : "testAddy0",
+    "country" : "testAddy0",
+    "zipcode" : "testAddy0"
+  },
+  "orderHistory" : [ ],
+  "cart" : {
+    "orderItemList" : [ ]
+  },
+  "notifications" : [ ],
+  "notificationHistory" : [ ]
+}, {
+  "username" : "test",
+  "name" : "test",
+  "creditCard" : {
+    "number" : "testCard0",
+    "expirationMonth" : "testCard0",
+    "expirationYear" : "testCard0",
+    "cvv" : "testCard0"
+  },
+  "type" : "Admin",
+  "address" : {
+    "street" : "testAddy0",
+    "city" : "testAddy0",
+    "state" : "testAddy0",
+    "country" : "testAddy0",
+    "zipcode" : "testAddy0"
+  },
+  "orderHistory" : [ ],
+  "cart" : {
+    "orderItemList" : [ ]
+  },
+  "notifications" : [ ],
+  "notificationHistory" : [ ]
+} ]

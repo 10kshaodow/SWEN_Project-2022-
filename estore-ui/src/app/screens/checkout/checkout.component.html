@@ -1,0 +1,99 @@
+<!-- <h1 class="mh-05em">Checkout</h1>
+
+<div
+  *ngIf="!isUserSignedIn()"
+  class="max-width flex mv-2em flex-row row-center"
+>
+  <div class="card bg-dark">
+    <h2>Please sign in and visit your cart to checkout</h2>
+    <a routerLink="/sign_in" class="color-lightest">Sign in</a>
+  </div>
+</div>
+
+<div
+  *ngIf="isUserSignedIn() && !isUserCustomer()"
+  class="max-width flex mv-2em flex-row row-center"
+>
+  <div class="card bg-dark">
+    <h2>Only customers are able to checkout</h2>
+    <a routerLink="/sign_in" class="color-lightest">Sign in</a>
+  </div>
+</div>
+
+<div class="flex flex-center mv-1em">
+  <h5 *ngIf="displayErrorMessage" class="error-message color-error">
+    <h2>{{ errorMessage }}</h2>
+  </h5>
+</div>
+
+<div *ngIf="isUserSignedIn() && isUserCustomer()">
+  <div *ngIf="displayUserConfirmation" class="max-width mv-2em">
+    <h2 class="m-05em">
+      Confirm your shipping address and payment information
+    </h2>
+    <app-button
+      class="mh-1em"
+      title="Back To Cart"
+      (onClick)="toCart()"
+    ></app-button>
+
+    <app-user [user]="user"></app-user>
+
+    <app-button
+      class="floating-button"
+      title="Looks Good!"
+      (onClick)="userDetailsConfirmed()"
+    ></app-button>
+    <div class="spacer"></div>
+  </div>
+
+  <div *ngIf="displayReviewOrder" class="max-width mv-2em">
+    <h2 class="m-05em">Review and place your order</h2>
+    <app-button
+      class="m-05em"
+      title="Back to confirm user details"
+      (onClick)="backToConfirmUserDetails()"
+    >
+    </app-button>
+    <div class="confirm-details">
+      <app-order [order]="order"> </app-order>
+      <app-button
+      class="floating-button"
+      title="Submit your order"
+      (onClick)="placeOrder()"
+    >
+    </app-button>
+    </div>
+   
+    <div class="spacer"></div>
+    <div class="spacer"></div>
+  </div>
+
+  <div
+    *ngIf="displayOrderConfirmation && order"
+    class="max-width flex mv-2em flex-row row-center"
+  >
+    <div class="card bg-dark">
+      <h2>Order number {{ order.id }} confirmed</h2>
+      <h3>Thank you, {{ order.username }}.</h3>
+      <button routerLink="/sign_in" class="button">
+        <h2>View your orders</h2>
+      </button>
+      <button routerLink="/home" class="button">
+        <h2>Return to shop</h2>
+      </button>
+    </div>
+  </div>
+
+  <div
+    *ngIf="displayOrderFailure"
+    class="max-width flex mv-2em flex-row row-center"
+  >
+    <div class="card bg-dark">
+      <h2>Sorry, we failed to place your order</h2>
+      <button routerLink="/cart" class="button">
+        <h2>Return to cart</h2>
+      </button>
+    </div>
+  </div>
+</div> -->

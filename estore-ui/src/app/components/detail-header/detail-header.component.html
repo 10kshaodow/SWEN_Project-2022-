@@ -1,0 +1,11 @@
+<div class="header-container flex flex-row ai-center jc-space-between">
+  <img *ngIf="source" src="{{ source }}" alt="Product" />
+  <div class="flex flex-column flex-center text-center">
+    <div class="flex flex-row ai-center">
+      <h1 class="weight-regular">{{ name }}</h1>
+      <h3 *ngIf="quantity" class="color-red weight-medium">x {{ quantity }}</h3>
+    </div>
+    <h1 class="color-red mv-30 weight-regular">${{ price }}</h1>
+    <p class="bold">{{ description }}</p>
+  </div>
+</div>

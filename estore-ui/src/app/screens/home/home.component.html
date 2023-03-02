@@ -1,42 +1,88 @@
-<app-nav-bar></app-nav-bar>
+<!-- <app-nav-bar></app-nav-bar> -->
 
-<div class="max-width flex mv-2em flex-row row-center">
-  <label for="searchInput" class="search-label">Search Items:</label>
-  <input
-    class="input search-input"
-    #searchInput
-    id="searchInput"
-    (input)="searchTerm(searchInput.value)"
-    type="text"
-  />
-</div>
+<div class="p-50">
+  <!-- <div class="max-width flex mv-2em flex-row row-center">
+    <app-text-input
+      [value]="searching ?? ''"
+      (valueChange)="searchTerm($event)"
+    ></app-text-input>
+  </div> -->
 
-<div
-  *ngIf="
-    (!filtered$ || !(filtered$ | async) || (filtered$ | async)?.length == 0) &&
-    searchInput.value.length <= 0
-  "
-  class="max-width flex flex-row wrap mv-1em"
->
-  <app-product
-    *ngFor="let product of allProducts$ | async"
-    [product]="product"
-  ></app-product>
-</div>
+  <div class="search-cont ai-center jc-space-between flex flex-row">
+    <h1 class="weight-regular">Search Products</h1>
+    <div class="search-input">
+      <input
+        [value]="searching ?? ''"
+        (input)="searchTerm($event)"
+        type="text"
+      />
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </div>
+  </div>
 
-<div
-  *ngIf="(filtered$ | async)?.length !== 0"
-  class="max-width flex flex-row wrap mv-1em"
->
-  <app-product
-    *ngFor="let product of filtered$ | async"
-    [product]="product"
-  ></app-product>
-</div>
+  <div *ngIf="!isSearching || (isSearching && filterProducts.length > 0)">
+    <h1 class="weight-regular">Falcons</h1>
+    <div class="hairline mv-30 max-width"></div>
+  </div>
 
-<div
-  *ngIf="(filtered$ | async)?.length === 0 && searchInput.value.length > 0"
-  class="p-2em"
->
-  <p class="color-dark">No Results For: {{ searchInput.value }}</p>
+  <div *ngIf="!isSearching" class="max-width flex flex-row scroll-x p-30">
+    <app-product
+      *ngFor="let product of falcons"
+      [product]="product"
+      routerLink="/product/{{ product.id }}"
+      [clickable]="true"
+    ></app-product>
+  </div>
+
+  <div *ngIf="isSearching" class="max-width flex flex-row scroll-x p-30">
+    <app-product
+      *ngFor="let product of filterProducts"
+      [product]="product"
+      routerLink="/product/{{ product.id }}"
+      [clickable]="true"
+    ></app-product>
+  </div>
+
+  <div *ngIf="!isSearching || (isSearching && filterAccessories.length > 0)">
+    <div *ngIf="!isOrno">
+      <h1 class="weight-regular">Accessories</h1>
+      <div class="hairline mv-30 max-width"></div>
+    </div>
+  </div>
+
+  <div *ngIf="!isSearching">
+    <div *ngIf="!isOrno" class="max-width flex flex-row scroll-x p-30">
+      <app-product
+        *ngFor="let product of accessories"
+        [product]="product"
+        routerLink="/product/{{ product.id }}"
+        [clickable]="true"
+      ></app-product>
+    </div>
+  </div>
+
+  <div *ngIf="isSearching">
+    <div *ngIf="!isOrno" class="max-width flex flex-row scroll-x p-30">
+      <app-product
+        *ngFor="let product of filterAccessories"
+        [product]="product"
+        routerLink="/product/{{ product.id }}"
+        [clickable]="true"
+      ></app-product>
+    </div>
+  </div>
+
+  <div
+    *ngIf="
+      isSearching &&
+      !searchFound &&
+      filterAccessories.length == 0 &&
+      filterProducts.length == 0
+    "
+  >
+    <p class="color-dark bold">No Results For: {{ searching }}</p>
+  </div>
+
+  <div class="spacer"></div>
+  <div class="spacer"></div>
 </div>

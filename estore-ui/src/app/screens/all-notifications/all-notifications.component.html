@@ -1,0 +1,42 @@
+<!-- <div class="card">
+  <h2>Notification History</h2>
+  <div
+    *ngFor="let notification of notifications"
+    class="notificationCard"
+    routerLink="/all-notifications"
+  >
+    <div class="title">
+      {{ notification.title }}
+    </div>
+    <div class="message">
+      {{ notification.message }}
+    </div>
+  </div>
+   <app-button color="blue"
+                title="Clear notification history"
+                (onClick)="clearNotifications()"
+                ></app-button>
+</div> -->
+
+<div class="flex flex-column p-80">
+  <h1 class="weight-regular">My Notification</h1>
+  <div class="hairline mv-30 max-width"></div>
+  <div *ngIf="notifications.length > 0" class="flex flex-column flex-center">
+    <app-notifi-card
+      *ngFor="let noti of notifications"
+      [notifi]="noti"
+      [large]="true"
+      (onCancel)="closeNotification(noti.id)"
+    ></app-notifi-card>
+
+    <app-button
+      title="Clear History"
+      color="grey"
+      (onClick)="clearNotifications()"
+    ></app-button>
+  </div>
+
+  <div *ngIf="notifications.length == 0" class="flex flex-center">
+    <p class="bold">No New Notifications</p>
+  </div>
+</div>

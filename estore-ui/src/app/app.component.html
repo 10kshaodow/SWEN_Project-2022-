@@ -1,1 +1,7 @@
-<router-outlet></router-outlet>
+<div [ngClass]="{ 'scroll-y': scrollable }" class="fill-view relative">
+  <app-nav-bar></app-nav-bar>
+
+  <app-view-notification></app-view-notification>
+
+  <router-outlet></router-outlet>
+</div>

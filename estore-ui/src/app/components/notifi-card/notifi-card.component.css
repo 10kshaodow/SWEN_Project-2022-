@@ -1,0 +1,32 @@
+i {
+  color: var(--red);
+  font-size: 35px;
+}
+
+.noti {
+  border-radius: 25px;
+  opacity: 1;
+  background-color: var(--dark-gray);
+}
+
+.large {
+  width: 700px;
+}
+
+.small {
+  width: 350px;
+}
+
+.small-x {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+}
+
+#large-title {
+  max-width: 500px;
+}
+
+#small-title {
+  max-width: 300px;
+}

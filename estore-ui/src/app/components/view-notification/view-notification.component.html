@@ -1,0 +1,13 @@
+<div class="sticky max-width flex flex-column ai-end">
+  <div class="ph-80">
+    <app-notifi-card
+      *ngFor="let noti of notifications"
+      [notifi]="noti"
+      [large]="false"
+      [clickable]="true"
+      [cancelable]="true"
+      (onCancel)="onCloseNotification(noti.id)"
+      routerLink="/notifications"
+    ></app-notifi-card>
+  </div>
+</div>

@@ -1,0 +1,59 @@
+<!-- <div *ngIf="product" class="product-card">
+  <div class="img-cont" (click)="toProductDetail()">
+    <img src="{{ product!.fileName }}" alt="{{ product!.name }}" />
+  </div>
+  <div class="product-content">
+    <h1>${{ product!.price.toFixed(2) }}</h1>
+    <h2>{{ product!.name }}</h2>
+  </div>
+  
+  <h3 *ngIf="orderItem!.quantity > 0 && this.product.productType == 2">Quantity:</h3>
+  <div class = "quantity-content">
+    <button *ngIf="!viewOnly && this.product.productType == 2" class="quant button" (click)="decrementQuantity()">-</button>
+    <h3 *ngIf="this.product.productType == 2" class="quant"> {{orderItem!.quantity}} </h3>
+    <button *ngIf="!viewOnly && this.product.productType == 2" class="quant button" (click)="incrementQuantity()">+</button>
+    <button *ngIf="(!viewOnly || (productNotFound && !viewOnly))" class="remove-item button" (click)="removeFromCart()" >Remove</button>
+  </div>
+</div> -->
+
+<div *ngIf="product" class="flex flex-row pv-30 ai-center jc-space-between">
+  <div class="order-content flex flex-row flex-center">
+    <img
+      *ngIf="product.fileName"
+      src="{{ product.fileName }}"
+      alt="{{ product.name }}"
+    />
+    <div class="flex flex-column mh-30 text-center">
+      <h3 class="bold">{{ product.name }}</h3>
+      <h2 class="color-red mt-30 weight-medium">
+        $
+        {{
+          product.price.toLocaleString(undefined, {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+          })
+        }}
+      </h2>
+      <div class="flex flex-row flex-center mt-80">
+        <i
+          (click)="decrementQuantity()"
+          *ngIf="product.productType != 1 && showButtons"
+          class="pointer color-white fa-sharp fa-solid fa-chevron-left"
+        ></i>
+        <p class="pointer bold color-red mh-30">{{ orderItem.quantity }}</p>
+        <i
+          (click)="incrementQuantity()"
+          *ngIf="product.productType != 1 && showButtons"
+          class="pointer color-white fa-sharp fa-solid fa-chevron-right"
+        ></i>
+      </div>
+    </div>
+  </div>
+  <i
+    *ngIf="showButtons"
+    (click)="removeFromCart()"
+    class="pointer mh-50 cross fa-solid fa-xmark"
+  ></i>
+</div>
+
+<div class="hairline mv-30 max-width"></div>

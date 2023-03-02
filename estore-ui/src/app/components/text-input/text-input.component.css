@@ -1,0 +1,143 @@
+/* .inp-cont {
+  position: relative;
+  padding-top: 1.35rem;
+  margin: 0.5em 0em 1em 0em;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.large-cont {
+  max-width: 500px;
+}
+
+.regular-cont {
+  max-width: 300px;
+}
+
+.expanded-cont {
+  max-width: 500px;
+  min-height: 300px;
+  align-items: flex-start;
+}
+
+.inp-text {
+  font-size: 1rem;
+  position: absolute;
+  top: 2.25rem;
+  left: 0;
+  padding: 0rem 1.25rem;
+  transition: 0.25s ease-in-out;
+  pointer-events: none;
+  transition-property: transform padding;
+}
+
+.inp {
+  flex: 1;
+  margin: 0px;
+  padding: 0.75rem 1.25rem;
+  font-size: 1.15rem;
+
+  border: 2px solid var(--color-primary);
+  border-radius: 12px;
+}
+
+.expanded-cont textarea {
+  flex: 1;
+  padding: 0.75rem 1.25rem;
+  font-size: 1.15rem;
+  border: 2px solid var(--color-primary);
+  border-radius: 12px;
+
+  min-height: 275px;
+  resize: none;
+}
+
+.inp:active,
+.inp:focus,
+.expanded-cont textarea:active,
+.expanded-cont textarea:focus {
+  outline: none;
+  border: 2px solid var(--color-secondary);
+}
+
+.inp:active + .inp-text,
+.inp:focus + .inp-text,
+.expanded-cont textarea:active + .inp-text,
+.expanded-cont textarea:focus + .inp-text {
+  color: var(--color-secondary);
+  padding: 0rem 0.5rem;
+  transform: translateY(-2.35rem);
+}
+
+.inp:not(:placeholder-shown) + .inp-text,
+.expanded-cont .inp-text {
+  padding: 0rem 0.5rem;
+  transform: translateY(-2.35rem);
+} */
+
+.inp-cont {
+  position: relative;
+}
+
+.text {
+  padding: 10px 20px;
+  width: 400px;
+  font-size: 35px;
+  border: 0px none transparent;
+  outline: none;
+  border-radius: 25px;
+  min-height: 275px;
+  resize: none;
+}
+
+.inp {
+  padding: 10px 20px;
+  width: 400px;
+  font-size: 35px;
+  border: 0px none transparent;
+  outline: none;
+  border-radius: 25px;
+  color: var(--dark-gray);
+}
+
+.inp:disabled,
+.text:disabled {
+  background-color: var(--light-gray);
+}
+
+.inp:focus,
+.inp:active,
+.text:focus,
+.text:active {
+  border: 4px solid var(--red);
+}
+
+.inp-text {
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  color: var(--dark-gray);
+  font-size: 35px;
+  pointer-events: none;
+  transition: 250ms ease-in-out;
+  transition-property: transform padding;
+}
+
+.inp:focus + .inp-text,
+.inp:active + .inp-text,
+.inp:not(:placeholder-shown) + .inp-text,
+.text:focus + .inp-text,
+.text:active + .inp-text,
+.text:not(:placeholder-shown) + .inp-text {
+  transform: translate(-20px, -50px);
+  color: var(--light-gray);
+}
+
+.inp:focus + .inp-text,
+.inp:active + .inp-text,
+.text:focus + .inp-text,
+.text:active + .inp-text {
+  color: var(--red);
+}

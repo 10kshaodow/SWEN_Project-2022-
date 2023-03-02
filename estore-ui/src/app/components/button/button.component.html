@@ -1,0 +1,13 @@
+<button
+  [ngClass]="{
+    red: !disabled && color == 'red',
+    gray: !disabled && color == 'grey'
+  }"
+  class="our-btn inner-shadow flex flex-row flex-center"
+  [disabled]="disabled"
+  (click)="onClick.emit()"
+>
+  <p class="bold" *ngIf="title">{{ title }}</p>
+  <i *ngIf="back" class="color-white fa-sharp fa-solid fa-chevron-left"></i>
+  <ng-content></ng-content>
+</button>

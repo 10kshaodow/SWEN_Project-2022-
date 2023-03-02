@@ -5,12 +5,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
-import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import com.estore.api.estoreapi.model.Product;
+import com.estore.api.estoreapi.exceptions.InvalidProductException;
+import com.estore.api.estoreapi.exceptions.ProductNameTakenException;
+import com.estore.api.estoreapi.exceptions.ProductTypeChangeException;
+import com.estore.api.estoreapi.model.products.Accessory;
+import com.estore.api.estoreapi.model.products.BirdProduct;
+import com.estore.api.estoreapi.model.products.Product;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
@@ -21,7 +25,6 @@ import com.fasterxml.jackson.databind.SerializationFeature;
  */
 @Component
 public class ProductFileDAO implements IProductDAO {
-    private static final Logger LOG = Logger.getLogger(ProductFileDAO.class.getName());
 
     // local cache of products
     Map<Integer, Product> products;
@@ -73,6 +76,12 @@ public class ProductFileDAO implements IProductDAO {
         // TODO: when getProductsArray is implemented this needs to work
         Product[] productArray = this.getProductsArray();
 
+        for (int i = 0; i < productArray.length; i++) {
+            Product product = productArray[i];
+            product.unNormalize();
+            productArray[i] = product;
+        }
+
         // Serializes the products to JSON format and write to a file
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
         objectMapper.writeValue(new File(filename), productArray);
@@ -98,6 +107,7 @@ public class ProductFileDAO implements IProductDAO {
 
         // Add each product to the tree map and keep track of the greatest id
         for (Product product : productArray) {
+            product.unNormalize();
             products.put(product.getId(), product);
             if (product.getId() > nextId)
                 nextId = product.getId();
@@ -147,7 +157,7 @@ public class ProductFileDAO implements IProductDAO {
      * 
      * @return The array of oroducts, may be empty
      */
-    private Product[] getProductsArray(String containsText) { // if containsText == null, no filter
+    public Product[] getProductsArray(String containsText) { // if containsText == null, no filter
         ArrayList<Product> heroArrayList = new ArrayList<>();
 
         for (Product product : products.values()) {
@@ -185,18 +195,77 @@ public class ProductFileDAO implements IProductDAO {
     }
 
     /**
-     ** {@inheritDoc}
+     * Retrieves Products of a certain type
+     * @param type the type of product to find
+     * @return An array of Product objects of the given type
      */
     @Override
-    public Product createProduct(Product product) throws IOException {
+    public Product[] getProductsOfType(int type) throws IOException{
+        ArrayList<Product> productArrayList = new ArrayList<>();
+
+        for(Product product: this.getAllProducts()){
+            if(product.getProductType() == type){
+                productArrayList.add(product);
+            }
+        }
+
+        Product[] productArray = new Product[productArrayList.size()];
+        productArrayList.toArray(productArray);
+        return productArray;
+    }
+
+    /**
+     ** {@inheritDoc}
+     * 
+     * @throws InvalidProductException
+     */
+    @Override
+    public Product createProduct(Product product)
+            throws IOException, ProductNameTakenException, InvalidProductException {
         synchronized (products) {
             // We create a new product object because the id field is immutable
             // and we need to assign the next unique id
-            Product newProduct = new Product(nextId(), product.getPrice(), product.getName(), product.getDescription(),
-                    product.getQuantity());
+            if (productNameTaken(product.getName())) {
+                throw new ProductNameTakenException("The product with name {" + product.getName() + "} already exists");
+            }
+
+            if (!product.isValidProduct())
+                throw new InvalidProductException("Product price and quantity must be greater than zero");
+
+            Product newProduct;
+
+            if (product.getProductType() == 1) {
+                String[] newSponsors = new String[0];
+                newProduct = new BirdProduct(
+                        nextId(),
+                        product.getProductType(),
+                        product.getPrice(),
+                        product.getName(),
+                        product.getDescription(),
+                        product.getQuantity(),
+                        product.getFileName(),
+                        product.getFileSource(),
+                        newSponsors);
+
+            } else {
+                newProduct = new Accessory(
+                        nextId(),
+                        product.getProductType(),
+                        product.getPrice(),
+                        product.getName(),
+                        product.getDescription(),
+                        product.getQuantity(),
+                        product.getFileName(),
+                        product.getFileSource());
+
+            }
+
             products.put(newProduct.getId(), newProduct);
-            save(); // may throw an IOException
+
+            save();
+
             return newProduct;
+
         }
     }
 
@@ -204,10 +273,22 @@ public class ProductFileDAO implements IProductDAO {
      ** {@inheritDoc}
      */
     @Override
-    public Product updateProduct(Product product) throws IOException {
+    public Product updateProduct(Product product)
+            throws IOException, InvalidProductException, ProductTypeChangeException {
         synchronized (products) {
+
             if (products.containsKey(product.getId()) == false)
                 return null; // product does not exist
+
+            Product oldProduct = products.get(product.getId());
+
+            if (!product.isValidProduct()) {
+                throw new InvalidProductException("Product price and quantity must be greater than zero");
+            }
+
+            if (oldProduct.productType != product.productType) {
+                throw new ProductTypeChangeException("Product Type cannot be updated");
+            }
 
             products.put(product.getId(), product);
             save(); // may throw an IOException
@@ -227,6 +308,10 @@ public class ProductFileDAO implements IProductDAO {
             } else
                 return false;
         }
+    }
+
+    public boolean productNameTaken(String productName) {
+        return (findProducts(productName).length > 0);
     }
 
 }

@@ -1,0 +1,66 @@
+/* .table {
+    border-collapse: collapse;
+    width: 100%;
+ }
+ 
+ .tableHeaderRow {
+     padding-top: 12px;
+     padding-bottom: 12px; 
+     text-align: left;
+     background-color: var(--color-primary);
+     color: var(--text-color-light);
+ }
+ 
+ .tableRow {
+     cursor: pointer;
+ }
+ 
+ .tableRow:nth-child(even) {
+     background-color: var(--background-color-primary);
+ }
+ 
+ .tableRow:nth-child(even) {
+     background-color: var(--background-color-secondary);
+ }
+ 
+ .tableRow:hover {
+     background-color: var(--background-color-tertiary);
+ }
+ 
+ td {
+     padding: 4px;
+ }
+ 
+ th {
+     padding: 4px;
+ }
+ 
+ .tableSurround {
+     padding: 4px;
+ }
+ 
+.fulfill {
+     border-collapse: collapse; 
+    width: 100%;
+    background-color: var(--color-success);
+    padding: 4px;
+}
+
+.cancel{
+     border-collapse: collapse; 
+    width: 100%;
+    background-color: var(--color-failure);
+    padding: 4px;
+}
+
+.cancel:hover{
+    background-color: var(--color-failure);
+}
+
+label {
+    font-size: medium;
+} */
+
+.cart-header-section {
+  flex: 1;
+}

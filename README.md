@@ -27,7 +27,7 @@ An online E-store system built in Java 17.0
 
 ## Known bugs and disclaimers
 
-v1.1 - No validation has been implemented, negative quantities and prices are allowed. 
+v3.1 - No known bugs.  
 
 ## Curl commands for testing 
 These commands are written for bash. replace {} with the correct parameters (such as the id or search term)j.

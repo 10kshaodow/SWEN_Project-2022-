@@ -1,0 +1,59 @@
+<div class="flex jc-center mv-80">
+  <h1 class="weight-regular">Create New Falkoner Account</h1>
+</div>
+
+<div class="flex flex-column flex-center">
+  <app-text-input
+    inputType="large"
+    title="Username"
+    [value]="username"
+    (valueChange)="setUsername($event)"
+  ></app-text-input>
+
+  <p (click)="this.signIn()" class="hover-red bold pointer mt-80">Login</p>
+
+  <app-button
+    class="mt-50"
+    title="Create Account"
+    (onClick)="this.createUser()"
+  ></app-button>
+
+  <div class="spacer"></div>
+</div>
+
+<!-- <div
+  *ngIf="showCreateAccountScreen"
+  class="max-width flex mv-2em flex-row row-center"
+>
+  <div class="card">
+    <h2>Create account</h2>
+    <p>
+      Create an account to place orders and manage your personal information.
+    </p>
+    <div class="userInfo flex flex-column flex-center">
+      <div>
+        <app-text-input
+          inputType="large"
+          title="Username"
+          [value]="this.username"
+          (valueChange)="setUserName($event)"
+        ></app-text-input> 
+      </div>
+
+      <app-button
+        color="green"
+        title="Create Account"
+        (onClick)="createUser('yes')"
+      ></app-button>
+
+      <p *ngIf="errorMessage.length != 0" class="errorText">
+        {{ errorMessage }}
+      </p>
+    </div>
+
+    <div class="flex flex-column flex-center">
+      <p class="mv-1em">Already have an account?</p>
+      <app-button title="Sign in!" (onClick)="showSignIn()"></app-button>
+    </div>
+  </div>
+</div> -->

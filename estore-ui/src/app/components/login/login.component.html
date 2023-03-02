@@ -1,0 +1,55 @@
+<div class="flex jc-center mv-80">
+  <h1 class="weight-regular">Login To Falkoner</h1>
+</div>
+
+<div class="flex flex-column flex-center">
+  <app-text-input
+    inputType="large"
+    title="Username"
+    [value]="username"
+    (valueChange)="setUsername($event)"
+  ></app-text-input>
+
+  <p (click)="this.createUser()" class="hover-red bold pointer mt-80">
+    Create Account
+  </p>
+
+  <app-button class="mt-50" title="Login" (onClick)="signIn()"></app-button>
+
+  <div class="spacer"></div>
+</div>
+
+<!-- <div class="max-width flex mv-2em flex-row row-center">
+  <div class="card">
+    <h2>Sign in</h2>
+    <p>Sign in to place orders and manage your personal information.</p>
+    <div class="userInfo flex flex-column flex-center">
+      <div>
+        <app-text-input
+          inputType="large"
+          title="Username"
+          [value]="this.username"
+          (valueChange)="setUserName($event)"
+        ></app-text-input>
+      </div>
+
+      <app-button
+        color="green"
+        title="Sign In"
+        (onClick)="signIn()"
+      ></app-button>
+
+      <p *ngIf="errorMessage.length != 0" class="errorText">
+        {{ errorMessage }}
+      </p>
+    </div>
+
+    <div class="flex flex-column flex-center">
+      <p class="mv-1em">Don't have an account?</p>
+      <app-button
+        title="Create One!"
+        (onClick)="showCreateAccount()"
+      ></app-button>
+    </div>
+  </div>
+</div> -->

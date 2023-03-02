@@ -1,0 +1,101 @@
+<div
+  *ngIf="product && doesUserSponsorFalcon()"
+  [ngClass]="{ scrollable: true }"
+  class="main-container"
+>
+  <div class="flex flex-center main-img">
+    <img src="{{ product.fileName }}" alt="Product" />
+  </div>
+  <div class="flex flex-center flex-row mv-1em">
+    <h1>{{ product.name }}</h1>
+  </div>
+  <div class="flex flex-center flex-row mv-1em">
+    <h1 *ngIf="product && sponsorshipDate">
+      You sponsored this falcon on {{ dateTimeToString(sponsorshipDate) }}
+    </h1>
+  </div>
+  <div class="flex flex-center desc-cont mv-2em">
+    <p class="desc ph-10em">{{ product.description }}</p>
+  </div>
+  <div
+    *ngIf="
+      this.product.productType == 1 &&
+      this.healthReports &&
+      this.healthReports.length > 0
+    "
+    class="hr-section mv-2em"
+  >
+    <h2 id="hr-title">Health Reports:</h2>
+    <div class="timeline-cont mv-1em">
+      <div class="timeline-line"></div>
+
+      <app-timeline-circle
+        *ngFor="let report of this.healthReports"
+        [displaySource]="report.fileName[0]"
+        [active]="activeReport?.reportID == report.reportID"
+        (circleClick)="this.setActiveReport(report)"
+      ></app-timeline-circle>
+    </div>
+    <div *ngIf="this.activeReport" class="notes-cont mv-2em ph-10em">
+      <h3>
+        Created On: {{ this.dateTimeToString(this.activeReport.reportDate) }}
+      </h3>
+      <h2
+        *ngIf="
+          this.activeReport.keyNotes != null &&
+          this.activeReport.keyNotes.length > 0
+        "
+        class="mv-1em"
+      >
+        Key Notes:
+      </h2>
+      <ul
+        *ngIf="
+          this.activeReport.keyNotes != null &&
+          this.activeReport.keyNotes.length > 0
+        "
+        class="ph-2em key-notes"
+      >
+        <div *ngFor="let note of this.activeReport.keyNotes" class="mv-1em">
+          <li *ngIf="note.length > 0" class="key-note">
+            <p>{{ note }}</p>
+          </li>
+        </div>
+      </ul>
+    </div>
+    <div
+      *ngIf="this.activeReport"
+      (click)="this.toHealthReport(activeReport.reportID)"
+      class="flex flex-center"
+    >
+      <h2 class="pointer">{{ "See a more detailed report" | titlecase }}</h2>
+    </div>
+  </div>
+  <div
+    *ngIf="
+      this.product.productType == 1 &&
+      this.product.sponsors != null &&
+      this.product.sponsors.length > 0
+    "
+    class="sponsor-section mv-5em"
+  >
+    <h2>{{ product.name }}'s Sponsors:</h2>
+    <div class="sponsor-container mv-2em ph-5em">
+      <div *ngFor="let sponsor of this.product.sponsors" class="sponsor">
+        <p>{{ sponsor }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  *ngIf="!product || (product && !doesUserSponsorFalcon())"
+  class="max-width flex mv-2em flex-row row-center"
+>
+  <div class="card bg-dark">
+    <h2>You do not sponsor this falcon :(</h2>
+    <a routerLink="/home" class="color-lightest"
+      >But you can! Come vist our shop</a
+    >
+  </div>
+</div>

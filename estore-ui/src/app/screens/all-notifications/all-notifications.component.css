@@ -1,0 +1,38 @@
+.notificationCard {
+    height: 100px;
+    width: 300px;
+    background-color: #d3d3d3;
+    border-radius: 5px;
+    margin-top: 5px;
+    position: relative;
+    cursor: pointer;
+    transform: 300ms;
+}
+
+.notificationCard:hover {
+    transform: translateY(-2px);
+}
+
+.title {
+    position: absolute;
+    left: 7px;
+    top: 5px;
+    height: 30px;
+    width: 270px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.message {
+    position: absolute;
+    top: 35px;
+    left: 7px;
+    right: 5px;
+    bottom: 5px;
+    font-size: medium;
+}
+
+.card {
+    border: none;
+}

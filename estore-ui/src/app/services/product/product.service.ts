@@ -87,6 +87,7 @@ export class ProductService {
    * @return an observable allowing the caller to wait on receiving the updated product until the product update has completed
    */
   updateProduct(product: Product): Observable<any> {
+    console.log("Updated product: " + JSON.stringify(product, null, 2));
     return this.http.put(this.apiUrl, product, this.httpOptions).pipe(
       tap((_) => console.log(`updated product id=${product.id}`)),
       catchError(this.handleError<any>('updateProduct'))
@@ -100,7 +101,7 @@ export class ProductService {
   addProduct(product: Product): Observable<Product> {
     return this.http.post<Product>(this.apiUrl, product, this.httpOptions).pipe(
       tap((newProduct: Product) =>
-        console.log(`added product w/ id=${newProduct.id}`)
+        console.log(`\nProduct Created w/ id=${newProduct.id}\n`)
       ),
       catchError(this.handleError<Product>('addProduct'))
     );

@@ -1,0 +1,159 @@
+<div *ngIf="!showMakeNew" class="flex flex-column p-80">
+  <h1 class="weight-regular">All notifications</h1>
+  <div class="hairline mv-30 max-width"></div>
+  <div class="flex flex-center flex-column">
+    <app-notifi-card
+      *ngFor="let noti of allNotifications"
+      [large]="true"
+      [notifi]="noti"
+      (onCancel)="deleteById(noti.id)"
+    ></app-notifi-card>
+  </div>
+</div>
+
+<div class="fixed p-80 no-event position-bottom flex ai-center jc-end">
+  <app-button
+    class="all-event"
+    title="Create Notification"
+    color="grey"
+    (onClick)="!showMakeNew ? newNotificationSelected() : createNotification()"
+  ></app-button>
+</div>
+
+<div *ngIf="showMakeNew" class="flex flex-column p-80">
+  <div class="flex ai-center jc-space-between flex-row">
+    <app-button [back]="true" (onClick)="cancelNotification()"></app-button>
+    <h1 class="weight-regular">New notification</h1>
+    <div [style]="{ width: '100px' }"></div>
+  </div>
+  <div class="hairline mv-30 max-width"></div>
+
+  <div class="flex flex-column flex-center">
+    <app-text-input
+      title="Title"
+      inputType="large"
+      [value]="newNotification.title"
+      (valueChange)="setNewNotificationTitle($event)"
+    ></app-text-input>
+
+    <app-text-input
+      title="Message"
+      inputType="expanded"
+      [value]="newNotification.message"
+      (valueChange)="setNewNotificationMessage($event)"
+    ></app-text-input>
+  </div>
+  <div class="mt-80 flex flex-column flex-center">
+    <h1 class="weight-regular">To Users</h1>
+    <div class="hairline mv-30 max-width"></div>
+  </div>
+
+  <div class="max-width flex flex-row flex-wrap">
+    <app-user-card
+      *ngFor="let user of allUsers"
+      [user]="user"
+      [clickable]="true"
+      [selected]="isUserSelected(user)"
+      (onClick)="selectUser(user)"
+    ></app-user-card>
+  </div>
+</div>
+
+<!-- <div *ngIf="!showMakeNew" class="container">
+  <div class="tableSurround">
+     <h1 class="weight-regular">Manage users</h1>
+    <table class="table">
+      <tr class="tableHeaderRow">
+        <th></th>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Message</th>
+      </tr>
+      <tr class="tableRow" *ngFor="let notification of allNotifications">
+        <td>
+          <input
+            type="checkbox"
+            [checked]="notificationSelected.get(notification.id)"
+            (change)="
+              notificationSelected.set(
+                notification.id,
+                !notificationSelected.get(notification.id)
+              )
+            "
+          />
+        </td>
+        <td>{{ notification.id }}</td>
+        <td>{{ notification.title }}</td>
+        <td>{{ notification.message }}</td>
+      </tr>
+    </table>
+  </div>
+  <app-button
+    color="red"
+    title="Delete"
+    (onClick)="deleteSelected()"
+  ></app-button>
+   <app-button color="blue" title="New" (onClick)="newNotificationSelected()"></app-button>
+</div> --->
+<!--
+<div *ngIf="showMakeNew" class="container">
+  <div class="card">
+    <p>Create a new notification</p>
+    <app-text-input
+      title="Title"
+      inputType="large"
+      [value]="newNotification.title"
+      (valueChange)="setNewNotificationTitle($event)"
+    ></app-text-input>
+
+    <app-text-input
+      title="Message"
+      inputType="large"
+      [value]="newNotification.message"
+      (valueChange)="setNewNotificationMessage($event)"
+    ></app-text-input>
+
+    <div class="userTableSurround">
+      <table class="table">
+        <tr class="tableHeaderRow">
+          <th></th>
+          <th>Username</th>
+          <th>Name</th>
+        </tr>
+        <tr class="tableRow" *ngFor="let user of allUsers">
+          <td>
+            <input
+              type="checkbox"
+              [checked]="userSelected.get(user.username)"
+              (change)="
+                userSelected.set(
+                  user.username,
+                  !userSelected.get(user.username)
+                )
+              "
+            />
+          </td>
+          <td>{{ user.username }}</td>
+          <td>{{ user.name }}</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="flex flex-center">
+       <app-button
+            color="green"
+            title="Create"
+            (onClick)="createNotification()"
+          ></app-button>
+    </div>
+    <div class="flex flex-center">
+       <app-button
+            color="blue"
+            title="Cancel"
+            (onClick)="cancelNotification()"
+          ></app-button>
+    </div>
+
+     <input type="submit" value="Save" (click)="saveUser()" />
+  </div>
+</div> -->

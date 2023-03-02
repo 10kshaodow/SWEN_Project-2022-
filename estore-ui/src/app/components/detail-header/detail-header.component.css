@@ -1,0 +1,14 @@
+.header-container img {
+  width: 600px;
+  height: 500px;
+  object-fit: cover;
+  border-radius: 25px;
+}
+
+h1 + h3 {
+  margin-left: 10px;
+}
+
+p {
+  max-width: 325px;
+}

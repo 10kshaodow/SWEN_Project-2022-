@@ -1,0 +1,9 @@
+.welcome-user i {
+  font-size: 100px;
+}
+
+.logout-btn {
+  bottom: 0;
+  left: 0;
+  right: 0;
+}

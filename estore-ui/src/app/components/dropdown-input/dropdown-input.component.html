@@ -1,0 +1,21 @@
+<div
+  [ngClass]="{ open: open, 'no-value': !value || value.length == 0 }"
+  class="dropdown-container flex flex-column mv-30"
+>
+  <p class="dropdown-placeholder bold">{{ title }}</p>
+  <div (click)="this.toggleOpen()" class="dropdown-input pointer">
+    <p class="bold">{{ value ? value : " " }}</p>
+    <div class="triangle-container flex flex-center">
+      <div class="triangle"></div>
+    </div>
+  </div>
+  <div *ngIf="open" class="dropdown-selections">
+    <div
+      *ngFor="let option of options"
+      (click)="this.emitValue(option)"
+      class="dropdown-selection pointer"
+    >
+      <p class="bold">{{ option }}</p>
+    </div>
+  </div>
+</div>

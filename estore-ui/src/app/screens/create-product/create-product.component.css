@@ -1,0 +1,61 @@
+.heading {
+  text-align: center;
+  margin: 2em 0em;
+}
+
+.image-cont {
+  width: 400px;
+  height: 400px;
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  background-color: grey;
+  border-radius: 1em;
+  transition: transform 0.1s ease-in-out;
+}
+
+.image-cont:hover {
+  transform: translateY(-10px);
+}
+
+.image-cont input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  cursor: pointer;
+  opacity: 0;
+}
+
+.image-cont img {
+  /* width: "100%"; */
+  /* height: "100%"; */
+  flex: 1;
+  object-fit: cover;
+  background-color: red;
+}
+
+.product-image {
+  width: 200px;
+  height: 200px;
+  background-color: blue;
+  object-fit: contain;
+}
+
+.button {
+  padding: 1em 2em;
+  background-color: var(--color-primary);
+  color: var(--background-color-primary);
+  border-width: 2px;
+  border-color: var(--color-secondary);
+  border-style: solid;
+  border-radius: 0.75em;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: var(--color-secondary);
+  color: var(--background-color-primary);
+  border-color: var(--color-primary);
+}

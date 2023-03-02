@@ -1,0 +1,87 @@
+<div class="flex flex-row flex-center welcome-user">
+  <i class="fa-solid fa-circle-user"></i>
+  <h1 class="mh-30 weight-regular">Hello, {{ user.username }}</h1>
+</div>
+
+<div class="mt-50 ph-80">
+  <div class="hairline"></div>
+</div>
+
+<div class="flex flex-column flex-center mv-80">
+  <app-user-form [user]="user" (userChange)="setUser($event)"></app-user-form>
+
+  <app-button
+    (onClick)="save()"
+    class="mt-30"
+    color="grey"
+    title="Save"
+  ></app-button>
+</div>
+
+<div *ngIf="user.type == 'Customer'" class="p-80 flex flex-column">
+  <h1 class="weight-regular">My Orders</h1>
+  <div class="hairline mt-30 max-width"></div>
+  <div *ngIf="orders.length > 0" class="flex flex-column">
+    <app-order-snippet
+      *ngFor="let order of orders"
+      [order]="order"
+      routerLink="/order/{{ order.id }}"
+    ></app-order-snippet>
+  </div>
+  <div *ngIf="orders.length == 0" class="flex flex-column flex-center">
+    <h3 class="mv-50 weight-medium">You have no orders yet...</h3>
+    <app-button color="grey" title="Visit Shop" routerLink="/home"></app-button>
+  </div>
+</div>
+
+<div class="spacer"></div>
+
+<div class="fixed logout-btn p-80 flex ai-center jc-end">
+  <app-button color="grey" title="Logout" (onClick)="logout()"></app-button>
+</div>
+
+<!-- <div *ngIf="signedIn" class="max-width flex mv-2em flex-row row-center">
+  <div class="card">
+    <h2 *ngIf="!(currentUser!.name.trim().length == 0)">
+      Hi {{ currentUser!.name }}!
+    </h2>
+
+    <app-user [user]="currentUser!"> </app-user>
+
+    <app-button
+      color="blue"
+      title="View All Notifications"
+      routerLink="/all-notifications"
+      style="margin-top: 5px; margin-bottom: 5px"
+    ></app-button>
+     <input
+        id="signOutButton"
+        type="submit"
+        value="Sign out"
+        (click)="signOut()"
+      />
+    <div *ngIf="isUserCustomer()" class="my-orders">
+      <h3>My Orders</h3>
+      <ul
+        class="orders-list"
+        *ngFor="let orderNumber of currentUser!.orderHistory"
+      >
+        <li>
+          <button type="button" routerLink="/order/{{ orderNumber }}">
+            <span class="badge">{{ orderNumber }}</span>
+          </button>
+        </li>
+      </ul>
+      <div *ngIf="currentUser!.orderHistory.length == 0">
+        <h4>You have not ordered anything yet</h4>
+        <a routerLink="/home">Come vist our shop</a>
+      </div>
+    </div>
+    <app-button
+      color="red"
+      (onClick)="signOut()"
+      title="Sign Out"
+      style="margin-top: 5px; margin-bottom: 5px"
+    ></app-button>
+  </div>
+</div> -->
